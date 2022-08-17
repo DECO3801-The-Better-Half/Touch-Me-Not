@@ -1,12 +1,15 @@
 int button1 = 2;
 int button2 = 3;
 int button3 = 4;
-int ptPin = 0;
-int knobValue = 0;
+int ptPin0 = 0;
+int ptPin1 = 1;
+int knobValue1 = 0;
+int knobValue2 = 0;
 
 boolean reading1;
 boolean reading2;
 boolean reading3;
+boolean reading4;
 
 void setup() {
   // put your setup code here, to run once:
@@ -30,9 +33,12 @@ void loop() {
   reading1 = !digitalRead(button1); 
   reading2 = !digitalRead(button2);
   reading3 = !digitalRead(button3);
-  knobValue = analogRead(ptPin);
   
-  delay(15);
+  knobValue1 = analogRead(ptPin0);
+  knobValue2 = analogRead(ptPin1);
+  
+  
+  delay(5);
 
   Serial.print(reading1);
   Serial.print(",");
@@ -40,7 +46,9 @@ void loop() {
   Serial.print(",");
   Serial.print(reading3);
   Serial.print(",");
-  Serial.print(knobValue);
+  Serial.print(knobValue1);
+  Serial.print(",");
+  Serial.print(knobValue2);
   Serial.println();
 
 }
