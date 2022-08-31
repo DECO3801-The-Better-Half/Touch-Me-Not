@@ -1,79 +1,113 @@
-import cv2
-from cvzone.FaceDetectionModule import FaceDetector
-import matplotlib.pyplot as plt
-from deepface import DeepFace
+# import cv2
+# from cvzone.FaceDetectionModule import FaceDetector
+# import matplotlib.pyplot as plt
+# from deepface import DeepFace
 import time
 import serial
 import threading
+from multiprocessing import Process
 from playsound import playsound
-import os
 
+import trace
+import sys
+import wave
 
+PRESSED = True
+UNPRESSED = False
 
-def run():
+PLANT = 0
+WATER = 1
+LIGHT = 2
+FABRIC = 3
 
-    detector = FaceDetector(minDetectionCon=0.8)
-    cap = cv2.VideoCapture(0)
+# To change which input plays which sound, modify this list
+# The first input plays SOUNDS[0], second SOUNDS[1], etc.
+SOUNDS = ['sounds/plant.wav', 'sounds/water.wav', 'sounds/light.wav', 'sounds/fabric.wav']
 
-    startTime = time.time()
-
+def play(file):
     while True:
-        success, frame = cap.read()
-
-        currentTime = time.time()
-        if currentTime > startTime + 0.75:
-            startTime = time.time()
-            result = DeepFace.analyze(frame, enforce_detection=False, actions = ['emotion'])
-            #result = DeepFace.analyze(frame, enforce_detection=False)
-            print(result['dominant_emotion'])
-        frame, bboxs = detector.findFaces(frame)
-        cv2.imshow("Original Video", frame)
-
-        cv2.waitKey(1)
-
-
-
-        #cv2.imshow("Image", img)
+        playsound(file, block=True)
 
 
 def get_serial():
 
-        startTime = time.time()
-        #sPort = '/dev/tty.usbmodem101'
-        sPort = '/dev/cu.usbmodem101'
-
+        sPort = '/dev/cu.usbmodem1101'
         ser = serial.Serial(sPort, 9600, timeout=1)
 
-        state = False
+
+
+        data = ser.readline()
+
+        states = []
+        playing = [True, True, True, True]
+        threads = []
+        thresholds = [90, 1400, 19000, 200]
 
         while True:
 
             if ser.inWaiting() > 0:
+                # Read data from serial
                 data = ser.readline()
-                parsed_data = data.decode().strip().replace("\n","").split(",")
+                #print(data)
+                parsed_data = data.decode().strip().split(" ")
                 print(parsed_data)
 
-                button1 = parsed_data[0]
-                button2 = parsed_data[1]
-                button3 = parsed_data[2]
+                # Check that thread and state lists are correct size
+                while len(parsed_data) > len(states):
+                    states.append(UNPRESSED)
+                while len(parsed_data) > len(threads):
+                    threads.append(None)
 
-                if button1 == '1' and state == False:
-                    state = True
-                    x = threading.Thread(target=playsound, args=('sounds/small-door-bell.wav',))
-                    x.start()
+                # Start a new thread to play the sound for each input
+                for i in range(len(parsed_data)):
 
-                if button1 == '0' and state == True:
-                    state = False
+                    value = int(parsed_data[i])
 
+                    if (value > thresholds[i] or value == -2) and states[i] != PRESSED:
+                        states[i] = PRESSED
+
+                        if i == LIGHT:
+
+                            playing[i] = (playing[i] != True)
+
+                            if not playing[i]:
+
+                                threads[i] = Process(target=play, args=(SOUNDS[i],))
+                                threads[i].start()
+
+
+                            else:
+                                threads[i].terminate()
+
+                        else:
+
+                            threads[i] = Process(target=play, args=(SOUNDS[i], ))
+                            threads[i].start()
+
+
+                # For each input, change state to unpressed if they are
+                # below the threshold
+                for i in range(len(parsed_data)):
+                    value = int(parsed_data[i])
+                    if (value <= thresholds[i] and value != -2) and states[i] == PRESSED:
+                        states[i] = UNPRESSED
+
+                        if i != LIGHT:
+                            threads[i].terminate()
 
 
 if __name__ == '__main__':
-    print()
-    #run()
-    get_serial()
 
-    dir_path = os.path.dirname(os.path.realpath(__file__))
+    #x = threading.Thread(target=get_serial, args=())
+    #x.start()
+    #x.run()
+
+    # Run below
+    #x = pr.Thread(target=get_serial, args=())
+    x = Process(target=get_serial, args=())
+    x.start()
+
+    #dir_path = os.path.dirname(os.path.realpath(__file__))
     #print(dir_path)
-
     #playsound('sounds/small-door-bell.wav')
     #playsound('sounds/small-door-bell.wav')
