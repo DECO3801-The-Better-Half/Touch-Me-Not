@@ -19,9 +19,11 @@ Gets the read inputs from the arduino.
 
 ## Troubleshooting
 ```[Errno 2] No such file or directory: '/dev/cu.usbmodem1101'```
-This issue is related to the port main.py is trying to read the arduino input form. 
+
+This issue is related to the port main.py is trying to read the arduino input from. 
 The following link should show you how to find the suitable port for your computer: 
 https://www.mathworks.com/help/supportpkg/arduinoio/ug/find-arduino-port-on-windows-mac-and-linux.html 
 
 For convenience you may list the port you need to run the code on your computer below:
 - **Lauren:** '/dev/tty.usbmodem14201'
+- **Peter:** '/dev/cu.usbmodem1101'
