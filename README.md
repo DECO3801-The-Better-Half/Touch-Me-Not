@@ -21,6 +21,8 @@ Gets the read inputs from the arduino.
 1. Orient the breadboard to have wires facing up 
 2. Connect the alligator clip to the left side of the resistors
 
+![IMG_6857](https://user-images.githubusercontent.com/88118932/190286986-9709f1e9-f6db-4a0d-9529-1fef5aa7de49.jpg)
+
 
 ## Troubleshooting
 ```[Errno 2] No such file or directory: '/dev/cu.usbmodem1101'```
