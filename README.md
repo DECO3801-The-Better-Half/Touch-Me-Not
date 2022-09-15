@@ -17,6 +17,11 @@ Processes plant arduino inputs. This code was adapted from an online source.
 ## arduino_read.ino
 Gets the read inputs from the arduino. 
 
+## Wiring
+1. Orient the breadboard to have wires facing up 
+2. Connect the alligator clip to the left side of the resistors
+
+
 ## Troubleshooting
 ```[Errno 2] No such file or directory: '/dev/cu.usbmodem1101'```
 
