@@ -11,8 +11,8 @@ playsound is relying on a python 2 subprocess. Please use `pip3 install PyObjC` 
 ## main.py
 Generates processes to play sounds when a touch is sensed.
 
-## plant_arduino.ino
-Processes plant arduino inputs. This code was adapted from an online source. 
+## LED_controller.ino
+Uses the capcitive touch inputs of the different objects to light up parts of the LED strip, with different colours and specific LEDs depending on what objects were touched. 
 
 ## arduino_read.ino
 Gets the read inputs from the arduino. 
