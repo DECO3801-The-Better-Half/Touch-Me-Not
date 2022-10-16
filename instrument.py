@@ -40,7 +40,7 @@ class Instrument:
 
         self._holds = [] if holds is None else holds
         self._impacts = [] if impacts is None else impacts
-        self.threshold = 0 if threshold is not None else threshold
+        self.threshold = 0 if threshold is None else threshold
 
         self._currently_playing = None
 
