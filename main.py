@@ -42,14 +42,16 @@ for key, sound_object in sound_objects.items():
     if instrument_object not in sound_classes:
         sound_classes.append(instrument_object)
 
-    if type == "impact":
-        instrument_object.add_impact(sound_object)
+    for instrument in sound_classes:
+        if instrument.name == name:
+            if type == "impact":
+                instrument.add_impact(sound_object)
 
-    if type == "hold":
-        instrument_object.add_hold(sound_object)
+            if type == "hold":
+                instrument.add_hold(sound_object)
 
 
-pprint(sound_classes)
+print(sound_classes)
 
 plant_sound1 = pygame.mixer.Sound('Sounds/plant.wav')
 water_sound1 = pygame.mixer.Sound('Sounds/water.wav')
@@ -84,8 +86,6 @@ def get_serial():
         data2 = ser2.readline()
 
         states = []
-        playing = [True, True, True, True, True, True, True, True, True, True]
-        threads = []
         thresholds = [800, 200, 200, 200, 200, 800, 200, 200, 200, 200]
 
         records = []
@@ -162,8 +162,6 @@ def get_serial():
                 # Check that thread and state lists are correct size
                 while len(parsed_data) > len(states):
                     states.append(UNPRESSED)
-                while len(parsed_data) > len(threads):
-                    threads.append(None)
 
                 # Start a new thread to play the sound for each input
                 for i in range(len(parsed_data)):
