@@ -6,6 +6,7 @@ from os.path import isfile, join
 import glob
 import time
 import re
+from pprint import pprint
 from instrument import *
 
 PRESSED = True
@@ -25,7 +26,7 @@ sound_files_paths = glob.glob(sound_dir_path)
 
 sound_objects = {}
 for sound in sound_files_paths:
-    abs_path = os.path.basename(os.path.abspath(sound))  # Get sound file name without path
+    abs_path = os.path.basename(sound)  # Get sound file name without path
     instrument = abs_path.split('_')[0]
     type = abs_path.split("_")[1]
     key = abs_path.split("_")[2]
@@ -48,7 +49,7 @@ for key, sound_object in sound_objects.items():
         instrument_object.add_hold(sound_object)
 
 
-print(sound_classes)
+pprint(sound_classes)
 
 plant_sound1 = pygame.mixer.Sound('Sounds/plant.wav')
 water_sound1 = pygame.mixer.Sound('Sounds/water.wav')
