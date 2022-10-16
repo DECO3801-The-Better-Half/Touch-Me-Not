@@ -94,6 +94,22 @@ class Instrument:
     def add_impact(self, sound: Sound) -> None:
         """Add the given sound to the list of impact sounds"""
         self._impacts.append(sound)
+    
+    def set_volume(self, type: str, volume: float) -> None:
+        """Set the volume for all sounds of type.
+        
+        Parameters:
+            type: either "hold" or "impact", the type of sound
+            volume: Volume to set, in range [0, 1]
+        """
+        sounds = None
+        if type == "hold":
+            sounds = self._holds
+        else:
+            sounds = self._impacts
+        
+        for sound in sounds:
+            sound.set_volume(volume)
 
     def __str__(self) -> str:
         return f"Instrument: {self.name}, ({len(self._holds)} holds, " \
