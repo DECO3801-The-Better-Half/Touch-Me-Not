@@ -1,0 +1,25 @@
+======================
+SOUND_COMPONENTS USAGE
+----------------------
+python3 generate_sounds.py jobfile.txt
+======================
+
+
+======================
+JOBFILE USAGE:
+----------------------
+DEFINE INSTRUMENTS FIRST
+instrument instrument_name key chord/scale/arpeggio balance
+e.g. "instrument water C_sharp_major chord L1R1"
+----------------------
+THEN SOUNDS
+sound instrument_name sound_name
+- filename note volume_scale_factor
+- filename note volume_scale_factor
+...
+e.g.
+"sound flowerR hold
+- sound_components/Flower/sparky_drone_G#.wav G_sharp 0.5
+- sound_components/Flower/vocals_G.wav G 1.5
+- sound_components/Flower/bees.wav none 0.1"
+======================
