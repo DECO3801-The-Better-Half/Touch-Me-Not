@@ -4,14 +4,18 @@ import os
 import glob
 from instrument import *
 from arduino_serial import ArduinoSerial
+from sound import Sound
+from pprint import pprint
 
 TICKS_PER_SECOND = 30
 
 BASE_THRESHOLD = 500
 LAMP_THRESHOLD = 800
 
-PORT_ONE = '/dev/cu.usbserial-1410'
-PORT_TWO = '/dev/cu.usbmodem14201'
+PORT_ONE = '/dev/cu.usbserial-1420'
+PORT_TWO = '/dev/cu.usbmodem14101'
+
+KEY = "G_sharp_major.wav"
 
 def main():
     pygame.init()
@@ -27,13 +31,15 @@ def main():
         instrument, type, key = abs_path.split("_", 2)
         # e.g. water, hold, f_harmonic_minor
 
-        sound_objects[(instrument, type)] = pygame.mixer.Sound(sound)
+        sounds = sound_objects.get((instrument, type), [])
+        sounds.append(Sound(sound, f"{instrument}_{type}_{key}", key))
+        sound_objects[(instrument, type)] = sounds
 
-    # Initialise our instruments
+    # Initialise our instruments in the right order so ArduinoSerial can read them
     left_instruments = [
         Instrument("Left lamp", "lightL", threshold=LAMP_THRESHOLD),
         Instrument("Left flower", "flowerL", threshold=BASE_THRESHOLD),
-        Instrument("dragonfly", "dragonfly", threshold=BASE_THRESHOLD),
+        Instrument("Dragonfly", "dragonfly", threshold=BASE_THRESHOLD),
         Instrument("Left plant 2", "plantFL", threshold=BASE_THRESHOLD),
         Instrument("Left plant 1", "plantL", threshold=BASE_THRESHOLD),
     ]
@@ -41,7 +47,6 @@ def main():
     right_instruments = [
         Instrument("Right lamp", "lightR", threshold=LAMP_THRESHOLD),
         Instrument("Water", "water", threshold=BASE_THRESHOLD),
-        Instrument("Right flower", "flowerR", threshold=BASE_THRESHOLD),
         Instrument("Right plant 2", "plantFR", threshold=BASE_THRESHOLD),
         Instrument("Right plant 1", "plantR", threshold=BASE_THRESHOLD),
         Instrument("Right flower", "flowerR", threshold=BASE_THRESHOLD),
@@ -50,15 +55,19 @@ def main():
     all_instruments = left_instruments + right_instruments
 
     # Give these sounds to each instrument.
-    sound_classes = []
-    for (name, type), sound_object in sound_objects.items():
+    for (name, type), sound_objects in sound_objects.items():
         # Find instrument that has that file_name
         for instrument in all_instruments:
             if instrument.file_name == name:
                 if type == "impact":
-                    instrument.add_impact(sound_object)
+                    for sound_object in sound_objects:
+                        instrument.add_impact(sound_object)
                 elif type == "hold":
-                    instrument.add_hold(sound_object)
+                    for sound_object in sound_objects:
+                        instrument.add_hold(sound_object)
+    
+    for ins in all_instruments:
+        pprint(ins._holds)
 
     clock = pygame.time.Clock()
 
@@ -72,14 +81,14 @@ def main():
         if serial_data_one:
             for cur_instrument, value in serial_data_one.items():
                 if value >= cur_instrument.threshold:
-                    cur_instrument.play()
+                    cur_instrument.play(KEY)
                 else:
                     cur_instrument.stop()
 
         if serial_data_two:
             for cur_instrument, value in serial_data_two.items():
                 if value >= cur_instrument.threshold:
-                    cur_instrument.play()
+                    cur_instrument.play(KEY)
                 else:
                     cur_instrument.stop()
 
