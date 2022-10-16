@@ -19,6 +19,7 @@ class Instrument:
     def __init__(
         self,
         name: str,
+        file_name: str,
         holds: Optional[List[pygame.mixer.Sound]] = None,
         impacts: Optional[List[pygame.mixer.Sound]] = None,
         threshold: Optional[int] = None
@@ -27,6 +28,7 @@ class Instrument:
 
         Parameter:
             name: the name of the instrument (e.g. L plant1)
+            file_name: the name of this instrument according to the files
             holds: list of the sounds to play while the instrument is
                 held (can be only one sound)
             impacts: list of the sounds to play when the instrument is
@@ -34,6 +36,7 @@ class Instrument:
             threshold: threshold for arduino output
         """
         self.name = name
+        self.file_name = file_name
 
         self._holds = [] if holds is None else holds
         self._impacts = [] if impacts is None else impacts
@@ -42,16 +45,21 @@ class Instrument:
         self._currently_playing = None
 
     def play(self) -> None:
-        """Play this instrument's sound"""
-        self._holds[0].play(loops=-1)
-        self._impacts[0].play()
+        """Play this instrument's sound
 
-        self._currently_playing = self._holds[0]
+        If called many times, will simply continue to play the current sound
+        """
+        if not self._currently_playing:
+            self._holds[0].play(loops=-1)
+            self._impacts[0].play()
+
+            self._currently_playing = self._holds[0]
 
     def stop(self) -> None:
         """Stop the instrument's current hold sound"""
         if self._currently_playing is not None:
             self._currently_playing.stop()
+            self._currently_playing = None
 
     def add_hold(self, sound: pygame.mixer.Sound) -> None:
         """Add the given sound file to the list of hold sounds"""

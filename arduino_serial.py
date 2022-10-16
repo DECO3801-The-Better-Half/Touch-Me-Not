@@ -4,6 +4,7 @@ Class to parse the input from the arduino serial.
 """
 
 import serial
+from instrument import Instrument
 from typing import List, Dict, Optional
 
 BOARD_RATE = 9600
@@ -12,7 +13,7 @@ BOARD_RATE = 9600
 class ArduinoSerial:
     """Class to parse input from serial"""
 
-    def __init__(self, order: List[str], port: str):
+    def __init__(self, order: List[Instrument], port: str):
         """Set the order of the instruments in serial inputs
 
         Parameters:
@@ -26,11 +27,11 @@ class ArduinoSerial:
         self._port = port
         self._ser = serial.Serial(port, BOARD_RATE, timeout=1)
 
-    def get_serial(self) -> Optional[Dict[str, int]]:
+    def get_serial(self) -> Optional[Dict[Instrument, int]]:
         """Return a dictionary mapping instrument name -> value from serial
 
         Returns:
-            dictionary mapping instrument names to instrument values or None if
+            dictionary mapping instruments to instrument values or None if
             serial has nothing to read
         """
         if not self._ser.inWaiting():
