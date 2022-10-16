@@ -1,0 +1,128 @@
+instrument water C_sharp_major chord L1R1
+
+instrument lightL D_sharp_major chord L1R1
+instrument lightR G_sharp_major chord L1R1
+
+instrument plantL G_sharp_minor scale L1R1
+instrument plantR B_minor scale L1R1
+instrument plantFL A_minor arpeggio L1R1
+instrument plantFR G_minor arpeggio L1R1
+
+instrument flowerL C_major scale L1R1
+instrument flowerR A_sharp_major scale L1R1
+
+instrument dragonfly F_harmonic_minor chord L1R1
+
+
+sound water hold
+- ../SoundComponents/Water/sparkly_drone_G#.wav G_sharp 1
+- ../SoundComponents/Water/deeper_drone_D#.wav D_sharp 1
+- ../SoundComponents/Water/deep_drone_D#.wav D_sharp 1
+- ../SoundComponents/Water/deep_drone_2_D#.wav D_sharp 1
+- ../SoundComponents/Water/_water_scene.wav none 1
+
+sound water impact
+- ../SoundComponents/Water/_water_wave.wav none 1
+- ../SoundComponents/Water/droplet_C#.wav C_sharp 1
+- ../SoundComponents/Water/sonar_E.wav E 1
+- ../SoundComponents/Water/sonar_E_2.wav E 1
+
+sound flowerL hold
+- ../SoundComponents/Flower/sparky_drone_G#.wav G_sharp 0.4
+- ../SoundComponents/Flower/vocals_G.wav G 1
+- ../SoundComponents/Flower/bees.wav none 0.1
+
+sound flowerL impact
+- ../SoundComponents/Flower/bell_D#.wav D_sharp 1.2
+- ../SoundComponents/Flower/harp_D#.wav D_sharp 0.8
+
+sound flowerR hold
+- ../SoundComponents/Flower/sparky_drone_G#.wav G_sharp 0.5
+- ../SoundComponents/Flower/vocals_G.wav G 1.5
+- ../SoundComponents/Flower/bees.wav none 0.1
+
+sound flowerR impact
+- ../SoundComponents/Flower/bell_D#.wav D_sharp 0.8
+- ../SoundComponents/Flower/harp_D#.wav D_sharp 1.5
+
+
+sound lightL hold
+- ../SoundComponents/Light/high_drone_C.wav C 0.8
+- ../SoundComponents/Light/mid_drone_F.wav F 1.2
+
+sound lightL impact
+- ../SoundComponents/Light/alert_G#.wav G_sharp 0.8
+- ../SoundComponents/Light/single_ring_D#.wav D_sharp 1.2
+
+sound lightR hold
+- ../SoundComponents/Light/high_drone_C.wav C 1.2
+- ../SoundComponents/Light/mid_drone_F.wav F 0.8
+
+sound lightR impact
+- ../SoundComponents/Light/alert_G#.wav G_sharp 1.2
+- ../SoundComponents/Light/single_ring_D#.wav D_sharp 0.8
+
+
+sound plantL hold
+- ../SoundComponents/Plant/wind.wav none 0.6
+- ../SoundComponents/Plant/sprinkles_E.wav E 0.1
+- ../SoundComponents/Plant/vocal_high_A#.wav A_sharp 0.4
+- ../SoundComponents/Plant/vocal_low_D.wav D 0.4
+
+sound plantL impact
+- ../SoundComponents/Plant/bell_F.wav F 1
+- ../SoundComponents/Plant/frog_A.wav A 0.1
+- ../SoundComponents/Plant/steam_G.wav G 0.3
+- ../SoundComponents/Plant/high_beep_E.wav E 0.4
+- ../SoundComponents/Plant/beep_A.wav A 0.4
+
+sound plantR hold
+- ../SoundComponents/Plant/wind.wav none 0.6
+- ../SoundComponents/Plant/sprinkles_E.wav E 0.1
+- ../SoundComponents/Plant/vocal_high_A#.wav A_sharp 0.4
+- ../SoundComponents/Plant/vocal_low_D.wav D 0.4
+
+sound plantR impact
+- ../SoundComponents/Plant/bell_F.wav F 1
+- ../SoundComponents/Plant/frog_A.wav A 0.1
+- ../SoundComponents/Plant/steam_G.wav G 0.3
+- ../SoundComponents/Plant/high_beep_E.wav E 0.4
+- ../SoundComponents/Plant/beep_A.wav A 0.4
+
+sound plantFL hold
+- ../SoundComponents/Plant/wind.wav none 0.6
+- ../SoundComponents/Plant/sprinkles_E.wav E 0.1
+- ../SoundComponents/Plant/vocal_high_A#.wav A_sharp 0.4
+- ../SoundComponents/Plant/vocal_low_D.wav D 0.4
+
+sound plantFL impact
+- ../SoundComponents/Plant/bell_F.wav F 1
+- ../SoundComponents/Plant/frog_A.wav A 0.1
+- ../SoundComponents/Plant/steam_G.wav G 0.3
+- ../SoundComponents/Plant/high_beep_E.wav E 0.4
+- ../SoundComponents/Plant/beep_A.wav A 0.4
+
+sound plantFR hold
+- ../SoundComponents/Plant/wind.wav none 0.6
+- ../SoundComponents/Plant/sprinkles_E.wav E 0.1
+- ../SoundComponents/Plant/vocal_high_A#.wav A_sharp 0.4
+- ../SoundComponents/Plant/vocal_low_D.wav D 0.4
+
+sound plantFR impact
+- ../SoundComponents/Plant/bell_F.wav F 1
+- ../SoundComponents/Plant/frog_A.wav A 0.1
+- ../SoundComponents/Plant/steam_G.wav G 0.3
+- ../SoundComponents/Plant/high_beep_E.wav E 0.4
+- ../SoundComponents/Plant/beep_A.wav A 0.4
+
+
+sound dragonfly hold
+- ../SoundComponents/Dragonfly/d_drone_D#.wav D_sharp 0.1
+- ../SoundComponents/Dragonfly/d_high_drone_C#.wav C_sharp 0.4
+- ../SoundComponents/Dragonfly/growl_G#.wav G_sharp 0.15
+- ../SoundComponents/Dragonfly/rattling_D.wav D 0.15
+- ../SoundComponents/Dragonfly/d_bees.wav none 0.15
+
+sound dragonfly impact
+- ../SoundComponents/Dragonfly/blow_G.wav G 1
+- ../SoundComponents/Dragonfly/bee_impact.wav none 1
