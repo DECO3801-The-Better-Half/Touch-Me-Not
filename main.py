@@ -5,7 +5,7 @@ import glob
 from instrument import *
 from arduino_serial import ArduinoSerial
 from sound import Sound
-from pprint import pprint
+from typing import Tuple, Dict
 
 TICKS_PER_SECOND = 30
 
@@ -18,9 +18,16 @@ CAPACITANCE_OVERFLOW = -2
 
 KEY = "G_sharp_major.wav"
 
-def main():
-    pygame.init()
 
+def get_audio() -> Dict[Tuple[str, str], List[Sound]]:
+    """Return a mapping of instruments to Sounds
+    
+    Returns:
+        mapping: (instrument, type) -> sounds
+        instrument is a string in the file name format (e.g. plantFL)
+        type is the type of sound (hold or impact)
+        sounds is a list of Sound objects
+    """
     this_dir = os.getcwd()
     sound_dir_path = this_dir + "/audio/*"
     sound_files_paths = glob.glob(sound_dir_path)
@@ -35,6 +42,14 @@ def main():
         sounds = sound_objects.get((instrument, type), [])
         sounds.append(Sound(sound, f"{instrument}_{type}_{key}", key))
         sound_objects[(instrument, type)] = sounds
+    
+    return sound_objects
+
+
+def main():
+    pygame.init()
+
+    sound_objects = get_audio()
 
     # Initialise our instruments in the right order so ArduinoSerial can read them
     left_instruments = [
@@ -56,16 +71,16 @@ def main():
     all_instruments = left_instruments + right_instruments
 
     # Give these sounds to each instrument.
-    for (name, type), sound_objects in sound_objects.items():
+    for (name, type), sounds in sound_objects.items():
         # Find instrument that has that file_name
         for instrument in all_instruments:
             if instrument.file_name == name:
                 if type == "impact":
-                    for sound_object in sound_objects:
-                        instrument.add_impact(sound_object)
+                    for sound in sounds:
+                        instrument.add_impact(sound)
                 elif type == "hold":
-                    for sound_object in sound_objects:
-                        instrument.add_hold(sound_object)
+                    for sound in sounds:
+                        instrument.add_hold(sound)
 
     # Reduce the impact sounds of plants and the dragonfly
     left_instruments[2].set_volume("impact", 0.5)
