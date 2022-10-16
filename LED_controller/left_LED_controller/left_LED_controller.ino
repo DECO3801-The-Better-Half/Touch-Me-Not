@@ -17,10 +17,12 @@ int thresholds[] = {1000, 1000, 1000, 1000, 800};
 long values[4];
 
 //define colour varibles using RGB values
-uint32_t pink = strip.Color(255, 90, 186);
+uint32_t pink = strip.Color(255, 50, 70);
 uint32_t purple = strip.Color(144, 0, 206);
 uint32_t green = strip.Color(0,255, 0);
+uint32_t dark_green = strip.Color(255,255, 0);
 uint32_t blue = strip.Color(0, 0, 255);
+uint32_t orange = strip.Color(255,60,5);
 uint32_t yellow = strip.Color(255, 211, 30);
 uint32_t none = strip.Color(0, 0, 0);
 
@@ -40,7 +42,7 @@ void setup() {
   Serial.begin(9600);
   strip.begin(); //always needed
   strip.show(); // 0 data => off.
-  strip.setBrightness(255); // ~50%
+  strip.setBrightness(200); // ~50%
   int n = strip.numPixels();
 }
 
@@ -53,16 +55,16 @@ void loop() {
       sensors[i].set_CS_AutocaL_Millis(10000);
     }
 //plant 1 LED response
-led_response(values[0], thresholds[0], plant1, pink);
+led_response(values[0], thresholds[0], plant1, green);
 
 //plant 2 LED response
-led_response(values[1], thresholds[1], plant2, purple);
+led_response(values[1], thresholds[1], plant2, dark_green);
 
 //flower LED response
-led_response(values[2], thresholds[2], flower, green);
+led_response(values[2], thresholds[2], flower, pink);
 
 //dragonfly LED response
-led_response(values[3], thresholds[3], dragonfly, blue);
+led_response(values[3], thresholds[3], dragonfly, orange);
 
 //lamp LED response
 led_response(analogRead(lampPin), thresholds[4], lamp, yellow);
