@@ -64,7 +64,7 @@ class Instrument:
     def __str__(self) -> str:
         return f"Instrument: {self.name}"
 
-    def __repr(self) -> str:
+    def __repr__(self) -> str:
         return f"Instrument({self.name},{self._holds},{self._impacts}," \
                f"{self.threshold}"
 
