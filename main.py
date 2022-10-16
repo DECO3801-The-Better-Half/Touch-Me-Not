@@ -1,5 +1,7 @@
 import serial
 import pygame
+import os
+import subprocess
 
 PRESSED = True
 UNPRESSED = False
@@ -11,6 +13,8 @@ TICKS_PER_SECOND = 30
 SOUNDS_PATH = ['sounds/plant.wav', 'sounds/water.wav', 'sounds/light.wav', 'sounds/fabric.wav']
 
 pygame.init()
+
+
 plant_sound1 = pygame.mixer.Sound('Sounds/plant.wav')
 water_sound1 = pygame.mixer.Sound('Sounds/water.wav')
 light_sound1 = pygame.mixer.Sound('Sounds/light.wav')
@@ -29,8 +33,6 @@ SOUNDS2 = [light_sound2, plant_sound2, water_sound2, guitar_sound2, fabric_sound
 SOUNDS_COMBINED = []
 SOUNDS_COMBINED.extend(SOUNDS1)
 SOUNDS_COMBINED.extend(SOUNDS2)
-
-
 
 clock = pygame.time.Clock()
 
@@ -145,12 +147,7 @@ def get_serial():
 
             clock.tick(TICKS_PER_SECOND * 3)
 
-
 if __name__ == '__main__':
-
-
-    #x = Process(target=get_serial, args=())
-    #x.start()
 
     get_serial()
 
