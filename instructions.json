@@ -1,0 +1,1498 @@
+{
+    "object-key": {
+        "water": "C_sharp_major",
+        "lightL": "D_sharp_major",
+        "lightR": "G_sharp_major",
+        "plantL": "G_sharp_minor",
+        "plantR": "B_minor",
+        "plantFL": "A_minor",
+        "plantFR": "G_minor",
+        "flowerL": "C_major",
+        "flowerR": "A_sharp_major",
+        "dragonfly": "F_harmonic_minor"
+    },
+    "object-type-key-pivot_filename": {
+        "water": {
+            "hold": {
+                "C_sharp_major": null,
+                "D_sharp_major": "hold_water_G_sharp_major.wav",
+                "G_sharp_major": "hold_water_F_minor.wav",
+                "G_sharp_minor": "hold_water_D_sharp_minor.wav",
+                "B_minor": "hold_water_B_minor.wav",
+                "A_minor": "hold_water_A_minor.wav",
+                "G_minor": "hold_water_G_minor.wav",
+                "C_major": "hold_water_C_major.wav",
+                "A_sharp_major": "hold_water_F_minor.wav",
+                "F_harmonic_minor": "hold_water_A_sharp_minor.wav"
+            },
+            "impact": {
+                "C_sharp_major": null,
+                "D_sharp_major": "impact_water_G_sharp_major.wav",
+                "G_sharp_major": "impact_water_F_minor.wav",
+                "G_sharp_minor": "impact_water_D_sharp_minor.wav",
+                "B_minor": "impact_water_B_minor.wav",
+                "A_minor": "impact_water_A_minor.wav",
+                "G_minor": "impact_water_G_minor.wav",
+                "C_major": "impact_water_C_major.wav",
+                "A_sharp_major": "impact_water_F_minor.wav",
+                "F_harmonic_minor": "impact_water_A_sharp_minor.wav"
+            }
+        },
+        "lightL": {
+            "hold": {
+                "C_sharp_major": "hold_lightL_G_sharp_major.wav",
+                "D_sharp_major": null,
+                "G_sharp_major": "hold_lightL_F_minor.wav",
+                "G_sharp_minor": "hold_lightL_G_sharp_minor.wav",
+                "B_minor": "hold_lightL_B_minor.wav",
+                "A_minor": "hold_lightL_A_minor.wav",
+                "G_minor": "hold_lightL_C_minor.wav",
+                "C_major": "hold_lightL_C_major.wav",
+                "A_sharp_major": "hold_lightL_F_minor.wav",
+                "F_harmonic_minor": "hold_lightL_F_harmonic_minor.wav"
+            },
+            "impact": {
+                "C_sharp_major": "impact_lightL_G_sharp_major.wav",
+                "D_sharp_major": null,
+                "G_sharp_major": "impact_lightL_F_minor.wav",
+                "G_sharp_minor": "impact_lightL_G_sharp_minor.wav",
+                "B_minor": "impact_lightL_B_minor.wav",
+                "A_minor": "impact_lightL_A_minor.wav",
+                "G_minor": "impact_lightL_C_minor.wav",
+                "C_major": "impact_lightL_C_major.wav",
+                "A_sharp_major": "impact_lightL_F_minor.wav",
+                "F_harmonic_minor": "impact_lightL_F_harmonic_minor.wav"
+            }
+        },
+        "lightR": {
+            "hold": {
+                "C_sharp_major": "hold_lightR_A_sharp_minor.wav",
+                "D_sharp_major": "hold_lightR_C_minor.wav",
+                "G_sharp_major": null,
+                "G_sharp_minor": "hold_lightR_G_sharp_minor.wav",
+                "B_minor": "hold_lightR_B_minor.wav",
+                "A_minor": "hold_lightR_A_minor.wav",
+                "G_minor": "hold_lightR_C_minor.wav",
+                "C_major": "hold_lightR_C_major.wav",
+                "A_sharp_major": "hold_lightR_D_sharp_major.wav",
+                "F_harmonic_minor": "hold_lightR_A_sharp_minor.wav"
+            },
+            "impact": {
+                "C_sharp_major": "impact_lightR_A_sharp_minor.wav",
+                "D_sharp_major": "impact_lightR_C_minor.wav",
+                "G_sharp_major": null,
+                "G_sharp_minor": "impact_lightR_G_sharp_minor.wav",
+                "B_minor": "impact_lightR_B_minor.wav",
+                "A_minor": "impact_lightR_A_minor.wav",
+                "G_minor": "impact_lightR_C_minor.wav",
+                "C_major": "impact_lightR_C_major.wav",
+                "A_sharp_major": "impact_lightR_D_sharp_major.wav",
+                "F_harmonic_minor": "impact_lightR_A_sharp_minor.wav"
+            }
+        },
+        "plantL": {
+            "hold": {
+                "C_sharp_major": "hold_plantL_F_sharp_major.wav",
+                "D_sharp_major": "hold_plantL_D_sharp_major.wav",
+                "G_sharp_major": "hold_plantL_G_sharp_major.wav",
+                "G_sharp_minor": null,
+                "B_minor": "hold_plantL_B_minor.wav",
+                "A_minor": "hold_plantL_C_major.wav",
+                "G_minor": "hold_plantL_G_minor.wav",
+                "C_major": "hold_plantL_C_major.wav",
+                "A_sharp_major": "hold_plantL_A_sharp_major.wav",
+                "F_harmonic_minor": "hold_plantL_C_major.wav"
+            },
+            "impact": {
+                "C_sharp_major": "impact_plantL_F_sharp_major.wav",
+                "D_sharp_major": "impact_plantL_D_sharp_major.wav",
+                "G_sharp_major": "impact_plantL_G_sharp_major.wav",
+                "G_sharp_minor": null,
+                "B_minor": "impact_plantL_B_minor.wav",
+                "A_minor": "impact_plantL_C_major.wav",
+                "G_minor": "impact_plantL_G_minor.wav",
+                "C_major": "impact_plantL_C_major.wav",
+                "A_sharp_major": "impact_plantL_A_sharp_major.wav",
+                "F_harmonic_minor": "impact_plantL_C_major.wav"
+            }
+        },
+        "plantR": {
+            "hold": {
+                "C_sharp_major": "hold_plantR_C_sharp_major.wav",
+                "D_sharp_major": "hold_plantR_D_sharp_major.wav",
+                "G_sharp_major": "hold_plantR_G_sharp_major.wav",
+                "G_sharp_minor": "hold_plantR_G_sharp_minor.wav",
+                "B_minor": null,
+                "A_minor": "hold_plantR_E_minor.wav",
+                "G_minor": "hold_plantR_G_minor.wav",
+                "C_major": "hold_plantR_G_major.wav",
+                "A_sharp_major": "hold_plantR_A_sharp_major.wav",
+                "F_harmonic_minor": "hold_plantR_F_harmonic_minor.wav"
+            },
+            "impact": {
+                "C_sharp_major": "impact_plantR_C_sharp_major.wav",
+                "D_sharp_major": "impact_plantR_D_sharp_major.wav",
+                "G_sharp_major": "impact_plantR_G_sharp_major.wav",
+                "G_sharp_minor": "impact_plantR_G_sharp_minor.wav",
+                "B_minor": null,
+                "A_minor": "impact_plantR_E_minor.wav",
+                "G_minor": "impact_plantR_G_minor.wav",
+                "C_major": "impact_plantR_G_major.wav",
+                "A_sharp_major": "impact_plantR_A_sharp_major.wav",
+                "F_harmonic_minor": "impact_plantR_F_harmonic_minor.wav"
+            }
+        },
+        "plantFL": {
+            "hold": {
+                "C_sharp_major": "hold_plantFL_C_sharp_major.wav",
+                "D_sharp_major": "hold_plantFL_D_sharp_major.wav",
+                "G_sharp_major": "hold_plantFL_G_sharp_major.wav",
+                "G_sharp_minor": "hold_plantFL_C_major.wav",
+                "B_minor": "hold_plantFL_E_minor.wav",
+                "A_minor": null,
+                "G_minor": "hold_plantFL_D_minor.wav",
+                "C_major": "hold_plantFL_F_major.wav",
+                "A_sharp_major": "hold_plantFL_D_minor.wav",
+                "F_harmonic_minor": "hold_plantFL_C_major.wav"
+            },
+            "impact": {
+                "C_sharp_major": "impact_plantFL_C_sharp_major.wav",
+                "D_sharp_major": "impact_plantFL_D_sharp_major.wav",
+                "G_sharp_major": "impact_plantFL_G_sharp_major.wav",
+                "G_sharp_minor": "impact_plantFL_C_major.wav",
+                "B_minor": "impact_plantFL_E_minor.wav",
+                "A_minor": null,
+                "G_minor": "impact_plantFL_D_minor.wav",
+                "C_major": "impact_plantFL_F_major.wav",
+                "A_sharp_major": "impact_plantFL_D_minor.wav",
+                "F_harmonic_minor": "impact_plantFL_C_major.wav"
+            }
+        },
+        "plantFR": {
+            "hold": {
+                "C_sharp_major": "hold_plantFR_C_sharp_major.wav",
+                "D_sharp_major": "hold_plantFR_C_minor.wav",
+                "G_sharp_major": "hold_plantFR_D_sharp_major.wav",
+                "G_sharp_minor": "hold_plantFR_G_sharp_minor.wav",
+                "B_minor": "hold_plantFR_B_minor.wav",
+                "A_minor": "hold_plantFR_D_minor.wav",
+                "G_minor": null,
+                "C_major": "hold_plantFR_F_major.wav",
+                "A_sharp_major": "hold_plantFR_D_sharp_major.wav",
+                "F_harmonic_minor": "hold_plantFR_F_harmonic_minor.wav"
+            },
+            "impact": {
+                "C_sharp_major": "impact_plantFR_C_sharp_major.wav",
+                "D_sharp_major": "impact_plantFR_C_minor.wav",
+                "G_sharp_major": "impact_plantFR_D_sharp_major.wav",
+                "G_sharp_minor": "impact_plantFR_G_sharp_minor.wav",
+                "B_minor": "impact_plantFR_B_minor.wav",
+                "A_minor": "impact_plantFR_D_minor.wav",
+                "G_minor": null,
+                "C_major": "impact_plantFR_F_major.wav",
+                "A_sharp_major": "impact_plantFR_D_sharp_major.wav",
+                "F_harmonic_minor": "impact_plantFR_F_harmonic_minor.wav"
+            }
+        },
+        "flowerL": {
+            "hold": {
+                "C_sharp_major": "hold_flowerL_C_sharp_major.wav",
+                "D_sharp_major": "hold_flowerL_D_sharp_major.wav",
+                "G_sharp_major": "hold_flowerL_G_sharp_major.wav",
+                "G_sharp_minor": "hold_flowerL_G_sharp_minor.wav",
+                "B_minor": "hold_flowerL_G_major.wav",
+                "A_minor": "hold_flowerL_D_minor.wav",
+                "G_minor": "hold_flowerL_D_minor.wav",
+                "C_major": null,
+                "A_sharp_major": "hold_flowerL_D_minor.wav",
+                "F_harmonic_minor": "hold_flowerL_E_diminished.wav"
+            },
+            "impact": {
+                "C_sharp_major": "impact_flowerL_C_sharp_major.wav",
+                "D_sharp_major": "impact_flowerL_D_sharp_major.wav",
+                "G_sharp_major": "impact_flowerL_G_sharp_major.wav",
+                "G_sharp_minor": "impact_flowerL_G_sharp_minor.wav",
+                "B_minor": "impact_flowerL_G_major.wav",
+                "A_minor": "impact_flowerL_D_minor.wav",
+                "G_minor": "impact_flowerL_D_minor.wav",
+                "C_major": null,
+                "A_sharp_major": "impact_flowerL_D_minor.wav",
+                "F_harmonic_minor": "impact_flowerL_E_diminished.wav"
+            }
+        },
+        "flowerR": {
+            "hold": {
+                "C_sharp_major": "hold_flowerR_F_minor.wav",
+                "D_sharp_major": "hold_flowerR_C_minor.wav",
+                "G_sharp_major": "hold_flowerR_D_sharp_major.wav",
+                "G_sharp_minor": "hold_flowerR_G_sharp_minor.wav",
+                "B_minor": "hold_flowerR_B_minor.wav",
+                "A_minor": "hold_flowerR_D_minor.wav",
+                "G_minor": "hold_flowerR_C_minor.wav",
+                "C_major": "hold_flowerR_D_minor.wav",
+                "A_sharp_major": null,
+                "F_harmonic_minor": "hold_flowerR_F_harmonic_minor.wav"
+            },
+            "impact": {
+                "C_sharp_major": "impact_flowerR_F_minor.wav",
+                "D_sharp_major": "impact_flowerR_C_minor.wav",
+                "G_sharp_major": "impact_flowerR_D_sharp_major.wav",
+                "G_sharp_minor": "impact_flowerR_G_sharp_minor.wav",
+                "B_minor": "impact_flowerR_B_minor.wav",
+                "A_minor": "impact_flowerR_D_minor.wav",
+                "G_minor": "impact_flowerR_C_minor.wav",
+                "C_major": "impact_flowerR_D_minor.wav",
+                "A_sharp_major": null,
+                "F_harmonic_minor": "impact_flowerR_F_harmonic_minor.wav"
+            }
+        },
+        "dragonfly": {
+            "hold": {
+                "C_sharp_major": "hold_dragonfly_A_sharp_minor.wav",
+                "D_sharp_major": "hold_dragonfly_D_sharp_major.wav",
+                "G_sharp_major": "hold_dragonfly_C_sharp_major.wav",
+                "G_sharp_minor": "hold_dragonfly_C_major.wav",
+                "B_minor": "hold_dragonfly_B_minor.wav",
+                "A_minor": "hold_dragonfly_C_major.wav",
+                "G_minor": "hold_dragonfly_G_minor.wav",
+                "C_major": "hold_dragonfly_E_diminished.wav",
+                "A_sharp_major": "hold_dragonfly_A_sharp_major.wav",
+                "F_harmonic_minor": null
+            },
+            "impact": {
+                "C_sharp_major": "impact_dragonfly_A_sharp_minor.wav",
+                "D_sharp_major": "impact_dragonfly_D_sharp_major.wav",
+                "G_sharp_major": "impact_dragonfly_C_sharp_major.wav",
+                "G_sharp_minor": "impact_dragonfly_C_major.wav",
+                "B_minor": "impact_dragonfly_B_minor.wav",
+                "A_minor": "impact_dragonfly_C_major.wav",
+                "G_minor": "impact_dragonfly_G_minor.wav",
+                "C_major": "impact_dragonfly_E_diminished.wav",
+                "A_sharp_major": "impact_dragonfly_A_sharp_major.wav",
+                "F_harmonic_minor": null
+            }
+        }
+    },
+    "object-type-key-range-normal_filename": {
+        "water": {
+            "hold": {
+                "C_sharp_major": {
+                    "0": "water_C_sharp_major_seventh.wav"
+                },
+                "D_sharp_major": {
+                    "0": "water_D_sharp_major_seventh.wav"
+                },
+                "G_sharp_major": {
+                    "0": "water_G_sharp_major_seventh.wav"
+                },
+                "G_sharp_minor": {
+                    "0": "water_G_sharp_minor_seventh.wav"
+                },
+                "B_minor": {
+                    "0": "water_B_minor_seventh.wav"
+                },
+                "A_minor": {
+                    "0": "water_A_minor_seventh.wav"
+                },
+                "G_minor": {
+                    "0": "water_G_minor_seventh.wav"
+                },
+                "C_major": {
+                    "0": "water_C_major_seventh.wav"
+                },
+                "A_sharp_major": {
+                    "0": "water_A_sharp_major_seventh.wav"
+                },
+                "F_harmonic_minor": {
+                    "0": "water_F_harmonic_minor_seventh.wav"
+                }
+            },
+            "impact": {
+                "C_sharp_major": {
+                    "0": "water_C_sharp_major.wav"
+                },
+                "D_sharp_major": {
+                    "0": "water_D_sharp_major.wav"
+                },
+                "G_sharp_major": {
+                    "0": "water_G_sharp_major.wav"
+                },
+                "G_sharp_minor": {
+                    "0": "water_G_sharp_minor.wav"
+                },
+                "B_minor": {
+                    "0": "water_B_minor.wav"
+                },
+                "A_minor": {
+                    "0": "water_A_minor.wav"
+                },
+                "G_minor": {
+                    "0": "water_G_minor.wav"
+                },
+                "C_major": {
+                    "0": "water_C_major.wav"
+                },
+                "A_sharp_major": {
+                    "0": "water_A_sharp_major.wav"
+                },
+                "F_harmonic_minor": {
+                    "0": "water_F_harmonic_minor.wav"
+                }
+            }
+        },
+        "lightL": {
+            "hold": {
+                "C_sharp_major": {
+                    "0": "lightL_C_sharp_major.wav"
+                },
+                "D_sharp_major": {
+                    "0": "lightL_D_sharp_major.wav"
+                },
+                "G_sharp_major": {
+                    "0": "lightL_G_sharp_major.wav"
+                },
+                "G_sharp_minor": {
+                    "0": "lightL_G_sharp_minor.wav"
+                },
+                "B_minor": {
+                    "0": "lightL_B_minor.wav"
+                },
+                "A_minor": {
+                    "0": "lightL_A_minor.wav"
+                },
+                "G_minor": {
+                    "0": "lightL_G_minor.wav"
+                },
+                "C_major": {
+                    "0": "lightL_C_major.wav"
+                },
+                "A_sharp_major": {
+                    "0": "lightL_A_sharp_major.wav"
+                },
+                "F_harmonic_minor": {
+                    "0": "lightL_F_harmonic_minor.wav"
+                }
+            },
+            "impact": {
+                "C_sharp_major": {
+                    "0": "lightL_C_sharp_major.wav"
+                },
+                "D_sharp_major": {
+                    "0": "lightL_D_sharp_major.wav"
+                },
+                "G_sharp_major": {
+                    "0": "lightL_G_sharp_major.wav"
+                },
+                "G_sharp_minor": {
+                    "0": "lightL_G_sharp_minor.wav"
+                },
+                "B_minor": {
+                    "0": "lightL_B_minor.wav"
+                },
+                "A_minor": {
+                    "0": "lightL_A_minor.wav"
+                },
+                "G_minor": {
+                    "0": "lightL_G_minor.wav"
+                },
+                "C_major": {
+                    "0": "lightL_C_major.wav"
+                },
+                "A_sharp_major": {
+                    "0": "lightL_A_sharp_major.wav"
+                },
+                "F_harmonic_minor": {
+                    "0": "lightL_F_harmonic_minor.wav"
+                }
+            }
+        },
+        "lightR": {
+            "hold": {
+                "C_sharp_major": {
+                    "0": "lightR_C_sharp_major.wav"
+                },
+                "D_sharp_major": {
+                    "0": "lightR_D_sharp_major.wav"
+                },
+                "G_sharp_major": {
+                    "0": "lightR_G_sharp_major.wav"
+                },
+                "G_sharp_minor": {
+                    "0": "lightR_G_sharp_minor.wav"
+                },
+                "B_minor": {
+                    "0": "lightR_B_minor.wav"
+                },
+                "A_minor": {
+                    "0": "lightR_A_minor.wav"
+                },
+                "G_minor": {
+                    "0": "lightR_G_minor.wav"
+                },
+                "C_major": {
+                    "0": "lightR_C_major.wav"
+                },
+                "A_sharp_major": {
+                    "0": "lightR_A_sharp_major.wav"
+                },
+                "F_harmonic_minor": {
+                    "0": "lightR_F_harmonic_minor.wav"
+                }
+            },
+            "impact": {
+                "C_sharp_major": {
+                    "0": "lightR_C_sharp_major.wav"
+                },
+                "D_sharp_major": {
+                    "0": "lightR_D_sharp_major.wav"
+                },
+                "G_sharp_major": {
+                    "0": "lightR_G_sharp_major.wav"
+                },
+                "G_sharp_minor": {
+                    "0": "lightR_G_sharp_minor.wav"
+                },
+                "B_minor": {
+                    "0": "lightR_B_minor.wav"
+                },
+                "A_minor": {
+                    "0": "lightR_A_minor.wav"
+                },
+                "G_minor": {
+                    "0": "lightR_G_minor.wav"
+                },
+                "C_major": {
+                    "0": "lightR_C_major.wav"
+                },
+                "A_sharp_major": {
+                    "0": "lightR_A_sharp_major.wav"
+                },
+                "F_harmonic_minor": {
+                    "0": "lightR_F_harmonic_minor.wav"
+                }
+            }
+        },
+        "plantL": {
+            "hold": {
+                "C_sharp_major": {
+                    "0": "plantL_hold_plantL_C_sharp.wav",
+                    "1": "plantL_hold_plantL_D_sharp.wav",
+                    "2": "plantL_hold_plantL_F.wav",
+                    "3": "plantL_hold_plantL_F_sharp.wav",
+                    "4": "plantL_hold_plantL_G_sharp.wav",
+                    "5": "plantL_hold_plantL_A_sharp.wav",
+                    "6": "plantL_hold_plantL_C.wav"
+                },
+                "D_sharp_major": {
+                    "0": "plantL_hold_plantL_D_sharp.wav",
+                    "1": "plantL_hold_plantL_F.wav",
+                    "2": "plantL_hold_plantL_G.wav",
+                    "3": "plantL_hold_plantL_G_sharp.wav",
+                    "4": "plantL_hold_plantL_A_sharp.wav",
+                    "5": "plantL_hold_plantL_C.wav",
+                    "6": "plantL_hold_plantL_D.wav"
+                },
+                "G_sharp_major": {
+                    "0": "plantL_hold_plantL_G_sharp.wav",
+                    "1": "plantL_hold_plantL_A_sharp.wav",
+                    "2": "plantL_hold_plantL_C.wav",
+                    "3": "plantL_hold_plantL_C_sharp.wav",
+                    "4": "plantL_hold_plantL_D_sharp.wav",
+                    "5": "plantL_hold_plantL_F.wav",
+                    "6": "plantL_hold_plantL_G.wav"
+                },
+                "G_sharp_minor": {
+                    "0": "plantL_hold_plantL_G_sharp.wav",
+                    "1": "plantL_hold_plantL_A_sharp.wav",
+                    "2": "plantL_hold_plantL_B.wav",
+                    "3": "plantL_hold_plantL_C_sharp.wav",
+                    "4": "plantL_hold_plantL_D_sharp.wav",
+                    "5": "plantL_hold_plantL_E.wav",
+                    "6": "plantL_hold_plantL_F_sharp.wav"
+                },
+                "B_minor": {
+                    "0": "plantL_hold_plantL_B.wav",
+                    "1": "plantL_hold_plantL_C_sharp.wav",
+                    "2": "plantL_hold_plantL_D.wav",
+                    "3": "plantL_hold_plantL_E.wav",
+                    "4": "plantL_hold_plantL_F_sharp.wav",
+                    "5": "plantL_hold_plantL_G.wav",
+                    "6": "plantL_hold_plantL_A.wav"
+                },
+                "A_minor": {
+                    "0": "plantL_hold_plantL_A.wav",
+                    "1": "plantL_hold_plantL_B.wav",
+                    "2": "plantL_hold_plantL_C.wav",
+                    "3": "plantL_hold_plantL_D.wav",
+                    "4": "plantL_hold_plantL_E.wav",
+                    "5": "plantL_hold_plantL_F.wav",
+                    "6": "plantL_hold_plantL_G.wav"
+                },
+                "G_minor": {
+                    "0": "plantL_hold_plantL_G.wav",
+                    "1": "plantL_hold_plantL_A.wav",
+                    "2": "plantL_hold_plantL_A_sharp.wav",
+                    "3": "plantL_hold_plantL_C.wav",
+                    "4": "plantL_hold_plantL_D.wav",
+                    "5": "plantL_hold_plantL_D_sharp.wav",
+                    "6": "plantL_hold_plantL_F.wav"
+                },
+                "C_major": {
+                    "0": "plantL_hold_plantL_C.wav",
+                    "1": "plantL_hold_plantL_D.wav",
+                    "2": "plantL_hold_plantL_E.wav",
+                    "3": "plantL_hold_plantL_F.wav",
+                    "4": "plantL_hold_plantL_G.wav",
+                    "5": "plantL_hold_plantL_A.wav",
+                    "6": "plantL_hold_plantL_B.wav"
+                },
+                "A_sharp_major": {
+                    "0": "plantL_hold_plantL_A_sharp.wav",
+                    "1": "plantL_hold_plantL_C.wav",
+                    "2": "plantL_hold_plantL_D.wav",
+                    "3": "plantL_hold_plantL_D_sharp.wav",
+                    "4": "plantL_hold_plantL_F.wav",
+                    "5": "plantL_hold_plantL_G.wav",
+                    "6": "plantL_hold_plantL_A.wav"
+                },
+                "F_harmonic_minor": {
+                    "0": "plantL_hold_plantL_F.wav",
+                    "1": "plantL_hold_plantL_G.wav",
+                    "2": "plantL_hold_plantL_G_sharp.wav",
+                    "3": "plantL_hold_plantL_A_sharp.wav",
+                    "4": "plantL_hold_plantL_C.wav",
+                    "5": "plantL_hold_plantL_D.wav",
+                    "6": "plantL_hold_plantL_E.wav"
+                }
+            },
+            "impact": {
+                "C_sharp_major": {
+                    "0": "plantL_impact_plantL_C_sharp.wav",
+                    "1": "plantL_impact_plantL_D_sharp.wav",
+                    "2": "plantL_impact_plantL_F.wav",
+                    "3": "plantL_impact_plantL_F_sharp.wav",
+                    "4": "plantL_impact_plantL_G_sharp.wav",
+                    "5": "plantL_impact_plantL_A_sharp.wav",
+                    "6": "plantL_impact_plantL_C.wav"
+                },
+                "D_sharp_major": {
+                    "0": "plantL_impact_plantL_D_sharp.wav",
+                    "1": "plantL_impact_plantL_F.wav",
+                    "2": "plantL_impact_plantL_G.wav",
+                    "3": "plantL_impact_plantL_G_sharp.wav",
+                    "4": "plantL_impact_plantL_A_sharp.wav",
+                    "5": "plantL_impact_plantL_C.wav",
+                    "6": "plantL_impact_plantL_D.wav"
+                },
+                "G_sharp_major": {
+                    "0": "plantL_impact_plantL_G_sharp.wav",
+                    "1": "plantL_impact_plantL_A_sharp.wav",
+                    "2": "plantL_impact_plantL_C.wav",
+                    "3": "plantL_impact_plantL_C_sharp.wav",
+                    "4": "plantL_impact_plantL_D_sharp.wav",
+                    "5": "plantL_impact_plantL_F.wav",
+                    "6": "plantL_impact_plantL_G.wav"
+                },
+                "G_sharp_minor": {
+                    "0": "plantL_impact_plantL_G_sharp.wav",
+                    "1": "plantL_impact_plantL_A_sharp.wav",
+                    "2": "plantL_impact_plantL_B.wav",
+                    "3": "plantL_impact_plantL_C_sharp.wav",
+                    "4": "plantL_impact_plantL_D_sharp.wav",
+                    "5": "plantL_impact_plantL_E.wav",
+                    "6": "plantL_impact_plantL_F_sharp.wav"
+                },
+                "B_minor": {
+                    "0": "plantL_impact_plantL_B.wav",
+                    "1": "plantL_impact_plantL_C_sharp.wav",
+                    "2": "plantL_impact_plantL_D.wav",
+                    "3": "plantL_impact_plantL_E.wav",
+                    "4": "plantL_impact_plantL_F_sharp.wav",
+                    "5": "plantL_impact_plantL_G.wav",
+                    "6": "plantL_impact_plantL_A.wav"
+                },
+                "A_minor": {
+                    "0": "plantL_impact_plantL_A.wav",
+                    "1": "plantL_impact_plantL_B.wav",
+                    "2": "plantL_impact_plantL_C.wav",
+                    "3": "plantL_impact_plantL_D.wav",
+                    "4": "plantL_impact_plantL_E.wav",
+                    "5": "plantL_impact_plantL_F.wav",
+                    "6": "plantL_impact_plantL_G.wav"
+                },
+                "G_minor": {
+                    "0": "plantL_impact_plantL_G.wav",
+                    "1": "plantL_impact_plantL_A.wav",
+                    "2": "plantL_impact_plantL_A_sharp.wav",
+                    "3": "plantL_impact_plantL_C.wav",
+                    "4": "plantL_impact_plantL_D.wav",
+                    "5": "plantL_impact_plantL_D_sharp.wav",
+                    "6": "plantL_impact_plantL_F.wav"
+                },
+                "C_major": {
+                    "0": "plantL_impact_plantL_C.wav",
+                    "1": "plantL_impact_plantL_D.wav",
+                    "2": "plantL_impact_plantL_E.wav",
+                    "3": "plantL_impact_plantL_F.wav",
+                    "4": "plantL_impact_plantL_G.wav",
+                    "5": "plantL_impact_plantL_A.wav",
+                    "6": "plantL_impact_plantL_B.wav"
+                },
+                "A_sharp_major": {
+                    "0": "plantL_impact_plantL_A_sharp.wav",
+                    "1": "plantL_impact_plantL_C.wav",
+                    "2": "plantL_impact_plantL_D.wav",
+                    "3": "plantL_impact_plantL_D_sharp.wav",
+                    "4": "plantL_impact_plantL_F.wav",
+                    "5": "plantL_impact_plantL_G.wav",
+                    "6": "plantL_impact_plantL_A.wav"
+                },
+                "F_harmonic_minor": {
+                    "0": "plantL_impact_plantL_F.wav",
+                    "1": "plantL_impact_plantL_G.wav",
+                    "2": "plantL_impact_plantL_G_sharp.wav",
+                    "3": "plantL_impact_plantL_A_sharp.wav",
+                    "4": "plantL_impact_plantL_C.wav",
+                    "5": "plantL_impact_plantL_D.wav",
+                    "6": "plantL_impact_plantL_E.wav"
+                }
+            }
+        },
+        "plantR": {
+            "hold": {
+                "C_sharp_major": {
+                    "0": "plantR_hold_plantR_C_sharp.wav",
+                    "1": "plantR_hold_plantR_D_sharp.wav",
+                    "2": "plantR_hold_plantR_F.wav",
+                    "3": "plantR_hold_plantR_F_sharp.wav",
+                    "4": "plantR_hold_plantR_G_sharp.wav",
+                    "5": "plantR_hold_plantR_A_sharp.wav",
+                    "6": "plantR_hold_plantR_C.wav"
+                },
+                "D_sharp_major": {
+                    "0": "plantR_hold_plantR_D_sharp.wav",
+                    "1": "plantR_hold_plantR_F.wav",
+                    "2": "plantR_hold_plantR_G.wav",
+                    "3": "plantR_hold_plantR_G_sharp.wav",
+                    "4": "plantR_hold_plantR_A_sharp.wav",
+                    "5": "plantR_hold_plantR_C.wav",
+                    "6": "plantR_hold_plantR_D.wav"
+                },
+                "G_sharp_major": {
+                    "0": "plantR_hold_plantR_G_sharp.wav",
+                    "1": "plantR_hold_plantR_A_sharp.wav",
+                    "2": "plantR_hold_plantR_C.wav",
+                    "3": "plantR_hold_plantR_C_sharp.wav",
+                    "4": "plantR_hold_plantR_D_sharp.wav",
+                    "5": "plantR_hold_plantR_F.wav",
+                    "6": "plantR_hold_plantR_G.wav"
+                },
+                "G_sharp_minor": {
+                    "0": "plantR_hold_plantR_G_sharp.wav",
+                    "1": "plantR_hold_plantR_A_sharp.wav",
+                    "2": "plantR_hold_plantR_B.wav",
+                    "3": "plantR_hold_plantR_C_sharp.wav",
+                    "4": "plantR_hold_plantR_D_sharp.wav",
+                    "5": "plantR_hold_plantR_E.wav",
+                    "6": "plantR_hold_plantR_F_sharp.wav"
+                },
+                "B_minor": {
+                    "0": "plantR_hold_plantR_B.wav",
+                    "1": "plantR_hold_plantR_C_sharp.wav",
+                    "2": "plantR_hold_plantR_D.wav",
+                    "3": "plantR_hold_plantR_E.wav",
+                    "4": "plantR_hold_plantR_F_sharp.wav",
+                    "5": "plantR_hold_plantR_G.wav",
+                    "6": "plantR_hold_plantR_A.wav"
+                },
+                "A_minor": {
+                    "0": "plantR_hold_plantR_A.wav",
+                    "1": "plantR_hold_plantR_B.wav",
+                    "2": "plantR_hold_plantR_C.wav",
+                    "3": "plantR_hold_plantR_D.wav",
+                    "4": "plantR_hold_plantR_E.wav",
+                    "5": "plantR_hold_plantR_F.wav",
+                    "6": "plantR_hold_plantR_G.wav"
+                },
+                "G_minor": {
+                    "0": "plantR_hold_plantR_G.wav",
+                    "1": "plantR_hold_plantR_A.wav",
+                    "2": "plantR_hold_plantR_A_sharp.wav",
+                    "3": "plantR_hold_plantR_C.wav",
+                    "4": "plantR_hold_plantR_D.wav",
+                    "5": "plantR_hold_plantR_D_sharp.wav",
+                    "6": "plantR_hold_plantR_F.wav"
+                },
+                "C_major": {
+                    "0": "plantR_hold_plantR_C.wav",
+                    "1": "plantR_hold_plantR_D.wav",
+                    "2": "plantR_hold_plantR_E.wav",
+                    "3": "plantR_hold_plantR_F.wav",
+                    "4": "plantR_hold_plantR_G.wav",
+                    "5": "plantR_hold_plantR_A.wav",
+                    "6": "plantR_hold_plantR_B.wav"
+                },
+                "A_sharp_major": {
+                    "0": "plantR_hold_plantR_A_sharp.wav",
+                    "1": "plantR_hold_plantR_C.wav",
+                    "2": "plantR_hold_plantR_D.wav",
+                    "3": "plantR_hold_plantR_D_sharp.wav",
+                    "4": "plantR_hold_plantR_F.wav",
+                    "5": "plantR_hold_plantR_G.wav",
+                    "6": "plantR_hold_plantR_A.wav"
+                },
+                "F_harmonic_minor": {
+                    "0": "plantR_hold_plantR_F.wav",
+                    "1": "plantR_hold_plantR_G.wav",
+                    "2": "plantR_hold_plantR_G_sharp.wav",
+                    "3": "plantR_hold_plantR_A_sharp.wav",
+                    "4": "plantR_hold_plantR_C.wav",
+                    "5": "plantR_hold_plantR_D.wav",
+                    "6": "plantR_hold_plantR_E.wav"
+                }
+            },
+            "impact": {
+                "C_sharp_major": {
+                    "0": "plantR_impact_plantR_C_sharp.wav",
+                    "1": "plantR_impact_plantR_D_sharp.wav",
+                    "2": "plantR_impact_plantR_F.wav",
+                    "3": "plantR_impact_plantR_F_sharp.wav",
+                    "4": "plantR_impact_plantR_G_sharp.wav",
+                    "5": "plantR_impact_plantR_A_sharp.wav",
+                    "6": "plantR_impact_plantR_C.wav"
+                },
+                "D_sharp_major": {
+                    "0": "plantR_impact_plantR_D_sharp.wav",
+                    "1": "plantR_impact_plantR_F.wav",
+                    "2": "plantR_impact_plantR_G.wav",
+                    "3": "plantR_impact_plantR_G_sharp.wav",
+                    "4": "plantR_impact_plantR_A_sharp.wav",
+                    "5": "plantR_impact_plantR_C.wav",
+                    "6": "plantR_impact_plantR_D.wav"
+                },
+                "G_sharp_major": {
+                    "0": "plantR_impact_plantR_G_sharp.wav",
+                    "1": "plantR_impact_plantR_A_sharp.wav",
+                    "2": "plantR_impact_plantR_C.wav",
+                    "3": "plantR_impact_plantR_C_sharp.wav",
+                    "4": "plantR_impact_plantR_D_sharp.wav",
+                    "5": "plantR_impact_plantR_F.wav",
+                    "6": "plantR_impact_plantR_G.wav"
+                },
+                "G_sharp_minor": {
+                    "0": "plantR_impact_plantR_G_sharp.wav",
+                    "1": "plantR_impact_plantR_A_sharp.wav",
+                    "2": "plantR_impact_plantR_B.wav",
+                    "3": "plantR_impact_plantR_C_sharp.wav",
+                    "4": "plantR_impact_plantR_D_sharp.wav",
+                    "5": "plantR_impact_plantR_E.wav",
+                    "6": "plantR_impact_plantR_F_sharp.wav"
+                },
+                "B_minor": {
+                    "0": "plantR_impact_plantR_B.wav",
+                    "1": "plantR_impact_plantR_C_sharp.wav",
+                    "2": "plantR_impact_plantR_D.wav",
+                    "3": "plantR_impact_plantR_E.wav",
+                    "4": "plantR_impact_plantR_F_sharp.wav",
+                    "5": "plantR_impact_plantR_G.wav",
+                    "6": "plantR_impact_plantR_A.wav"
+                },
+                "A_minor": {
+                    "0": "plantR_impact_plantR_A.wav",
+                    "1": "plantR_impact_plantR_B.wav",
+                    "2": "plantR_impact_plantR_C.wav",
+                    "3": "plantR_impact_plantR_D.wav",
+                    "4": "plantR_impact_plantR_E.wav",
+                    "5": "plantR_impact_plantR_F.wav",
+                    "6": "plantR_impact_plantR_G.wav"
+                },
+                "G_minor": {
+                    "0": "plantR_impact_plantR_G.wav",
+                    "1": "plantR_impact_plantR_A.wav",
+                    "2": "plantR_impact_plantR_A_sharp.wav",
+                    "3": "plantR_impact_plantR_C.wav",
+                    "4": "plantR_impact_plantR_D.wav",
+                    "5": "plantR_impact_plantR_D_sharp.wav",
+                    "6": "plantR_impact_plantR_F.wav"
+                },
+                "C_major": {
+                    "0": "plantR_impact_plantR_C.wav",
+                    "1": "plantR_impact_plantR_D.wav",
+                    "2": "plantR_impact_plantR_E.wav",
+                    "3": "plantR_impact_plantR_F.wav",
+                    "4": "plantR_impact_plantR_G.wav",
+                    "5": "plantR_impact_plantR_A.wav",
+                    "6": "plantR_impact_plantR_B.wav"
+                },
+                "A_sharp_major": {
+                    "0": "plantR_impact_plantR_A_sharp.wav",
+                    "1": "plantR_impact_plantR_C.wav",
+                    "2": "plantR_impact_plantR_D.wav",
+                    "3": "plantR_impact_plantR_D_sharp.wav",
+                    "4": "plantR_impact_plantR_F.wav",
+                    "5": "plantR_impact_plantR_G.wav",
+                    "6": "plantR_impact_plantR_A.wav"
+                },
+                "F_harmonic_minor": {
+                    "0": "plantR_impact_plantR_F.wav",
+                    "1": "plantR_impact_plantR_G.wav",
+                    "2": "plantR_impact_plantR_G_sharp.wav",
+                    "3": "plantR_impact_plantR_A_sharp.wav",
+                    "4": "plantR_impact_plantR_C.wav",
+                    "5": "plantR_impact_plantR_D.wav",
+                    "6": "plantR_impact_plantR_E.wav"
+                }
+            }
+        },
+        "plantFL": {
+            "hold": {
+                "C_sharp_major": {
+                    "0": "plantFL_hold_plantFL_C_sharp.wav",
+                    "1": "plantFL_hold_plantFL_F.wav",
+                    "2": "plantFL_hold_plantFL_G_sharp.wav"
+                },
+                "D_sharp_major": {
+                    "0": "plantFL_hold_plantFL_D_sharp.wav",
+                    "1": "plantFL_hold_plantFL_G.wav",
+                    "2": "plantFL_hold_plantFL_A_sharp.wav"
+                },
+                "G_sharp_major": {
+                    "0": "plantFL_hold_plantFL_G_sharp.wav",
+                    "1": "plantFL_hold_plantFL_C.wav",
+                    "2": "plantFL_hold_plantFL_D_sharp.wav"
+                },
+                "G_sharp_minor": {
+                    "0": "plantFL_hold_plantFL_G_sharp.wav",
+                    "1": "plantFL_hold_plantFL_B.wav",
+                    "2": "plantFL_hold_plantFL_D_sharp.wav"
+                },
+                "B_minor": {
+                    "0": "plantFL_hold_plantFL_B.wav",
+                    "1": "plantFL_hold_plantFL_D.wav",
+                    "2": "plantFL_hold_plantFL_F_sharp.wav"
+                },
+                "A_minor": {
+                    "0": "plantFL_hold_plantFL_A.wav",
+                    "1": "plantFL_hold_plantFL_C.wav",
+                    "2": "plantFL_hold_plantFL_E.wav"
+                },
+                "G_minor": {
+                    "0": "plantFL_hold_plantFL_G.wav",
+                    "1": "plantFL_hold_plantFL_A_sharp.wav",
+                    "2": "plantFL_hold_plantFL_D.wav"
+                },
+                "C_major": {
+                    "0": "plantFL_hold_plantFL_C.wav",
+                    "1": "plantFL_hold_plantFL_E.wav",
+                    "2": "plantFL_hold_plantFL_G.wav"
+                },
+                "A_sharp_major": {
+                    "0": "plantFL_hold_plantFL_A_sharp.wav",
+                    "1": "plantFL_hold_plantFL_D.wav",
+                    "2": "plantFL_hold_plantFL_F.wav"
+                },
+                "F_harmonic_minor": {
+                    "0": "plantFL_hold_plantFL_F.wav",
+                    "1": "plantFL_hold_plantFL_G_sharp.wav",
+                    "2": "plantFL_hold_plantFL_C.wav"
+                }
+            },
+            "impact": {
+                "C_sharp_major": {
+                    "0": "plantFL_impact_plantFL_C_sharp.wav",
+                    "1": "plantFL_impact_plantFL_F.wav",
+                    "2": "plantFL_impact_plantFL_G_sharp.wav"
+                },
+                "D_sharp_major": {
+                    "0": "plantFL_impact_plantFL_D_sharp.wav",
+                    "1": "plantFL_impact_plantFL_G.wav",
+                    "2": "plantFL_impact_plantFL_A_sharp.wav"
+                },
+                "G_sharp_major": {
+                    "0": "plantFL_impact_plantFL_G_sharp.wav",
+                    "1": "plantFL_impact_plantFL_C.wav",
+                    "2": "plantFL_impact_plantFL_D_sharp.wav"
+                },
+                "G_sharp_minor": {
+                    "0": "plantFL_impact_plantFL_G_sharp.wav",
+                    "1": "plantFL_impact_plantFL_B.wav",
+                    "2": "plantFL_impact_plantFL_D_sharp.wav"
+                },
+                "B_minor": {
+                    "0": "plantFL_impact_plantFL_B.wav",
+                    "1": "plantFL_impact_plantFL_D.wav",
+                    "2": "plantFL_impact_plantFL_F_sharp.wav"
+                },
+                "A_minor": {
+                    "0": "plantFL_impact_plantFL_A.wav",
+                    "1": "plantFL_impact_plantFL_C.wav",
+                    "2": "plantFL_impact_plantFL_E.wav"
+                },
+                "G_minor": {
+                    "0": "plantFL_impact_plantFL_G.wav",
+                    "1": "plantFL_impact_plantFL_A_sharp.wav",
+                    "2": "plantFL_impact_plantFL_D.wav"
+                },
+                "C_major": {
+                    "0": "plantFL_impact_plantFL_C.wav",
+                    "1": "plantFL_impact_plantFL_E.wav",
+                    "2": "plantFL_impact_plantFL_G.wav"
+                },
+                "A_sharp_major": {
+                    "0": "plantFL_impact_plantFL_A_sharp.wav",
+                    "1": "plantFL_impact_plantFL_D.wav",
+                    "2": "plantFL_impact_plantFL_F.wav"
+                },
+                "F_harmonic_minor": {
+                    "0": "plantFL_impact_plantFL_F.wav",
+                    "1": "plantFL_impact_plantFL_G_sharp.wav",
+                    "2": "plantFL_impact_plantFL_C.wav"
+                }
+            }
+        },
+        "plantFR": {
+            "hold": {
+                "C_sharp_major": {
+                    "0": "plantFR_hold_plantFR_C_sharp.wav",
+                    "1": "plantFR_hold_plantFR_F.wav",
+                    "2": "plantFR_hold_plantFR_G_sharp.wav"
+                },
+                "D_sharp_major": {
+                    "0": "plantFR_hold_plantFR_D_sharp.wav",
+                    "1": "plantFR_hold_plantFR_G.wav",
+                    "2": "plantFR_hold_plantFR_A_sharp.wav"
+                },
+                "G_sharp_major": {
+                    "0": "plantFR_hold_plantFR_G_sharp.wav",
+                    "1": "plantFR_hold_plantFR_C.wav",
+                    "2": "plantFR_hold_plantFR_D_sharp.wav"
+                },
+                "G_sharp_minor": {
+                    "0": "plantFR_hold_plantFR_G_sharp.wav",
+                    "1": "plantFR_hold_plantFR_B.wav",
+                    "2": "plantFR_hold_plantFR_D_sharp.wav"
+                },
+                "B_minor": {
+                    "0": "plantFR_hold_plantFR_B.wav",
+                    "1": "plantFR_hold_plantFR_D.wav",
+                    "2": "plantFR_hold_plantFR_F_sharp.wav"
+                },
+                "A_minor": {
+                    "0": "plantFR_hold_plantFR_A.wav",
+                    "1": "plantFR_hold_plantFR_C.wav",
+                    "2": "plantFR_hold_plantFR_E.wav"
+                },
+                "G_minor": {
+                    "0": "plantFR_hold_plantFR_G.wav",
+                    "1": "plantFR_hold_plantFR_A_sharp.wav",
+                    "2": "plantFR_hold_plantFR_D.wav"
+                },
+                "C_major": {
+                    "0": "plantFR_hold_plantFR_C.wav",
+                    "1": "plantFR_hold_plantFR_E.wav",
+                    "2": "plantFR_hold_plantFR_G.wav"
+                },
+                "A_sharp_major": {
+                    "0": "plantFR_hold_plantFR_A_sharp.wav",
+                    "1": "plantFR_hold_plantFR_D.wav",
+                    "2": "plantFR_hold_plantFR_F.wav"
+                },
+                "F_harmonic_minor": {
+                    "0": "plantFR_hold_plantFR_F.wav",
+                    "1": "plantFR_hold_plantFR_G_sharp.wav",
+                    "2": "plantFR_hold_plantFR_C.wav"
+                }
+            },
+            "impact": {
+                "C_sharp_major": {
+                    "0": "plantFR_impact_plantFR_C_sharp.wav",
+                    "1": "plantFR_impact_plantFR_F.wav",
+                    "2": "plantFR_impact_plantFR_G_sharp.wav"
+                },
+                "D_sharp_major": {
+                    "0": "plantFR_impact_plantFR_D_sharp.wav",
+                    "1": "plantFR_impact_plantFR_G.wav",
+                    "2": "plantFR_impact_plantFR_A_sharp.wav"
+                },
+                "G_sharp_major": {
+                    "0": "plantFR_impact_plantFR_G_sharp.wav",
+                    "1": "plantFR_impact_plantFR_C.wav",
+                    "2": "plantFR_impact_plantFR_D_sharp.wav"
+                },
+                "G_sharp_minor": {
+                    "0": "plantFR_impact_plantFR_G_sharp.wav",
+                    "1": "plantFR_impact_plantFR_B.wav",
+                    "2": "plantFR_impact_plantFR_D_sharp.wav"
+                },
+                "B_minor": {
+                    "0": "plantFR_impact_plantFR_B.wav",
+                    "1": "plantFR_impact_plantFR_D.wav",
+                    "2": "plantFR_impact_plantFR_F_sharp.wav"
+                },
+                "A_minor": {
+                    "0": "plantFR_impact_plantFR_A.wav",
+                    "1": "plantFR_impact_plantFR_C.wav",
+                    "2": "plantFR_impact_plantFR_E.wav"
+                },
+                "G_minor": {
+                    "0": "plantFR_impact_plantFR_G.wav",
+                    "1": "plantFR_impact_plantFR_A_sharp.wav",
+                    "2": "plantFR_impact_plantFR_D.wav"
+                },
+                "C_major": {
+                    "0": "plantFR_impact_plantFR_C.wav",
+                    "1": "plantFR_impact_plantFR_E.wav",
+                    "2": "plantFR_impact_plantFR_G.wav"
+                },
+                "A_sharp_major": {
+                    "0": "plantFR_impact_plantFR_A_sharp.wav",
+                    "1": "plantFR_impact_plantFR_D.wav",
+                    "2": "plantFR_impact_plantFR_F.wav"
+                },
+                "F_harmonic_minor": {
+                    "0": "plantFR_impact_plantFR_F.wav",
+                    "1": "plantFR_impact_plantFR_G_sharp.wav",
+                    "2": "plantFR_impact_plantFR_C.wav"
+                }
+            }
+        },
+        "flowerL": {
+            "hold": {
+                "C_sharp_major": {
+                    "0": "flowerL_hold_flowerL_C_sharp.wav",
+                    "1": "flowerL_hold_flowerL_D_sharp.wav",
+                    "2": "flowerL_hold_flowerL_F.wav",
+                    "3": "flowerL_hold_flowerL_F_sharp.wav",
+                    "4": "flowerL_hold_flowerL_G_sharp.wav",
+                    "5": "flowerL_hold_flowerL_A_sharp.wav",
+                    "6": "flowerL_hold_flowerL_C.wav"
+                },
+                "D_sharp_major": {
+                    "0": "flowerL_hold_flowerL_D_sharp.wav",
+                    "1": "flowerL_hold_flowerL_F.wav",
+                    "2": "flowerL_hold_flowerL_G.wav",
+                    "3": "flowerL_hold_flowerL_G_sharp.wav",
+                    "4": "flowerL_hold_flowerL_A_sharp.wav",
+                    "5": "flowerL_hold_flowerL_C.wav",
+                    "6": "flowerL_hold_flowerL_D.wav"
+                },
+                "G_sharp_major": {
+                    "0": "flowerL_hold_flowerL_G_sharp.wav",
+                    "1": "flowerL_hold_flowerL_A_sharp.wav",
+                    "2": "flowerL_hold_flowerL_C.wav",
+                    "3": "flowerL_hold_flowerL_C_sharp.wav",
+                    "4": "flowerL_hold_flowerL_D_sharp.wav",
+                    "5": "flowerL_hold_flowerL_F.wav",
+                    "6": "flowerL_hold_flowerL_G.wav"
+                },
+                "G_sharp_minor": {
+                    "0": "flowerL_hold_flowerL_G_sharp.wav",
+                    "1": "flowerL_hold_flowerL_A_sharp.wav",
+                    "2": "flowerL_hold_flowerL_B.wav",
+                    "3": "flowerL_hold_flowerL_C_sharp.wav",
+                    "4": "flowerL_hold_flowerL_D_sharp.wav",
+                    "5": "flowerL_hold_flowerL_E.wav",
+                    "6": "flowerL_hold_flowerL_F_sharp.wav"
+                },
+                "B_minor": {
+                    "0": "flowerL_hold_flowerL_B.wav",
+                    "1": "flowerL_hold_flowerL_C_sharp.wav",
+                    "2": "flowerL_hold_flowerL_D.wav",
+                    "3": "flowerL_hold_flowerL_E.wav",
+                    "4": "flowerL_hold_flowerL_F_sharp.wav",
+                    "5": "flowerL_hold_flowerL_G.wav",
+                    "6": "flowerL_hold_flowerL_A.wav"
+                },
+                "A_minor": {
+                    "0": "flowerL_hold_flowerL_A.wav",
+                    "1": "flowerL_hold_flowerL_B.wav",
+                    "2": "flowerL_hold_flowerL_C.wav",
+                    "3": "flowerL_hold_flowerL_D.wav",
+                    "4": "flowerL_hold_flowerL_E.wav",
+                    "5": "flowerL_hold_flowerL_F.wav",
+                    "6": "flowerL_hold_flowerL_G.wav"
+                },
+                "G_minor": {
+                    "0": "flowerL_hold_flowerL_G.wav",
+                    "1": "flowerL_hold_flowerL_A.wav",
+                    "2": "flowerL_hold_flowerL_A_sharp.wav",
+                    "3": "flowerL_hold_flowerL_C.wav",
+                    "4": "flowerL_hold_flowerL_D.wav",
+                    "5": "flowerL_hold_flowerL_D_sharp.wav",
+                    "6": "flowerL_hold_flowerL_F.wav"
+                },
+                "C_major": {
+                    "0": "flowerL_hold_flowerL_C.wav",
+                    "1": "flowerL_hold_flowerL_D.wav",
+                    "2": "flowerL_hold_flowerL_E.wav",
+                    "3": "flowerL_hold_flowerL_F.wav",
+                    "4": "flowerL_hold_flowerL_G.wav",
+                    "5": "flowerL_hold_flowerL_A.wav",
+                    "6": "flowerL_hold_flowerL_B.wav"
+                },
+                "A_sharp_major": {
+                    "0": "flowerL_hold_flowerL_A_sharp.wav",
+                    "1": "flowerL_hold_flowerL_C.wav",
+                    "2": "flowerL_hold_flowerL_D.wav",
+                    "3": "flowerL_hold_flowerL_D_sharp.wav",
+                    "4": "flowerL_hold_flowerL_F.wav",
+                    "5": "flowerL_hold_flowerL_G.wav",
+                    "6": "flowerL_hold_flowerL_A.wav"
+                },
+                "F_harmonic_minor": {
+                    "0": "flowerL_hold_flowerL_F.wav",
+                    "1": "flowerL_hold_flowerL_G.wav",
+                    "2": "flowerL_hold_flowerL_G_sharp.wav",
+                    "3": "flowerL_hold_flowerL_A_sharp.wav",
+                    "4": "flowerL_hold_flowerL_C.wav",
+                    "5": "flowerL_hold_flowerL_D.wav",
+                    "6": "flowerL_hold_flowerL_E.wav"
+                }
+            },
+            "impact": {
+                "C_sharp_major": {
+                    "0": "flowerL_impact_flowerL_C_sharp.wav",
+                    "1": "flowerL_impact_flowerL_D_sharp.wav",
+                    "2": "flowerL_impact_flowerL_F.wav",
+                    "3": "flowerL_impact_flowerL_F_sharp.wav",
+                    "4": "flowerL_impact_flowerL_G_sharp.wav",
+                    "5": "flowerL_impact_flowerL_A_sharp.wav",
+                    "6": "flowerL_impact_flowerL_C.wav"
+                },
+                "D_sharp_major": {
+                    "0": "flowerL_impact_flowerL_D_sharp.wav",
+                    "1": "flowerL_impact_flowerL_F.wav",
+                    "2": "flowerL_impact_flowerL_G.wav",
+                    "3": "flowerL_impact_flowerL_G_sharp.wav",
+                    "4": "flowerL_impact_flowerL_A_sharp.wav",
+                    "5": "flowerL_impact_flowerL_C.wav",
+                    "6": "flowerL_impact_flowerL_D.wav"
+                },
+                "G_sharp_major": {
+                    "0": "flowerL_impact_flowerL_G_sharp.wav",
+                    "1": "flowerL_impact_flowerL_A_sharp.wav",
+                    "2": "flowerL_impact_flowerL_C.wav",
+                    "3": "flowerL_impact_flowerL_C_sharp.wav",
+                    "4": "flowerL_impact_flowerL_D_sharp.wav",
+                    "5": "flowerL_impact_flowerL_F.wav",
+                    "6": "flowerL_impact_flowerL_G.wav"
+                },
+                "G_sharp_minor": {
+                    "0": "flowerL_impact_flowerL_G_sharp.wav",
+                    "1": "flowerL_impact_flowerL_A_sharp.wav",
+                    "2": "flowerL_impact_flowerL_B.wav",
+                    "3": "flowerL_impact_flowerL_C_sharp.wav",
+                    "4": "flowerL_impact_flowerL_D_sharp.wav",
+                    "5": "flowerL_impact_flowerL_E.wav",
+                    "6": "flowerL_impact_flowerL_F_sharp.wav"
+                },
+                "B_minor": {
+                    "0": "flowerL_impact_flowerL_B.wav",
+                    "1": "flowerL_impact_flowerL_C_sharp.wav",
+                    "2": "flowerL_impact_flowerL_D.wav",
+                    "3": "flowerL_impact_flowerL_E.wav",
+                    "4": "flowerL_impact_flowerL_F_sharp.wav",
+                    "5": "flowerL_impact_flowerL_G.wav",
+                    "6": "flowerL_impact_flowerL_A.wav"
+                },
+                "A_minor": {
+                    "0": "flowerL_impact_flowerL_A.wav",
+                    "1": "flowerL_impact_flowerL_B.wav",
+                    "2": "flowerL_impact_flowerL_C.wav",
+                    "3": "flowerL_impact_flowerL_D.wav",
+                    "4": "flowerL_impact_flowerL_E.wav",
+                    "5": "flowerL_impact_flowerL_F.wav",
+                    "6": "flowerL_impact_flowerL_G.wav"
+                },
+                "G_minor": {
+                    "0": "flowerL_impact_flowerL_G.wav",
+                    "1": "flowerL_impact_flowerL_A.wav",
+                    "2": "flowerL_impact_flowerL_A_sharp.wav",
+                    "3": "flowerL_impact_flowerL_C.wav",
+                    "4": "flowerL_impact_flowerL_D.wav",
+                    "5": "flowerL_impact_flowerL_D_sharp.wav",
+                    "6": "flowerL_impact_flowerL_F.wav"
+                },
+                "C_major": {
+                    "0": "flowerL_impact_flowerL_C.wav",
+                    "1": "flowerL_impact_flowerL_D.wav",
+                    "2": "flowerL_impact_flowerL_E.wav",
+                    "3": "flowerL_impact_flowerL_F.wav",
+                    "4": "flowerL_impact_flowerL_G.wav",
+                    "5": "flowerL_impact_flowerL_A.wav",
+                    "6": "flowerL_impact_flowerL_B.wav"
+                },
+                "A_sharp_major": {
+                    "0": "flowerL_impact_flowerL_A_sharp.wav",
+                    "1": "flowerL_impact_flowerL_C.wav",
+                    "2": "flowerL_impact_flowerL_D.wav",
+                    "3": "flowerL_impact_flowerL_D_sharp.wav",
+                    "4": "flowerL_impact_flowerL_F.wav",
+                    "5": "flowerL_impact_flowerL_G.wav",
+                    "6": "flowerL_impact_flowerL_A.wav"
+                },
+                "F_harmonic_minor": {
+                    "0": "flowerL_impact_flowerL_F.wav",
+                    "1": "flowerL_impact_flowerL_G.wav",
+                    "2": "flowerL_impact_flowerL_G_sharp.wav",
+                    "3": "flowerL_impact_flowerL_A_sharp.wav",
+                    "4": "flowerL_impact_flowerL_C.wav",
+                    "5": "flowerL_impact_flowerL_D.wav",
+                    "6": "flowerL_impact_flowerL_E.wav"
+                }
+            }
+        },
+        "flowerR": {
+            "hold": {
+                "C_sharp_major": {
+                    "0": "flowerR_hold_flowerR_C_sharp.wav",
+                    "1": "flowerR_hold_flowerR_D_sharp.wav",
+                    "2": "flowerR_hold_flowerR_F.wav",
+                    "3": "flowerR_hold_flowerR_F_sharp.wav",
+                    "4": "flowerR_hold_flowerR_G_sharp.wav",
+                    "5": "flowerR_hold_flowerR_A_sharp.wav",
+                    "6": "flowerR_hold_flowerR_C.wav"
+                },
+                "D_sharp_major": {
+                    "0": "flowerR_hold_flowerR_D_sharp.wav",
+                    "1": "flowerR_hold_flowerR_F.wav",
+                    "2": "flowerR_hold_flowerR_G.wav",
+                    "3": "flowerR_hold_flowerR_G_sharp.wav",
+                    "4": "flowerR_hold_flowerR_A_sharp.wav",
+                    "5": "flowerR_hold_flowerR_C.wav",
+                    "6": "flowerR_hold_flowerR_D.wav"
+                },
+                "G_sharp_major": {
+                    "0": "flowerR_hold_flowerR_G_sharp.wav",
+                    "1": "flowerR_hold_flowerR_A_sharp.wav",
+                    "2": "flowerR_hold_flowerR_C.wav",
+                    "3": "flowerR_hold_flowerR_C_sharp.wav",
+                    "4": "flowerR_hold_flowerR_D_sharp.wav",
+                    "5": "flowerR_hold_flowerR_F.wav",
+                    "6": "flowerR_hold_flowerR_G.wav"
+                },
+                "G_sharp_minor": {
+                    "0": "flowerR_hold_flowerR_G_sharp.wav",
+                    "1": "flowerR_hold_flowerR_A_sharp.wav",
+                    "2": "flowerR_hold_flowerR_B.wav",
+                    "3": "flowerR_hold_flowerR_C_sharp.wav",
+                    "4": "flowerR_hold_flowerR_D_sharp.wav",
+                    "5": "flowerR_hold_flowerR_E.wav",
+                    "6": "flowerR_hold_flowerR_F_sharp.wav"
+                },
+                "B_minor": {
+                    "0": "flowerR_hold_flowerR_B.wav",
+                    "1": "flowerR_hold_flowerR_C_sharp.wav",
+                    "2": "flowerR_hold_flowerR_D.wav",
+                    "3": "flowerR_hold_flowerR_E.wav",
+                    "4": "flowerR_hold_flowerR_F_sharp.wav",
+                    "5": "flowerR_hold_flowerR_G.wav",
+                    "6": "flowerR_hold_flowerR_A.wav"
+                },
+                "A_minor": {
+                    "0": "flowerR_hold_flowerR_A.wav",
+                    "1": "flowerR_hold_flowerR_B.wav",
+                    "2": "flowerR_hold_flowerR_C.wav",
+                    "3": "flowerR_hold_flowerR_D.wav",
+                    "4": "flowerR_hold_flowerR_E.wav",
+                    "5": "flowerR_hold_flowerR_F.wav",
+                    "6": "flowerR_hold_flowerR_G.wav"
+                },
+                "G_minor": {
+                    "0": "flowerR_hold_flowerR_G.wav",
+                    "1": "flowerR_hold_flowerR_A.wav",
+                    "2": "flowerR_hold_flowerR_A_sharp.wav",
+                    "3": "flowerR_hold_flowerR_C.wav",
+                    "4": "flowerR_hold_flowerR_D.wav",
+                    "5": "flowerR_hold_flowerR_D_sharp.wav",
+                    "6": "flowerR_hold_flowerR_F.wav"
+                },
+                "C_major": {
+                    "0": "flowerR_hold_flowerR_C.wav",
+                    "1": "flowerR_hold_flowerR_D.wav",
+                    "2": "flowerR_hold_flowerR_E.wav",
+                    "3": "flowerR_hold_flowerR_F.wav",
+                    "4": "flowerR_hold_flowerR_G.wav",
+                    "5": "flowerR_hold_flowerR_A.wav",
+                    "6": "flowerR_hold_flowerR_B.wav"
+                },
+                "A_sharp_major": {
+                    "0": "flowerR_hold_flowerR_A_sharp.wav",
+                    "1": "flowerR_hold_flowerR_C.wav",
+                    "2": "flowerR_hold_flowerR_D.wav",
+                    "3": "flowerR_hold_flowerR_D_sharp.wav",
+                    "4": "flowerR_hold_flowerR_F.wav",
+                    "5": "flowerR_hold_flowerR_G.wav",
+                    "6": "flowerR_hold_flowerR_A.wav"
+                },
+                "F_harmonic_minor": {
+                    "0": "flowerR_hold_flowerR_F.wav",
+                    "1": "flowerR_hold_flowerR_G.wav",
+                    "2": "flowerR_hold_flowerR_G_sharp.wav",
+                    "3": "flowerR_hold_flowerR_A_sharp.wav",
+                    "4": "flowerR_hold_flowerR_C.wav",
+                    "5": "flowerR_hold_flowerR_D.wav",
+                    "6": "flowerR_hold_flowerR_E.wav"
+                }
+            },
+            "impact": {
+                "C_sharp_major": {
+                    "0": "flowerR_impact_flowerR_C_sharp.wav",
+                    "1": "flowerR_impact_flowerR_D_sharp.wav",
+                    "2": "flowerR_impact_flowerR_F.wav",
+                    "3": "flowerR_impact_flowerR_F_sharp.wav",
+                    "4": "flowerR_impact_flowerR_G_sharp.wav",
+                    "5": "flowerR_impact_flowerR_A_sharp.wav",
+                    "6": "flowerR_impact_flowerR_C.wav"
+                },
+                "D_sharp_major": {
+                    "0": "flowerR_impact_flowerR_D_sharp.wav",
+                    "1": "flowerR_impact_flowerR_F.wav",
+                    "2": "flowerR_impact_flowerR_G.wav",
+                    "3": "flowerR_impact_flowerR_G_sharp.wav",
+                    "4": "flowerR_impact_flowerR_A_sharp.wav",
+                    "5": "flowerR_impact_flowerR_C.wav",
+                    "6": "flowerR_impact_flowerR_D.wav"
+                },
+                "G_sharp_major": {
+                    "0": "flowerR_impact_flowerR_G_sharp.wav",
+                    "1": "flowerR_impact_flowerR_A_sharp.wav",
+                    "2": "flowerR_impact_flowerR_C.wav",
+                    "3": "flowerR_impact_flowerR_C_sharp.wav",
+                    "4": "flowerR_impact_flowerR_D_sharp.wav",
+                    "5": "flowerR_impact_flowerR_F.wav",
+                    "6": "flowerR_impact_flowerR_G.wav"
+                },
+                "G_sharp_minor": {
+                    "0": "flowerR_impact_flowerR_G_sharp.wav",
+                    "1": "flowerR_impact_flowerR_A_sharp.wav",
+                    "2": "flowerR_impact_flowerR_B.wav",
+                    "3": "flowerR_impact_flowerR_C_sharp.wav",
+                    "4": "flowerR_impact_flowerR_D_sharp.wav",
+                    "5": "flowerR_impact_flowerR_E.wav",
+                    "6": "flowerR_impact_flowerR_F_sharp.wav"
+                },
+                "B_minor": {
+                    "0": "flowerR_impact_flowerR_B.wav",
+                    "1": "flowerR_impact_flowerR_C_sharp.wav",
+                    "2": "flowerR_impact_flowerR_D.wav",
+                    "3": "flowerR_impact_flowerR_E.wav",
+                    "4": "flowerR_impact_flowerR_F_sharp.wav",
+                    "5": "flowerR_impact_flowerR_G.wav",
+                    "6": "flowerR_impact_flowerR_A.wav"
+                },
+                "A_minor": {
+                    "0": "flowerR_impact_flowerR_A.wav",
+                    "1": "flowerR_impact_flowerR_B.wav",
+                    "2": "flowerR_impact_flowerR_C.wav",
+                    "3": "flowerR_impact_flowerR_D.wav",
+                    "4": "flowerR_impact_flowerR_E.wav",
+                    "5": "flowerR_impact_flowerR_F.wav",
+                    "6": "flowerR_impact_flowerR_G.wav"
+                },
+                "G_minor": {
+                    "0": "flowerR_impact_flowerR_G.wav",
+                    "1": "flowerR_impact_flowerR_A.wav",
+                    "2": "flowerR_impact_flowerR_A_sharp.wav",
+                    "3": "flowerR_impact_flowerR_C.wav",
+                    "4": "flowerR_impact_flowerR_D.wav",
+                    "5": "flowerR_impact_flowerR_D_sharp.wav",
+                    "6": "flowerR_impact_flowerR_F.wav"
+                },
+                "C_major": {
+                    "0": "flowerR_impact_flowerR_C.wav",
+                    "1": "flowerR_impact_flowerR_D.wav",
+                    "2": "flowerR_impact_flowerR_E.wav",
+                    "3": "flowerR_impact_flowerR_F.wav",
+                    "4": "flowerR_impact_flowerR_G.wav",
+                    "5": "flowerR_impact_flowerR_A.wav",
+                    "6": "flowerR_impact_flowerR_B.wav"
+                },
+                "A_sharp_major": {
+                    "0": "flowerR_impact_flowerR_A_sharp.wav",
+                    "1": "flowerR_impact_flowerR_C.wav",
+                    "2": "flowerR_impact_flowerR_D.wav",
+                    "3": "flowerR_impact_flowerR_D_sharp.wav",
+                    "4": "flowerR_impact_flowerR_F.wav",
+                    "5": "flowerR_impact_flowerR_G.wav",
+                    "6": "flowerR_impact_flowerR_A.wav"
+                },
+                "F_harmonic_minor": {
+                    "0": "flowerR_impact_flowerR_F.wav",
+                    "1": "flowerR_impact_flowerR_G.wav",
+                    "2": "flowerR_impact_flowerR_G_sharp.wav",
+                    "3": "flowerR_impact_flowerR_A_sharp.wav",
+                    "4": "flowerR_impact_flowerR_C.wav",
+                    "5": "flowerR_impact_flowerR_D.wav",
+                    "6": "flowerR_impact_flowerR_E.wav"
+                }
+            }
+        },
+        "dragonfly": {
+            "hold": {
+                "C_sharp_major": {
+                    "0": "dragonfly_C_sharp_major_seventh.wav"
+                },
+                "D_sharp_major": {
+                    "0": "dragonfly_D_sharp_major_seventh.wav"
+                },
+                "G_sharp_major": {
+                    "0": "dragonfly_G_sharp_major_seventh.wav"
+                },
+                "G_sharp_minor": {
+                    "0": "dragonfly_G_sharp_minor_seventh.wav"
+                },
+                "B_minor": {
+                    "0": "dragonfly_B_minor_seventh.wav"
+                },
+                "A_minor": {
+                    "0": "dragonfly_A_minor_seventh.wav"
+                },
+                "G_minor": {
+                    "0": "dragonfly_G_minor_seventh.wav"
+                },
+                "C_major": {
+                    "0": "dragonfly_C_major_seventh.wav"
+                },
+                "A_sharp_major": {
+                    "0": "dragonfly_A_sharp_major_seventh.wav"
+                },
+                "F_harmonic_minor": {
+                    "0": "dragonfly_F_harmonic_minor_seventh.wav"
+                }
+            },
+            "impact": {
+                "C_sharp_major": {
+                    "0": "dragonfly_C_sharp_major.wav"
+                },
+                "D_sharp_major": {
+                    "0": "dragonfly_D_sharp_major.wav"
+                },
+                "G_sharp_major": {
+                    "0": "dragonfly_G_sharp_major.wav"
+                },
+                "G_sharp_minor": {
+                    "0": "dragonfly_G_sharp_minor.wav"
+                },
+                "B_minor": {
+                    "0": "dragonfly_B_minor.wav"
+                },
+                "A_minor": {
+                    "0": "dragonfly_A_minor.wav"
+                },
+                "G_minor": {
+                    "0": "dragonfly_G_minor.wav"
+                },
+                "C_major": {
+                    "0": "dragonfly_C_major.wav"
+                },
+                "A_sharp_major": {
+                    "0": "dragonfly_A_sharp_major.wav"
+                },
+                "F_harmonic_minor": {
+                    "0": "dragonfly_F_harmonic_minor.wav"
+                }
+            }
+        }
+    }
+}
