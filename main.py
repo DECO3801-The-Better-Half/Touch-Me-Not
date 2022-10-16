@@ -25,7 +25,7 @@ sound_files_paths = glob.glob(sound_dir_path)
 
 sound_objects = {}
 for sound in sound_files_paths:
-    abs_path = sound.split("/")[-1]
+    abs_path = os.path.basename(os.path.abspath(sound))  # Get sound file name without path
     instrument = abs_path.split('_')[0]
     type = abs_path.split("_")[1]
     key = abs_path.split("_")[2]
