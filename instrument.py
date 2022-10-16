@@ -5,6 +5,7 @@ Class form of each instrument.
 """
 
 import pygame
+from typing import Optional
 
 
 class Instrument:
@@ -18,9 +19,9 @@ class Instrument:
     def __init__(
         self,
         name: str,
-        holds: list[pygame.mixer.Sound],
-        impacts: list[pygame.mixer.Sound],
-        threshold: int
+        holds: Optional[list[pygame.mixer.Sound]] = None,
+        impacts: Optional[list[pygame.mixer.Sound]] = None,
+        threshold: Optional[int] = None
     ) -> None:
         """Create an instrument
 
@@ -33,9 +34,10 @@ class Instrument:
             threshold: threshold for arduino output
         """
         self.name = name
-        self._holds = holds
-        self._impacts = impacts
-        self.threshold = threshold
+
+        self._holds = [] if holds is None else holds
+        self._impacts = [] if impacts is None else impacts
+        self.threshold = 0 if threshold is not None else threshold
 
         self._currently_playing = None
 
@@ -50,6 +52,14 @@ class Instrument:
         """Stop the instrument's current hold sound"""
         if self._currently_playing is not None:
             self._currently_playing.stop()
+
+    def add_hold(self, sound: pygame.mixer.Sound) -> None:
+        """Add the given sound file to the list of hold sounds"""
+        self._holds.append(sound)
+
+    def add_impact(self, sound: pygame.mixer.Sound) -> None:
+        """Add the given sound to the list of impact sounds"""
+        self._impacts.append(sound)
 
     def __eq__(self, other) -> bool:
         """Return true if the name of these instruments are equal"""
