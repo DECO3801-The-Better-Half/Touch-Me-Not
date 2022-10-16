@@ -55,16 +55,16 @@ void loop() {
       sensors[i].set_CS_AutocaL_Millis(10000);
     }
 //plant 1 LED response
-led_response(values[0], thresholds[0], plant1, green);
+led_response(values[0], thresholds[0], flower, pink);
 
 //plant 2 LED response
-led_response(values[1], thresholds[1], plant2, dark_green);
+led_response(values[1], thresholds[1], dragonfly, orange);
 
 //flower LED response
-led_response(values[2], thresholds[2], flower, pink);
+led_response(values[2], thresholds[2], plant2, green);
 
 //dragonfly LED response
-led_response(values[3], thresholds[3], dragonfly, orange);
+led_response(values[3], thresholds[3], plant1, dark_green);
 
 //lamp LED response
 led_response(analogRead(lampPin), thresholds[4], lamp, yellow);
