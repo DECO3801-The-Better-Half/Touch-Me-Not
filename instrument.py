@@ -50,3 +50,9 @@ class Instrument:
         """Stop the instrument's current hold sound"""
         if self._currently_playing is not None:
             self._currently_playing.stop()
+
+    def __eq__(self, other) -> bool:
+        """Return true if the name of these instruments are equal"""
+        if isinstance(other, Instrument):
+            return self.name == other.name
+        return False
