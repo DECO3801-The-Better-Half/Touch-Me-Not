@@ -1,7 +1,10 @@
 import serial
 import pygame
 import os
-import subprocess
+from os import listdir
+from os.path import isfile, join
+import glob
+import time
 
 PRESSED = True
 UNPRESSED = False
@@ -13,6 +16,17 @@ TICKS_PER_SECOND = 30
 SOUNDS_PATH = ['sounds/plant.wav', 'sounds/water.wav', 'sounds/light.wav', 'sounds/fabric.wav']
 
 pygame.init()
+
+thisdir = os.getcwd()
+sound_dir_path = thisdir + "/sounds_with_notes/*"
+sound_files_paths = glob.glob(sound_dir_path)
+
+print(sound_files_paths)
+
+sound_objects = []
+for sound in sound_files_paths:
+    sound_objects.append(pygame.mixer.Sound(sound))
+
 
 
 plant_sound1 = pygame.mixer.Sound('Sounds/plant.wav')
