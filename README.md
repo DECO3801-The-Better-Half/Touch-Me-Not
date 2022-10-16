@@ -5,9 +5,8 @@ To run the code for this project run the main.py file.
 This code can be stopped with a keyboard interrupt by hitting ctrl + C
 ## Dependencies
 - pyserial : ```pip3 install pyserial```
-- playsound : ```pip3 install playsound```
+- pygame: ```pip3 install pygame```
 
-playsound is relying on a python 2 subprocess. Please use `pip3 install PyObjC` if you want playsound to run more efficiently.
 ## main.py
 Generates processes to play sounds when a touch is sensed.
 
