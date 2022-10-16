@@ -32,8 +32,7 @@ for sound in sound_files_paths:
 
     sound_objects[(instrument, type)] = pygame.mixer.Sound(sound)
 
-
-sound_classes = {}
+sound_classes = []
 for key, sound_object in sound_objects.items():
     name, type = key
 
@@ -43,11 +42,13 @@ for key, sound_object in sound_objects.items():
         sound_classes.append(instrument_object)
 
     if type == "impact":
-        instrument_object.impacts.append(sound_object)
+        instrument_object.add_impact(sound_object)
 
     if type == "hold":
-        instrument_object.holds.append(sound_object)
+        instrument_object.add_hold(sound_object)
 
+
+print(sound_classes)
 
 plant_sound1 = pygame.mixer.Sound('Sounds/plant.wav')
 water_sound1 = pygame.mixer.Sound('Sounds/water.wav')
