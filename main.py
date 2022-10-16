@@ -5,6 +5,8 @@ from os import listdir
 from os.path import isfile, join
 import glob
 import time
+import re
+from instrument import *
 
 PRESSED = True
 UNPRESSED = False
@@ -21,12 +23,30 @@ thisdir = os.getcwd()
 sound_dir_path = thisdir + "/sounds_with_notes/*"
 sound_files_paths = glob.glob(sound_dir_path)
 
-print(sound_files_paths)
-
-sound_objects = []
+sound_objects = {}
 for sound in sound_files_paths:
-    sound_objects.append(pygame.mixer.Sound(sound))
+    abs_path = sound.split("/")[-1]
+    instrument = abs_path.split('_')[0]
+    type = abs_path.split("_")[1]
+    key = abs_path.split("_")[2]
 
+    sound_objects[(instrument, type)] = pygame.mixer.Sound(sound)
+
+
+sound_classes = {}
+for key, sound_object in sound_objects.items():
+    name, type = key
+
+    instrument_object = Instrument(name)
+
+    if instrument_object not in sound_classes:
+        sound_classes.append(instrument_object)
+
+    if type == "impact":
+        instrument_object.impacts.append(sound_object)
+
+    if type == "hold":
+        instrument_object.holds.append(sound_object)
 
 
 plant_sound1 = pygame.mixer.Sound('Sounds/plant.wav')
@@ -162,7 +182,6 @@ def get_serial():
             clock.tick(TICKS_PER_SECOND * 3)
 
 if __name__ == '__main__':
-
     get_serial()
 
 
