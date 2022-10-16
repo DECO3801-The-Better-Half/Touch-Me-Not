@@ -1,11 +1,19 @@
-import serial
-import pygame
+"""main.py
+
+Run this file to read serial input from arduinos and turn it into audio.
+
+The port numbers PORT_ONE and PORT_TWO will likely have to be changed to
+the ports that each arduino is attached to.
+"""
+
 import os
 import glob
-from instrument import *
+from typing import Tuple, Dict, List
+import pygame
+
+from instrument import Instrument
 from arduino_serial import ArduinoSerial
 from sound import Sound
-from typing import Tuple, Dict
 
 TICKS_PER_SECOND = 30
 
@@ -42,11 +50,12 @@ def get_audio() -> Dict[Tuple[str, str], List[Sound]]:
         sounds = sound_objects.get((instrument, type), [])
         sounds.append(Sound(sound, f"{instrument}_{type}_{key}", key))
         sound_objects[(instrument, type)] = sounds
-    
+
     return sound_objects
 
 
 def main():
+    """Run the main loop"""
     pygame.init()
 
     sound_objects = get_audio()
@@ -71,14 +80,14 @@ def main():
     all_instruments = left_instruments + right_instruments
 
     # Give these sounds to each instrument.
-    for (name, type), sounds in sound_objects.items():
+    for (name, touch_type), sounds in sound_objects.items():
         # Find instrument that has that file_name
         for instrument in all_instruments:
             if instrument.file_name == name:
-                if type == "impact":
+                if touch_type == "impact":
                     for sound in sounds:
                         instrument.add_impact(sound)
-                elif type == "hold":
+                elif touch_type == "hold":
                     for sound in sounds:
                         instrument.add_hold(sound)
 

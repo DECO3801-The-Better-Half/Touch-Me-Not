@@ -4,10 +4,8 @@ instrument.py
 Class form of each instrument.
 """
 
-from ast import In
-import pygame
-from sound import Sound
 from typing import Optional, List
+from sound import Sound
 
 
 class Instrument:
