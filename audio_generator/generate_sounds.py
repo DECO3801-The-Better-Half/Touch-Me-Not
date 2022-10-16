@@ -12,9 +12,9 @@ ignored_warnings = [
 	"rm:"
 ]
 reduce_volume_warnings = []
-def run_command(command: str) -> tuple[str, str]:
+def run_command(command: str, use_shell = False) -> tuple[str, str]:
 	# print(command)
-	process = subprocess.Popen(command.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	process = subprocess.Popen(command.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=use_shell)
 	stdout, stderr = process.communicate()
 	# decode bytes to string
 	stdout = stdout.decode("utf-8")
@@ -26,14 +26,14 @@ def run_command(command: str) -> tuple[str, str]:
 			except IndexError: # terrible but i dont care
 				first_arg_file = command.split(" ")[3].split("/")[1]
 			if first_arg_file not in reduce_volume_warnings:
-				print(f"WARNING: consider reducing the volume scale factor of \"{first_arg_file}\".")
+				print(f"WARNING: Clipped file: \"{first_arg_file}\". Consider reducing its volume scale factor.")
 				reduce_volume_warnings.append(first_arg_file)
 		else:
 			for ignored_warning in ignored_warnings:
 				if ignored_warning in stderr:
 					break
 			else:
-				print(f"---Error from subprocess---\n{command}\n---------------------------\n\n{stderr}\n\n---End of error from subprocess---\nExiting...")
+				print(f"---ERROR from subprocess---\n{command}\n---------------------------\n\n{stderr}\n\n---End of ERROR from subprocess---\nExiting...")
 				exit()
 	return stdout, stderr
 
@@ -89,17 +89,16 @@ class Layer:
 		run_command(f"sox {self.temp_file_address} {self.temp_file_address_no_extension}_left_temp.wav remix 1")
 		run_command(f"sox {self.temp_file_address} {self.temp_file_address_no_extension}_right_temp.wav remix 2")
 		# change volume of each channel
-		print("her2e")
 		run_command(f"sox -v {pan_value.left} {self.temp_file_address_no_extension}_left_temp.wav {self.temp_file_address_no_extension}_left.wav")
-		run_command(f"sox -v {pan_value.right} {self.temp_file_address_no_extension}_right_temp.wav {self.temp_file_address_no_extension}_right.wav ")
-		print("here")
-		# remove original file
-		run_command(f"rm {self.temp_file_address_no_extension}_temp.wav")
-		# rejoin the two channels
-		run_command(f"sox -M {self.temp_file_address_no_extension}_left.wav {self.temp_file_address_no_extension}_right.wav {self.temp_file_address}")
-		# remove temporary files
+		run_command(f"sox -v {pan_value.right} {self.temp_file_address_no_extension}_right_temp.wav {self.temp_file_address_no_extension}_right.wav")
+		# remove left and right temp files
 		run_command(f"rm {self.temp_file_address_no_extension}_left_temp.wav")
 		run_command(f"rm {self.temp_file_address_no_extension}_right_temp.wav")
+		# remove temp file
+		run_command(f"rm {self.temp_file_address}")
+		# rejoin the two channels
+		run_command(f"sox -M {self.temp_file_address_no_extension}_left.wav {self.temp_file_address_no_extension}_right.wav {self.temp_file_address}")
+		# remove left and right files
 		run_command(f"rm {self.temp_file_address_no_extension}_left.wav")
 		run_command(f"rm {self.temp_file_address_no_extension}_right.wav")
 
@@ -145,30 +144,55 @@ class Sound:
 		return len([layer for layer in self.layers if layer.note != Note.none])
 
 	def get_sound_filenames(this, instrument: 'Instrument', key):
-		# count how many layers have a tune
-
-		i = 0
-
-		sound_filenames = {}
+		sound_filenames = []
 		# if chord add key first chord
 		if instrument.mode == Mode.chord:
 			# add key chord
 			if this.num_tonal_layers() < 4:
-				sound_filenames[0] = f"{instrument.name}_{key.name}.wav"
+				sound_filenames.append(f"{instrument.name}_{key.name}.wav")
 			else:
-				sound_filenames[0] = f"{instrument.name}_{key.name}_seventh.wav"
+				sound_filenames.append(f"{instrument.name}_{key.name}_seventh.wav")
 		# if arpeggio or scale add key arpeggio notes
 		elif instrument.mode == Mode.arpeggio or instrument.mode == Mode.scale:
 			for note_number in SCALE_INDEX_IN_MODE[instrument.mode]:
-				print(key)
-				print(note_number)
 				note = SCALES[key][note_number]
-				sound_filenames[i] = f"{instrument.name}_{this.name}_{note.name}.wav"
-				i += 1
+				sound_filenames.append(f"{instrument.name}_{this.name}_{note.name}.wav")
 
 		return sound_filenames
 
 
+	def merge_layer(self, new_sound_address, new_layer_address):
+		temp_new_sound_address = new_sound_address.replace(".wav", "_temp.wav")
+		temp_new_layer_address = new_layer_address.replace(".wav", "_temp.wav")
+		# copy the files to a temp file to work on and merge
+		run_command(f"cp {new_sound_address} {temp_new_sound_address}")
+		run_command(f"rm {new_sound_address}")
+		run_command(f"cp {new_layer_address} {temp_new_layer_address}")
+		# get duration of both files to merge
+		stdout, stderr = run_command(f"soxi -D {temp_new_sound_address}")
+		new_sound_duration = float(stdout)
+		stdout, stderr = run_command(f"soxi -D {temp_new_layer_address}")
+		new_layer_duration = float(stdout)
+		if new_sound_duration != new_layer_duration and "impact" not in self.name:
+			# clip the longer file
+			if new_sound_duration > new_layer_duration:
+				# trim sound
+				run_command(f"cp {temp_new_sound_address} {temp_new_sound_address.replace('.wav', '_temp.wav')}")
+				run_command(f"rm {temp_new_sound_address}")
+				run_command(f"sox {temp_new_sound_address.replace('.wav', '_temp.wav')} {temp_new_sound_address} trim 0 {new_layer_duration}")
+				run_command(f"rm {temp_new_sound_address.replace('.wav', '_temp.wav')}")
+			else:
+				# trim layer
+				run_command(f"cp {temp_new_layer_address} {temp_new_layer_address.replace('.wav', '_temp.wav')}")
+				run_command(f"rm {temp_new_layer_address}")
+				run_command(f"sox {temp_new_layer_address.replace('.wav', '_temp.wav')} {temp_new_layer_address} trim 0 {new_sound_duration}")
+				run_command(f"rm {temp_new_layer_address.replace('.wav', '_temp.wav')}")
+
+		# merge the files
+		run_command(f"sox -m {temp_new_layer_address} {temp_new_sound_address} {new_sound_address}")
+		# delete the temp files
+		run_command(f"rm {temp_new_sound_address}")
+		run_command(f"rm {temp_new_layer_address}")
 
 	# 	for chord in self.chords:
 	# 		if chord.key == key:
@@ -182,31 +206,26 @@ class Sound:
 		for layer in self.layers:
 			layer.copy_to_temp_dir()
 			layer.change_wav_volume()
-			# TODO
-			# layer.change_wav_pan(instrument.pan_value)
+			layer.change_wav_pan(instrument.pan_value)
 			layer.generate_all_notes()
 		
 		# generate all the single tones
 		if instrument.mode == Mode.scale:
 			for note_number in range(0, 11):
 				new_note = Note(note_number)
-				new_file_address = f"{TEMP_DIR}/{instrument.name}_{self.name}_{new_note.name}.wav"
-				temp_new_file_address = f"{TEMP_DIR}/{instrument.name}_{self.name}_{new_note.name}_temp.wav"
+				new_sound_address = f"{TEMP_DIR}/{instrument.name}_{self.name}_{new_note.name}.wav"
+				temp_new_sound_address = f"{TEMP_DIR}/{instrument.name}_{self.name}_{new_note.name}_temp.wav"
 				# join all the relevant layers
 				for i, layer in enumerate(self.layers):
 					if i == 0:
-						run_command(f"cp {layer.get_address_for_note(new_note)} {new_file_address}")
+						run_command(f"cp {layer.get_address_for_note(new_note)} {new_sound_address}")
 					else:
-						run_command(f"cp {new_file_address} {temp_new_file_address}")
-						run_command(f"rm {new_file_address}")
-						run_command(f"sox -m {layer.get_address_for_note(new_note)} {temp_new_file_address} {new_file_address}")
-						run_command(f"rm {temp_new_file_address}")
-				print(f"CREATING: {instrument.name} {self.name} note: {new_note.name}")
+						self.merge_layer(new_sound_address, layer.get_address_for_note(new_note))
+				# print(f"CREATING: {instrument.name} {self.name} note: {new_note.name}")
 
 		# generate all the chords
 		for chord in instrument.chords:
-			new_file_address = f"{TEMP_DIR}/{instrument.name}_{self.name}_{chord.chord.name}.wav"
-			temp_new_file_address = f"{TEMP_DIR}/{instrument.name}_{self.name}_{chord.chord.name}_temp.wav"
+			new_sound_address = f"{TEMP_DIR}/{instrument.name}_{self.name}_{chord.chord.name}.wav"
 			# count how many layers have a tune
 			num_chord_notes = 0
 			for layer in self.layers:
@@ -228,7 +247,7 @@ class Sound:
 			# shuffle the notes
 			chord_notes = random.sample(chord_notes, num_chord_notes)
 			# print the chord and chord notes
-			print(f"CREATING: {instrument.name} {self.name} chord: {chord.chord.name}, notes: {[note.name for note in chord_notes]}")
+			# print(f"CREATING: {instrument.name} {self.name} chord: {chord.chord.name}, notes: {[note.name for note in chord_notes]}")
 			# join all the relevant layers
 			merged_layers = []
 			for i, layer in enumerate(self.layers):
@@ -251,12 +270,9 @@ class Sound:
 				# print what is about to happen
 				# print(f"MERGING layer {layer.name} with {closest_note.name} of chord {chord.chord.name}")
 				if i == 0:
-					run_command(f"cp {layer.get_address_for_note(closest_note)} {new_file_address}")
+					run_command(f"cp {layer.get_address_for_note(closest_note)} {new_sound_address}")
 				else:
-					run_command(f"cp {new_file_address} {temp_new_file_address}")
-					run_command(f"rm {new_file_address}")
-					run_command(f"sox -m {layer.get_address_for_note(closest_note)} {temp_new_file_address} {new_file_address}")
-					run_command(f"rm {temp_new_file_address}")
+					self.merge_layer(new_sound_address, layer.get_address_for_note(closest_note))
 				merged_layers.append(layer)
 			# print the layers that were merged
 			# print(f"with layers: {[layer.name for layer in merged_layers]}")
@@ -374,12 +390,12 @@ def main():
 				words[-1] = words[-1][:-1]
 
 			if len(words) != 5:
-				print(f"Error: line {line_number} of jobfile is not a valid instrument line")
+				print(f"ERROR: line {line_number} of jobfile is not a valid instrument line")
 				return
 			
 			new_instrument = Instrument(words[1], Key[words[2]], Mode[words[3]], PanValue(words[4]), [])
 			if new_instrument in instruments:
-				print(f"Error: instrument {new_instrument.name} is redefined in jobfile on line {line_number}")
+				print(f"ERROR: instrument {new_instrument.name} is redefined in jobfile on line {line_number}")
 				return
 			instruments.append(new_instrument)
 		elif line.startswith("sound"):
@@ -389,12 +405,12 @@ def main():
 				words[-1] = words[-1][:-1]
 
 			if len(words) != 3:
-				print(f"Error: line {line_number} of jobfile is not a valid sound line")
+				print(f"ERROR: line {line_number} of jobfile is not a valid sound line")
 				return
 			sound_instrument = words[1]
 			
 			if sound_instrument not in [instrument.name for instrument in instruments]:
-				print(f"Error: instrument {sound_instrument} is not defined in jobfile on line {line_number}")
+				print(f"ERROR: instrument {sound_instrument} is not defined in jobfile on line {line_number}")
 				return
 			sound_name = words[2]
 			layers = []
@@ -402,13 +418,13 @@ def main():
 			for instrument in instruments:
 				if instrument.name == sound_instrument:
 					if new_sound in instrument.sounds:
-						print(f"Error: sound {new_sound.name} is redefined in jobfile on line {line_number}")
+						print(f"ERROR: sound {new_sound.name} is redefined in jobfile on line {line_number}")
 						return
-					print(f"Adding sound {new_sound.name} to instrument {instrument.name}")
+					# print(f"Adding sound {new_sound.name} to instrument {instrument.name}")
 					instrument.sounds.append(new_sound)
 					break
 			else:
-				print(f"Error: sound {new_sound.name} is not defined in jobfile on line {line_number}")
+				print(f"ERROR: sound {new_sound.name} is not defined in jobfile on line {line_number}")
 				return
 			most_recent_sound = new_sound
 		elif line.startswith("-"):
@@ -418,14 +434,14 @@ def main():
 			if words[-1].endswith("\n"):
 				words[-1] = words[-1][:-1]
 			if len(words) != 4:
-				print(f"Error: line {line_number} of jobfile is not a valid layer line")
+				print(f"ERROR: line {line_number} of jobfile is not a valid layer line")
 				return
 			if most_recent_sound is None:
-				print(f"Error: layer line {line_number} of jobfile is not preceded by a sound line")
+				print(f"ERROR: layer line {line_number} of jobfile is not preceded by a sound line")
 				return
 			new_layer = Layer(words[1], Note[words[2]], float(words[3]))
 			if new_layer in most_recent_sound.layers:
-				print(f"Error: layer {new_layer.name} is redefined in jobfile on line {line_number}")
+				print(f"ERROR: layer {new_layer.name} is redefined in jobfile on line {line_number}")
 				return
 			
 			# print(f"Added layer {new_layer.name} to sound {most_recent_sound.name} of instrument {most_recent_sound.instrument_name}")
@@ -443,8 +459,8 @@ def main():
 	run_command(f"rm -r {TEMP_DIR}")
 	run_command(f"mkdir {TEMP_DIR}")
 
-	print("Generating sounds...")
 	for instrument in instruments:
+		print(f"Generating sounds for {instrument.name}...")
 		instrument.generate_sounds()
 	
 	# gather all instrument instructions and write the tree to a file
@@ -452,6 +468,7 @@ def main():
 # ote(note_i).name: instrument.get_normal_filename(key, sound, Note(note_i)) for note_i in SCALES[key]}
 	instructions = {
 		"object-key": {instrument.name: instrument.key.name for instrument in instruments},
+		"object-range_len": {instrument.name: instrument.range for instrument in instruments},
 		"object-type-key-pivot_filename": {instrument.name: {sound.name.split("_")[0]: {key.name: instrument.get_pivot_filename(key, sound) for key in all_keys} for sound in instrument.sounds} for instrument in instruments},
 		# TODO: make the notes from the scale go from lowest pitch to highest pitch
 		# make the order of sounds in the capacitance layer be determined by the average note of the notes in the sound being in the centre of the capacitance layer
@@ -467,11 +484,10 @@ def main():
 	with open('instructions.json', 'w', encoding='utf-8') as f:
 		json.dump(instructions, f, ensure_ascii=False, indent=4)
 
-	# TODO copy files beginning with instrument name to output directory
 	run_command(f"rm -r {OUTPUT_DIR}")
 	run_command(f"mkdir {OUTPUT_DIR}")
 	# wait a bit
-	time.sleep(1)
+	# time.sleep(1)
 	# run_command(f"chmod 777 {TEMP_DIR}/*")
 	stdout, stderr = run_command(f"ls {TEMP_DIR}")
 	instrument_names = [instrument.name for instrument in instruments]
@@ -479,11 +495,12 @@ def main():
 		# if line starts with instrument names
 		if line.startswith(tuple(instrument_names)):
 			new_filename = line.split("_")
-			print(new_filename)
 			del new_filename[2]
 			new_filename = "_".join(new_filename)
 			run_command(f"cp {TEMP_DIR}/{line} {OUTPUT_DIR}/{new_filename}")
 		# run_command(f"rsync {TEMP_DIR}/{instrument.name}*.wav {OUTPUT_DIR}")
+
+	run_command(f"rm -r {TEMP_DIR}")
 
 	# display results
 	print("========================================")
@@ -491,15 +508,13 @@ def main():
 	print("----------------------------------------")
 	print("Generated sounds")
 	for instrument in instruments:
-		print(f"Instrument {instrument.name}")
+		print(f"{instrument.name}")
 		for sound in instrument.sounds:
-			print(f"    Sound {sound.name}")
-			for layer in sound.layers:
-				print(f"        Layer {layer.name}")
+			print(f"    {sound.name}")
 
 	print("----------------------------------------")
-	print("INSTRUCTIONS")
-	print(f"Output file: instructions.json")
+	print("FINISHED SUCCESSFULLY")
+	print(f"Instructions: instructions.json")
 	# state number of files in output directory
 	stdout, stderr = run_command(f"ls {OUTPUT_DIR}")
 	num_files = len(stdout.split("\n"))

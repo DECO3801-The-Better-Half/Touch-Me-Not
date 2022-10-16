@@ -2,6 +2,7 @@ from enum import Enum
 
 TEMP_DIR = "generate_sounds_temp"
 OUTPUT_DIR = "audio"
+INSTRUCTIONS_FILE = "instructions.txt"
 
 NUM_PITCH_DOWNS = 7 # when generating all semi-tones this is the number of pitching down it must to out of 11 other semi-tones
 

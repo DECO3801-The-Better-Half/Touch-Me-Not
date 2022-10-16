@@ -1,22 +1,28 @@
+ONLY WORKS ON MAC
+
 ======================
-SOUND_COMPONENTS USAGE
+generate_sounds USAGE
 ----------------------
+python3 generate_sounds.py [file_name]
+
+e.g.
 python3 generate_sounds.py jobfile.txt
 ======================
 
 
 ======================
-JOBFILE USAGE:
+JOBFILE USAGE
 ----------------------
-DEFINE INSTRUMENTS FIRST
-instrument instrument_name key chord/scale/arpeggio balance
+Define instruments first.
+[instrument] [instrument_name] [key] [chord/scale/arpeggio balance]
+
 e.g. "instrument water C_sharp_major chord L1R1"
 ----------------------
-THEN SOUNDS
-sound instrument_name sound_name
-- filename note volume_scale_factor
-- filename note volume_scale_factor
-...
+Then define sounds with their layers listed below.
+[sound] [instrument_name] [sound_name]
+- [filename] [note] [volume_scale_factor]
+- ...
+
 e.g.
 "sound flowerR hold
 - sound_components/Flower/sparky_drone_G#.wav G_sharp 0.5

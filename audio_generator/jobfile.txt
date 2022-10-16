@@ -1,15 +1,15 @@
 instrument water C_sharp_major chord L1R1
 
-instrument lightL D_sharp_major chord L1R1
-instrument lightR G_sharp_major chord L1R1
+instrument lightL D_sharp_major chord L1.2R0.8
+instrument lightR G_sharp_major chord L1.2R0.8
 
-instrument plantL G_sharp_minor scale L1R1
-instrument plantR B_minor scale L1R1
-instrument plantFL A_minor arpeggio L1R1
-instrument plantFR G_minor arpeggio L1R1
+instrument plantL G_sharp_minor scale L1.3R0.6
+instrument plantR B_minor scale L0.6R1.3
+instrument plantFL A_minor arpeggio L1.5R0
+instrument plantFR G_minor arpeggio L0R1.5
 
-instrument flowerL C_major scale L1R1
-instrument flowerR A_sharp_major scale L1R1
+instrument flowerL C_major scale L1.2R0.8
+instrument flowerR A_sharp_major scale L0.8R1.2
 
 instrument dragonfly F_harmonic_minor chord L1R1
 
@@ -69,12 +69,13 @@ sound plantL hold
 - sound_components/Plant/vocal_high_A#.wav A_sharp 0.4
 - sound_components/Plant/vocal_low_D.wav D 0.4
 
+
 sound plantL impact
 - sound_components/Plant/bell_F.wav F 1
 - sound_components/Plant/frog_A.wav A 0.1
 - sound_components/Plant/steam_G.wav G 0.3
-- sound_components/Plant/high_beep_E.wav E 0.4
-- sound_components/Plant/beep_A.wav A 0.4
+- sound_components/Plant/brass1_A.wav A 0.6
+- sound_components/Plant/brass2_C.wav A 0.6
 
 sound plantR hold
 - sound_components/Plant/wind.wav none 0.6
@@ -86,7 +87,8 @@ sound plantR impact
 - sound_components/Plant/bell_F.wav F 1
 - sound_components/Plant/frog_A.wav A 0.1
 - sound_components/Plant/steam_G.wav G 0.3
-- sound_components/Plant/high_beep_E.wav E 0.4
+- sound_components/Plant/brass1_A.wav A 0.6
+- sound_components/Plant/brass2_C.wav A 0.6
 - sound_components/Plant/beep_A.wav A 0.4
 
 sound plantFL hold
@@ -97,10 +99,12 @@ sound plantFL hold
 
 sound plantFL impact
 - sound_components/Plant/bell_F.wav F 1
-- sound_components/Plant/frog_A.wav A 0.1
-- sound_components/Plant/steam_G.wav G 0.3
+- sound_components/Plant/frog_A.wav A 0.3
+- sound_components/Plant/steam_G.wav G 0.2
 - sound_components/Plant/high_beep_E.wav E 0.4
 - sound_components/Plant/beep_A.wav A 0.4
+- sound_components/Plant/brass1_A.wav A 0.1
+- sound_components/Plant/brass2_C.wav A 0.1
 
 sound plantFR hold
 - sound_components/Plant/wind.wav none 0.6
@@ -111,17 +115,18 @@ sound plantFR hold
 sound plantFR impact
 - sound_components/Plant/bell_F.wav F 1
 - sound_components/Plant/frog_A.wav A 0.1
-- sound_components/Plant/steam_G.wav G 0.3
+- sound_components/Plant/steam_G.wav G 0.1
 - sound_components/Plant/high_beep_E.wav E 0.4
 - sound_components/Plant/beep_A.wav A 0.4
-
+- sound_components/Plant/brass1_A.wav A 0.1
+- sound_components/Plant/brass2_C.wav A 0.1
 
 sound dragonfly hold
-- sound_components/Dragonfly/d_drone_D#.wav D_sharp 0.1
-- sound_components/Dragonfly/d_high_drone_C#.wav C_sharp 0.4
-- sound_components/Dragonfly/growl_G#.wav G_sharp 0.15
-- sound_components/Dragonfly/rattling_D.wav D 0.15
-- sound_components/Dragonfly/d_bees.wav none 0.15
+- sound_components/Dragonfly/d_drone_D#.wav D_sharp 0.7
+- sound_components/Dragonfly/d_high_drone_C#.wav C_sharp 0.7
+- sound_components/Dragonfly/growl_G#.wav G_sharp 0.8
+- sound_components/Dragonfly/rattling_D.wav D 0.5
+- sound_components/Dragonfly/d_bees.wav none 0.4
 
 sound dragonfly impact
 - sound_components/Dragonfly/blow_G.wav G 1
