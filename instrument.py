@@ -5,7 +5,7 @@ Class form of each instrument.
 """
 
 import pygame
-from typing import Optional
+from typing import Optional, List
 
 
 class Instrument:
@@ -19,8 +19,8 @@ class Instrument:
     def __init__(
         self,
         name: str,
-        holds: Optional[list[pygame.mixer.Sound]] = None,
-        impacts: Optional[list[pygame.mixer.Sound]] = None,
+        holds: Optional[List[pygame.mixer.Sound]] = None,
+        impacts: Optional[List[pygame.mixer.Sound]] = None,
         threshold: Optional[int] = None
     ) -> None:
         """Create an instrument
@@ -66,3 +66,6 @@ class Instrument:
         if isinstance(other, Instrument):
             return self.name == other.name
         return False
+
+    def __hash__(self):
+        return hash(self.name)
