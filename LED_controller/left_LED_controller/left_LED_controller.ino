@@ -20,7 +20,7 @@ long values[4];
 uint32_t pink = strip.Color(255, 50, 70);
 uint32_t purple = strip.Color(144, 0, 206);
 uint32_t green = strip.Color(0,255, 0);
-uint32_t dark_green = strip.Color(255,255, 0);
+uint32_t light_green = strip.Color(255,255, 0);
 uint32_t blue = strip.Color(0, 0, 255);
 uint32_t orange = strip.Color(255,60,5);
 uint32_t yellow = strip.Color(255, 211, 30);
@@ -64,7 +64,7 @@ led_response(values[1], thresholds[1], dragonfly, orange);
 led_response(values[2], thresholds[2], plant2, green);
 
 //dragonfly LED response
-led_response(values[3], thresholds[3], plant1, dark_green);
+led_response(values[3], thresholds[3], plant1, light_green);
 
 //lamp LED response
 led_response(analogRead(lampPin), thresholds[4], lamp, yellow);
