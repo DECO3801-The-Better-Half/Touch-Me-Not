@@ -32,21 +32,24 @@ INSTRUMENT_NAMES_RIGHT = [
     "Right flower",
 ]
 
+BASE_THRESHOLD = 500
+LAMP_THRESHOLD = 800
+
 left_instruments = [
-    Instrument("Left lamp", "lightL"),
-    Instrument("Left flower", "flowerL"),
-    Instrument("dragonfly", "dragonfly"),
-    Instrument("Left plant 2", "plantFL"),
-    Instrument("Left plant 1", "plantL"),
+    Instrument("Left lamp", "lightL", threshold=LAMP_THRESHOLD),
+    Instrument("Left flower", "flowerL", threshold=BASE_THRESHOLD),
+    Instrument("dragonfly", "dragonfly", threshold=BASE_THRESHOLD),
+    Instrument("Left plant 2", "plantFL", threshold=BASE_THRESHOLD),
+    Instrument("Left plant 1", "plantL", threshold=BASE_THRESHOLD),
 ]
 
 right_instruments = [
-    Instrument("Right lamp", "lightR"),
-    Instrument("Water", "water"),
-    Instrument("Right flower", "flowerR"),
-    Instrument("Right plant 2", "plantFR"),
-    Instrument("Right plant 1", "plantR"),
-    Instrument("Right flower", "flowerR"),
+    Instrument("Right lamp", "lightR", threshold=LAMP_THRESHOLD),
+    Instrument("Water", "water", threshold=BASE_THRESHOLD),
+    Instrument("Right flower", "flowerR", threshold=BASE_THRESHOLD),
+    Instrument("Right plant 2", "plantFR", threshold=BASE_THRESHOLD),
+    Instrument("Right plant 1", "plantR", threshold=BASE_THRESHOLD),
+    Instrument("Right flower", "flowerR", threshold=BASE_THRESHOLD),
 ]
 
 all_instruments = left_instruments + right_instruments
