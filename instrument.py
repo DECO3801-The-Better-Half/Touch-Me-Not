@@ -61,6 +61,13 @@ class Instrument:
         """Add the given sound to the list of impact sounds"""
         self._impacts.append(sound)
 
+    def __str__(self) -> str:
+        return f"Instrument: {self.name}"
+
+    def __repr(self) -> str:
+        return f"Instrument({self.name},{self._holds},{self._impacts}," \
+               f"{self.threshold}"
+
     def __eq__(self, other) -> bool:
         """Return true if the name of these instruments are equal"""
         if isinstance(other, Instrument):
