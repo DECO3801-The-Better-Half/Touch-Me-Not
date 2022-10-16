@@ -6,11 +6,6 @@ UNPRESSED = False
 
 TICKS_PER_SECOND = 30
 
-PLANT = 0
-WATER = 1
-LIGHT = 2
-FABRIC = 3
-
 # To change which input plays which sound, modify this list
 # The first input plays SOUNDS[0], second SOUNDS[1], etc.
 SOUNDS_PATH = ['sounds/plant.wav', 'sounds/water.wav', 'sounds/light.wav', 'sounds/fabric.wav']
@@ -42,11 +37,11 @@ clock = pygame.time.Clock()
 def get_serial():
 
         #run to get port on MacOs 'ls -l /dev/cu.usb*'
-        sPort1 = '/dev/cu.usbserial-10'
+        sPort1 = '/dev/cu.usbserial-1410'
         ser1 = serial.Serial(sPort1, 9600, timeout=1)
         data1 = ser1.readline()
 
-        sPort2 = '/dev/cu.usbmodem1101'
+        sPort2 = '/dev/cu.usbmodem14201'
         ser2 = serial.Serial(sPort2, 9600, timeout=1)
         data2 = ser2.readline()
 
@@ -139,23 +134,14 @@ def get_serial():
                     if (value > thresholds[i] or value == -2) and states[i] != PRESSED:
                         states[i] = PRESSED
 
-                        if i == LIGHT:
-                            playing[i] = (playing[i] != True)
-                            if not playing[i]:
-                                SOUNDS_COMBINED[i].play(loops=-1)
-                            else:
-                                SOUNDS_COMBINED[i].stop()
-
-                        elif i != LIGHT:
-                            SOUNDS_COMBINED[i].play(loops=-1)
+                        SOUNDS_COMBINED[i].play(loops=-1)
 
                 for i in range(len(parsed_data)):
                     value = int(parsed_data[i])
                     if (value <= thresholds[i] and value != -2) and states[i] == PRESSED:
                         states[i] = UNPRESSED
 
-                        if i != LIGHT:
-                            SOUNDS_COMBINED[i].stop()
+                        SOUNDS_COMBINED[i].stop()
 
             clock.tick(TICKS_PER_SECOND * 3)
 
