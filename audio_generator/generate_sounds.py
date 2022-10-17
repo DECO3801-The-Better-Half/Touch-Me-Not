@@ -327,8 +327,7 @@ class Instrument:
 	def get_pivot_filename(self, new_key, sound):
 		for chord in self.chords:
 			if chord.purpose == ChordPurpose.pivot and chord.key == new_key:
-				sound_type = sound.name.split("_")[0]
-				return f"{self.name}_{sound_type}_{chord.chord.name}.wav"
+				return f"{self.name}_{sound.sound_type}_{chord.chord.name}.wav"
 
 	# instrument.get_normal_filename(key, sound, note)
 	# def get_normal_filename(self, key, sound, note):
@@ -483,12 +482,12 @@ def main():
 
 # ote(note_i).name: instrument.get_normal_filename(key, sound, Note(note_i)) for note_i in SCALES[key]}
 	instructions = {
-		"object-key": {instrument.name: instrument.key.name for instrument in instruments},
-		"object-range_len": {instrument.name: instrument.range for instrument in instruments},
-		"object-type-key-pivot_filename": {instrument.name: {sound.name.split("_")[0]: {key.name: instrument.get_pivot_filename(key, sound) for key in all_keys} for sound in instrument.sounds} for instrument in instruments},
+		"key": {instrument.name: instrument.key.name for instrument in instruments},
+		"range": {instrument.name: instrument.range for instrument in instruments},
+		"pivot": {instrument.name: {sound.name.split("_")[0]: {key.name: instrument.get_pivot_filename(key, sound) for key in all_keys} for sound in instrument.sounds} for instrument in instruments},
 		# TODO: make the notes from the scale go from lowest pitch to highest pitch
 		# make the order of sounds in the capacitance layer be determined by the average note of the notes in the sound being in the centre of the capacitance layer
-		"object-type-key-range-normal_filename": {instrument.name: {sound.name.split("_")[0]: {key.name: sound.get_sound_filenames(instrument, key) for key in all_keys} for sound in instrument.sounds} for instrument in instruments},
+		"normal": {instrument.name: {sound.name.split("_")[0]: {key.name: sound.get_sound_filenames(instrument, key) for key in all_keys} for sound in instrument.sounds} for instrument in instruments},
 	}
 
 	# copy files at end of instructions
