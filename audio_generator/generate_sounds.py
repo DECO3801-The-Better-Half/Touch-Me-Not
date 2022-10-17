@@ -4,7 +4,8 @@ import sys
 import subprocess
 import random
 import json 
-import time
+# import time
+import os
 from constants import *
 
 ignored_warnings = [
@@ -26,8 +27,10 @@ def run_command(command: str, use_shell = False) -> tuple[str, str]:
 			except IndexError: # terrible but i dont care
 				first_arg_file = command.split(" ")[3].split("/")[1]
 			if first_arg_file not in reduce_volume_warnings:
-				print(f"WARNING: Clipped file: \"{first_arg_file}\". Consider reducing its volume scale factor.")
+				# print(f"WARNING: Clipped file: \"{first_arg_file}\". Consider reducing its volume scale factor.")
 				reduce_volume_warnings.append(first_arg_file)
+				# temp_name = first_arg_file.replace(".wav", "_temp.wav")
+				# reduce_volume_warnings.append(f"{temp_name}")
 		else:
 			for ignored_warning in ignored_warnings:
 				if ignored_warning in stderr:
@@ -68,8 +71,10 @@ class Layer:
 		return not self.__eq__(other)
 
 	def get_address_for_note(self, note: Note):
+		# print(note)
 		if self.note == Note.none:
 			return self.temp_file_address
+		# print(f"{self.temp_file_address_no_extension}_{note.name}.wav")
 		return f"{self.temp_file_address_no_extension}_{note.name}.wav"
 
 	def copy_to_temp_dir(self):
@@ -124,6 +129,7 @@ class ChordClass:
 class Sound:
 	def __init__(self, name: str, instrument_name: str, layers: list):
 		self.name = name + "_" + instrument_name
+		self.sound_type = name
 		self.layers = layers
 		self.instrument_name = instrument_name
 
@@ -143,20 +149,23 @@ class Sound:
 	def num_tonal_layers(self):
 		return len([layer for layer in self.layers if layer.note != Note.none])
 
-	def get_sound_filenames(this, instrument: 'Instrument', key):
+	def get_sound_filenames(self, instrument: 'Instrument', key):
 		sound_filenames = []
 		# if chord add key first chord
 		if instrument.mode == Mode.chord:
 			# add key chord
-			if this.num_tonal_layers() < 4:
-				sound_filenames.append(f"{instrument.name}_{key.name}.wav")
-			else:
-				sound_filenames.append(f"{instrument.name}_{key.name}_seventh.wav")
+			# if this.num_tonal_layers() < 4:
+			# sound_filenames.append(f"{instrument.name}_{key.name}.wav")
+			sound_filenames.append(f"{instrument.name}_{self.sound_type}_{key.name}.wav")
+			# else:
+			# 	sound_filenames.append(f"{instrument.name}_{key.name}_seventh.wav")
 		# if arpeggio or scale add key arpeggio notes
 		elif instrument.mode == Mode.arpeggio or instrument.mode == Mode.scale:
 			for note_number in SCALE_INDEX_IN_MODE[instrument.mode]:
 				note = SCALES[key][note_number]
-				sound_filenames.append(f"{instrument.name}_{this.name}_{note.name}.wav")
+				# sound_type = this.name.split("_")[0]
+				# print(sound_type)
+				sound_filenames.append(f"{instrument.name}_{self.sound_type}_{note.name}.wav")
 
 		return sound_filenames
 
@@ -213,11 +222,10 @@ class Sound:
 			layer.generate_all_notes()
 		
 		# generate all the single tones
-		if instrument.mode == Mode.scale:
-			for note_number in range(0, 11):
+		if instrument.mode == Mode.scale or instrument.mode == Mode.arpeggio:
+			for note_number in range(0, 12):
 				new_note = Note(note_number)
 				new_sound_address = f"{TEMP_DIR}/{instrument.name}_{self.name}_{new_note.name}.wav"
-				temp_new_sound_address = f"{TEMP_DIR}/{instrument.name}_{self.name}_{new_note.name}_temp.wav"
 				# join all the relevant layers
 				for i, layer in enumerate(self.layers):
 					if i == 0:
@@ -229,8 +237,9 @@ class Sound:
 		# generate all the chords
 		for chord in instrument.chords:
 			# ignore other normal chords if purpose is normal and mode is scale or arpeggio
-			if chord.purpose == ChordPurpose.normal and instrument.mode != Mode.chord:
-				continue
+			# TODO read this
+			# if chord.purpose == ChordPurpose.normal and instrument.mode != Mode.chord:
+			# 	continue
 			new_sound_address = f"{TEMP_DIR}/{instrument.name}_{self.name}_{chord.chord.name}.wav"
 			# count how many layers have a tune
 			num_chord_notes = 0
@@ -318,7 +327,8 @@ class Instrument:
 	def get_pivot_filename(self, new_key, sound):
 		for chord in self.chords:
 			if chord.purpose == ChordPurpose.pivot and chord.key == new_key:
-				return f"{sound.name}_{chord.chord.name}.wav"
+				sound_type = sound.name.split("_")[0]
+				return f"{self.name}_{sound_type}_{chord.chord.name}.wav"
 
 	# instrument.get_normal_filename(key, sound, note)
 	# def get_normal_filename(self, key, sound, note):
@@ -490,6 +500,8 @@ def main():
 	with open('instructions.json', 'w', encoding='utf-8') as f:
 		json.dump(instructions, f, ensure_ascii=False, indent=4)
 
+	output_filenames = []
+
 	run_command(f"rm -r {OUTPUT_DIR}")
 	run_command(f"mkdir {OUTPUT_DIR}")
 	# wait a bit
@@ -504,9 +516,36 @@ def main():
 			del new_filename[2]
 			new_filename = "_".join(new_filename)
 			run_command(f"cp {TEMP_DIR}/{line} {OUTPUT_DIR}/{new_filename}")
+			output_filenames.append(new_filename)
 		# run_command(f"rsync {TEMP_DIR}/{instrument.name}*.wav {OUTPUT_DIR}")
 
 	run_command(f"rm -r {TEMP_DIR}")
+
+	cwd = os.getcwd()
+	# check all filenames are in the output folder
+	for instrument in instruments:
+		for sound in instrument.sounds:
+			for key in all_keys:
+				pivot_filename = instrument.get_pivot_filename(key, sound)
+				# check exists in output
+				if not os.path.isfile(f"{cwd}/{OUTPUT_DIR}/{pivot_filename}") and pivot_filename:
+					print(f"ERROR: File (pivot) not found in output directory: {pivot_filename}")
+					exit()
+				
+				normal_filenames = sound.get_sound_filenames(instrument, key)
+				for normal_filename in normal_filenames:
+					# check exists in output
+					if not os.path.isfile(f"{cwd}/{OUTPUT_DIR}/{normal_filename}"):
+						print(f"ERROR: File (normal) not found in output directory: {normal_filename}")
+						exit()
+
+	# for filename in output_filenames:
+	# 	# check exists in output
+	# 	if not os.path.isfile(f"{cwd}/{OUTPUT_DIR}/{filename}"):
+	# 		print(f"ERROR: File not found in output directory: {filename}")
+	# 		exit()
+				
+
 
 	# display results
 	print("========================================")
