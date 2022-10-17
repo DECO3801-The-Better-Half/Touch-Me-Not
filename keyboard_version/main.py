@@ -22,7 +22,7 @@ TICKS_PER_SECOND = 30
 
 BASE_THRESHOLD = 800
 
-MODULATION_COOLDOWN_PERIOD = 2 # seconds
+MODULATION_COOLDOWN_PERIOD = 5 # seconds
 
 # PORT_ONE = '/dev/cu.usbserial-10' #'/dev/cu.usbserial-1420'
 # PORT_TWO = '/dev/cu.usbmodem1101' # '/dev/cu.usbmodem14101'
