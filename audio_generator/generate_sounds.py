@@ -238,8 +238,8 @@ class Sound:
 		for chord in instrument.chords:
 			# ignore other normal chords if purpose is normal and mode is scale or arpeggio
 			# TODO
-			if chord.purpose == ChordPurpose.normal and instrument.mode != Mode.chord:
-				continue
+			# if chord.purpose == ChordPurpose.normal and instrument.mode != Mode.chord:
+			# 	continue
 			new_sound_address = f"{TEMP_DIR}/{instrument.name}_{self.name}_{chord.chord.name}.wav"
 			# count how many layers have a tune
 			num_chord_notes = 0
@@ -485,7 +485,6 @@ def main():
 		"key": {instrument.name: instrument.key.name for instrument in instruments},
 		"range": {instrument.name: instrument.range for instrument in instruments},
 		"pivot": {instrument.name: {sound.name.split("_")[0]: {key.name: instrument.get_pivot_filename(key, sound) for key in all_keys} for sound in instrument.sounds} for instrument in instruments},
-		# TODO: make the notes from the scale go from lowest pitch to highest pitch
 		# make the order of sounds in the capacitance layer be determined by the average note of the notes in the sound being in the centre of the capacitance layer
 		"normal": {instrument.name: {sound.name.split("_")[0]: {key.name: sound.get_sound_filenames(instrument, key) for key in all_keys} for sound in instrument.sounds} for instrument in instruments},
 	}
