@@ -237,9 +237,9 @@ class Sound:
 		# generate all the chords
 		for chord in instrument.chords:
 			# ignore other normal chords if purpose is normal and mode is scale or arpeggio
-			# TODO read this
-			# if chord.purpose == ChordPurpose.normal and instrument.mode != Mode.chord:
-			# 	continue
+			# TODO
+			if chord.purpose == ChordPurpose.normal and instrument.mode != Mode.chord:
+				continue
 			new_sound_address = f"{TEMP_DIR}/{instrument.name}_{self.name}_{chord.chord.name}.wav"
 			# count how many layers have a tune
 			num_chord_notes = 0
@@ -492,9 +492,6 @@ def main():
 
 	# copy files at end of instructions
 
-	# TODO export instructions
-	# json_object = json.dumps(instructions, indent = 4) 
-	# print(json_object)
 
 	with open('instructions.json', 'w', encoding='utf-8') as f:
 		json.dump(instructions, f, ensure_ascii=False, indent=4)

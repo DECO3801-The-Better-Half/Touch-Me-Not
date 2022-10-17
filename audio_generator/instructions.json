@@ -1,5 +1,5 @@
 {
-    "object-key": {
+    "key": {
         "water": "C_sharp_major",
         "lightL": "D_sharp_major",
         "lightR": "G_sharp_major",
@@ -11,7 +11,7 @@
         "flowerR": "A_sharp_major",
         "dragonfly": "F_harmonic_minor"
     },
-    "object-range_len": {
+    "range": {
         "water": 1,
         "lightL": 1,
         "lightR": 1,
@@ -23,7 +23,7 @@
         "flowerR": 7,
         "dragonfly": 1
     },
-    "object-type-key-pivot_filename": {
+    "pivot": {
         "water": {
             "hold": {
                 "C_sharp_major": null,
@@ -285,7 +285,7 @@
             }
         }
     },
-    "object-type-key-range-normal_filename": {
+    "normal": {
         "water": {
             "hold": {
                 "C_sharp_major": [
