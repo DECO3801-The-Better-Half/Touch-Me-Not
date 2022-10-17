@@ -102,14 +102,14 @@ def main():
 	right_instruments[0].set_volume("impact", 0.7)
 
 	left_instruments[3].set_volume("hold", 0.7)
-	# left_instruments[3].set_volume("impact", 2)
+	left_instruments[3].set_volume("impact", 2)
 	left_instruments[4].set_volume("hold", 0.7)
-	# left_instruments[4].set_volume("impact", 2)
+	left_instruments[4].set_volume("impact", 2)
 
 	right_instruments[2].set_volume("hold", 0.7)
-	# right_instruments[2].set_volume("impact", 2)
+	right_instruments[2].set_volume("impact", 2)
 	right_instruments[3].set_volume("hold", 0.7)
-	# right_instruments[3].set_volume("impact", 2)
+	right_instruments[3].set_volume("impact", 2)
 
 	clock = pygame.time.Clock()
 
