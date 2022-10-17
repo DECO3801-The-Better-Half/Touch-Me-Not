@@ -202,6 +202,9 @@ class Sound:
 	# 				return f"{sound.name}_{chord.chord.name}_{note.name}.wav"
 
 	def generate(self, instrument: 'Instrument'):
+		# sort layers by highest volume_sf to lowest
+		self.layers.sort(key=lambda layer: layer.volume_sf, reverse=True)
+
 		# generate all the layers
 		for layer in self.layers:
 			layer.copy_to_temp_dir()
@@ -225,6 +228,9 @@ class Sound:
 
 		# generate all the chords
 		for chord in instrument.chords:
+			# ignore other normal chords if purpose is normal and mode is scale or arpeggio
+			if chord.purpose == ChordPurpose.normal and instrument.mode != Mode.chord:
+				continue
 			new_sound_address = f"{TEMP_DIR}/{instrument.name}_{self.name}_{chord.chord.name}.wav"
 			# count how many layers have a tune
 			num_chord_notes = 0
