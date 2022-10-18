@@ -12,10 +12,6 @@ class Modulator:
 			all_instruments: a list of all instruments
 		"""
 		print(f"MODULATING TO {new_key}")
-		# play pivot chord
-		pivot_sound = modulating_instrument.sound_objects["pivot"][modulating_instrument.name]["impact"][old_key]
-		print(f"+ {modulating_instrument.name} playing PIVOT CHORD {pivot_sound}")
-		pivot_sound.play()
 		# change all other instruments to the new key
 		for instrument in all_instruments:
 			# if the instrument is currently playing, stop it and play it again in the new key

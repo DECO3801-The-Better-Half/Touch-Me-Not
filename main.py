@@ -5,6 +5,7 @@ Run this file to read serial input from arduinos and turn it into audio.
 The port numbers PORT_ONE and PORT_TWO will likely have to be changed to
 the ports that each arduino is attached to.
 """
+from xml.dom.pulldom import ErrorHandler
 import pygame
 import json
 import time
@@ -25,6 +26,7 @@ def main():
 	use_modulation = False
 	port_one = DEFAULT_PORT_ONE
 	port_two = DEFAULT_PORT_TWO
+	modulation_cooldown_period = None
 
 	# Collect existing users' port settings
 	users = {}
@@ -35,7 +37,11 @@ def main():
 
 	# Handle command line arguments - see README.md for details
 	if len(sys.argv) > 1:
-		for arg in sys.argv[1:]:
+		skip_iteration = False
+		for i, arg in enumerate(sys.argv[1:]):
+			if skip_iteration:
+				skip_iteration = False
+				continue
 			if arg.startswith("-"):
 				if "h" in arg:
 					print("Usage: ")
@@ -46,6 +52,12 @@ def main():
 				if "m" in arg:
 					use_modulation = True
 					print("Using modulation")
+					try:
+						modulation_cooldown_period = int(sys.argv[i + 2])
+						skip_iteration = True
+					except:
+						print(USAGE)
+						exit(1)
 			else:
 				if arg.lower() in users:
 					# Update current port settings
@@ -63,6 +75,7 @@ def main():
 						port_two = users[arg]["port_two"]
 						# Update users' port setting file
 						users_file = open(USERS_FILE, "w")
+						json.dump(users, users_file)
 						users_file.close()
 					else:
 						print("Exiting...")
@@ -144,7 +157,7 @@ def main():
 						if value >= cur_instrument.threshold or value == CAPACITANCE_OVERFLOW:
 							# Instrument is being touched
 							# Check for modulations
-							if use_modulation and time.time() - last_modulation_time > MODULATION_COOLDOWN_PERIOD:
+							if use_modulation and time.time() - last_modulation_time > modulation_cooldown_period:
 								old_key = current_key
 								current_key = sound_objects["key"][cur_instrument.name]
 								if old_key != current_key:
@@ -167,7 +180,7 @@ def main():
 					if number_pressed in range(0, 10):
 						# Instrument is being touched
 						# Check for modulations
-						if use_modulation and time.time() - last_modulation_time > MODULATION_COOLDOWN_PERIOD:
+						if use_modulation and time.time() - last_modulation_time > modulation_cooldown_period:
 							old_key = current_key
 							current_key = sound_objects["key"][all_instruments[number_pressed].name]
 							if old_key != current_key:

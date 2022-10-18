@@ -1,1 +1,1 @@
-python3 start "$@"
+python3 main.py "$@"

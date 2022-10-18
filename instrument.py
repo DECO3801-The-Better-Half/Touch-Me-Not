@@ -81,11 +81,6 @@ class Instrument:
 			# loop over each sound
 			for sound in self.sound_objects["normal"][self.name][type][music_key]:
 				sound.set_volume(volume)
-		# loop over each music key in pivot sounds
-		for music_key in self.sound_objects["pivot"][self.name][type]:
-			# loop over each sound
-			if self.sound_objects["pivot"][self.name][type][music_key]:
-				self.sound_objects["pivot"][self.name][type][music_key].set_volume(volume)
 
 	def __str__(self) -> str:
 		return f"Instrument: {self.readable_name}, ({len(self._holds)} holds, " \

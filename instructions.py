@@ -1,6 +1,5 @@
 import json
 from sound import Sound
-from typing import Union
 
 from constants import *
 
@@ -9,7 +8,7 @@ class Instructions:
 	Static class to parse the music instructions file into Sound objects
 	"""
 	
-	def get_audio() -> dict[str, dict[str, dict[str, dict[str, Union[Sound, list[Sound]]]]]]:
+	def get_audio() -> dict[str, dict[str, dict[str, dict[str, list[Sound]]]]]:
 		"""Return a mapping of instruments to Sound objects
 		Returns:
 			mapping: sound purpose -> instrument name -> sound type -> music key -> Sound/list[Sound]
@@ -27,6 +26,4 @@ class Instructions:
 					for music_key, filename_s in music_keys.items():
 						if isinstance(filename_s, list):
 							music_keys[music_key] = [Sound(filename) for filename in filename_s]
-						elif filename_s:
-							music_keys[music_key] = Sound(filename_s)
 		return instructions
