@@ -11,7 +11,7 @@ class Modulator:
 			new_key: the key to modulate to
 			all_instruments: a list of all instruments
 		"""
-		print(f"MODULATING TO {new_key}")
+		print(f"Modulating to {new_key}")
 		# change all other instruments to the new key
 		for instrument in all_instruments:
 			# if the instrument is currently playing, stop it and play it again in the new key

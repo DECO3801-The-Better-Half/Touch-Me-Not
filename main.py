@@ -1,9 +1,7 @@
-"""main.py
-
+"""
+main.py
 Run this file to read serial input from arduinos and turn it into audio.
 
-The port numbers PORT_ONE and PORT_TWO will likely have to be changed to
-the ports that each arduino is attached to.
 """
 import pygame
 import json
@@ -17,7 +15,9 @@ from constants import *
 from instructions import Instructions
 
 def main():
-	"""Run the main loop"""
+	"""
+	Main function for the synaesthesia experience sound player. See README.md for details.
+	"""
 
 	# Settings determined by command line arguments
 	use_keyboard = False
@@ -33,7 +33,7 @@ def main():
 	except FileNotFoundError:
 		json.dumps(users, open(USERS_FILE, "w"))
 
-	# Handle command line arguments - see README.md for details
+	# Parse and handle command line arguments - see README.md for details
 	if len(sys.argv) > 1:
 		skip_iteration = False
 		username_already_found = False
@@ -88,7 +88,6 @@ def main():
 	print("Initialising...")
 	pygame.init()
 	pygame.mixer.set_num_channels(NUM_AUDIO_CHANNELS)
-
 	if use_keyboard:
 		(width, height) = (300, 200)
 		pygame.display.set_mode((width, height))
@@ -147,7 +146,8 @@ def main():
 		ser1 = ArduinoSerial(left_instruments, port_one)
 		ser2 = ArduinoSerial(right_instruments, port_two)
 
-	print("-----READY-----")
+	print("Ready to play sounds")
+
 	# Main loop
 	while True:
 		if not use_keyboard:

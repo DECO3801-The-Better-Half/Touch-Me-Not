@@ -45,21 +45,20 @@ class Instrument:
 
 		If called many times, will simply continue to play the current sound
 		"""
-		print(music_key)
 		if not self._currently_playing:
 			hold = self.instructions.get_sound(self, "hold", music_key)
 			impact = self.instructions.get_sound(self, "impact", music_key)
-			print(f"+ {self.name} playing {hold}")
+			print(f"+ {self.readable_name} playing {hold}")
 			hold.play(loops=-1)
 			if play_impact:
-				print(f"+ {self.name} playing {impact}")
+				print(f"+ {self.readable_name} playing {impact}")
 				impact.play()
 			self._currently_playing = hold
 
 	def stop(self) -> None:
 		"""Stop the instrument's current hold sound"""
 		if self._currently_playing is not None:
-			print(f"- {self.name} stopping {self._currently_playing}")
+			print(f"- {self.readable_name} stopping {self._currently_playing}")
 			self._currently_playing.stop()
 			self._currently_playing = None
 	
@@ -71,7 +70,7 @@ class Instrument:
 			volume: Volume to set, in range [0, 1]
 		"""
 		for music_key in self.instructions.get_all_music_keys(self):
-			sound = self.instructions.get_sound(self, type, music_key).set_volume(volume)
+			self.instructions.get_sound(self, type, music_key).set_volume(volume)
 
 	def __str__(self) -> str:
 		return f"Instrument: {self.readable_name}, ({len(self._holds)} holds, " \
