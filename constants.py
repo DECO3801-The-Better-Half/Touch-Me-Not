@@ -1,7 +1,8 @@
 # stores all constants for all components of the player system
 
-INSTRUCTION_FILE = "../instructions.json"
-USERS_FILE = "../users_port_settings.json"
+INSTRUCTION_FILE = "instructions.json"
+USERS_FILE = "user_port_settings.json"
+AUDIO_DIRECTORY = "audio"
 TICKS_PER_SECOND = 30
 BASE_THRESHOLD = 800
 MODULATION_COOLDOWN_PERIOD = 5 # seconds
