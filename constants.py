@@ -5,9 +5,10 @@ USERS_FILE = "user_port_settings.json"
 AUDIO_DIRECTORY = "audio"
 TICKS_PER_SECOND = 30
 BASE_THRESHOLD = 800
-DEFAULT_PORT_ONE = '/dev/cu.usbserial-10' #'/dev/cu.usbserial-1420'
-DEFAULT_PORT_TWO = '/dev/cu.usbmodem1101' # '/dev/cu.usbmodem14101'
+DEFAULT_PORT_ONE = '/dev/cu.usbserial-10'
+DEFAULT_PORT_TWO = '/dev/cu.usbmodem1101'
 CAPACITANCE_OVERFLOW = -2
+NUM_AUDIO_CHANNELS = 20
 
 USAGE = """
 Usage: python3 main.py [username] [-m cooldown] [-k]

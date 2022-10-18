@@ -43,20 +43,20 @@ def main():
 				continue
 			if arg.startswith("-"):
 				if "h" in arg:
-					print("Usage: ")
+					print(USAGE)
 					exit(0)
 				if "k" in arg:
 					use_keyboard = True
-					print("Using keyboard")
+					print("Using keyboard: numbers 0-9 represent object touches")
 				if "m" in arg:
 					use_modulation = True
-					print("Using modulation")
 					try:
 						modulation_cooldown_period = int(sys.argv[i + 2])
 						skip_iteration = True
 					except:
 						print(USAGE)
 						exit(1)
+					print(f"Using modulation: {modulation_cooldown_period}s cooldown period")
 			else:
 				if username_already_found:
 					print(USAGE)
@@ -67,8 +67,8 @@ def main():
 					port_one = users[arg]["port_one"]
 					port_two = users[arg]["port_two"]
 				else:
-					create_new_user = input(f"User {arg} not found. Create new user? (y/n): ")
-					if create_new_user.lower() == "y":
+					create_new_user = input(f"User {arg} not found. Create new user? (y/n): ").lower() == "y"
+					if create_new_user:
 						# Create new user
 						port_one = input("Enter port for first arduino: e.g. \"/dev/cu.usbserial-10\": ")
 						port_two = input("Enter port for second arduino: e.g. \"/dev/cu.usbmodem1101\": ")
@@ -87,12 +87,12 @@ def main():
 	# Initialise pygame and Sound objects
 	print("Initialising...")
 	pygame.init()
+	pygame.mixer.set_num_channels(NUM_AUDIO_CHANNELS)
 
 	if use_keyboard:
 		(width, height) = (300, 200)
-		screen = pygame.display.set_mode((width, height))
+		pygame.display.set_mode((width, height))
 		pygame.display.flip()
-
 
 	current_key = "G_sharp_major"
 	last_modulation_time = time.time()
