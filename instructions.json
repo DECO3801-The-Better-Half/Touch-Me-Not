@@ -121,17 +121,6 @@
             }
         },
         "plantR": {
-            "hold": {
-                "C_sharp_major": "plantR_hold_D_sharp_minor.wav",
-                "D_sharp_major": "plantR_hold_D_sharp_major.wav",
-                "G_sharp_major": "plantR_hold_G_sharp_major.wav",
-                "G_major": "plantR_hold_G_major.wav",
-                "B_major": null,
-                "A_major": "plantR_hold_E_major.wav",
-                "C_major": "plantR_hold_C_major.wav",
-                "A_sharp_major": "plantR_hold_A_sharp_major.wav",
-                "F_harmonic_minor": "plantR_hold_F_harmonic_minor.wav"
-            },
             "impact": {
                 "C_sharp_major": "plantR_impact_D_sharp_minor.wav",
                 "D_sharp_major": "plantR_impact_D_sharp_major.wav",
@@ -142,6 +131,17 @@
                 "C_major": "plantR_impact_C_major.wav",
                 "A_sharp_major": "plantR_impact_A_sharp_major.wav",
                 "F_harmonic_minor": "plantR_impact_F_harmonic_minor.wav"
+            },
+            "hold": {
+                "C_sharp_major": "plantR_hold_D_sharp_minor.wav",
+                "D_sharp_major": "plantR_hold_D_sharp_major.wav",
+                "G_sharp_major": "plantR_hold_G_sharp_major.wav",
+                "G_major": "plantR_hold_G_major.wav",
+                "B_major": null,
+                "A_major": "plantR_hold_E_major.wav",
+                "C_major": "plantR_hold_C_major.wav",
+                "A_sharp_major": "plantR_hold_A_sharp_major.wav",
+                "F_harmonic_minor": "plantR_hold_F_harmonic_minor.wav"
             }
         },
         "plantFL": {
@@ -449,6 +449,7 @@
         "plantL": {
             "hold": {
                 "C_sharp_major": [
+                    "plantL_hold_C_sharp_major.wav",
                     "plantL_hold_C_sharp.wav",
                     "plantL_hold_D_sharp.wav",
                     "plantL_hold_F.wav",
@@ -458,6 +459,7 @@
                     "plantL_hold_C.wav"
                 ],
                 "D_sharp_major": [
+                    "plantL_hold_D_sharp_major.wav",
                     "plantL_hold_D_sharp.wav",
                     "plantL_hold_F.wav",
                     "plantL_hold_G.wav",
@@ -467,6 +469,7 @@
                     "plantL_hold_D.wav"
                 ],
                 "G_sharp_major": [
+                    "plantL_hold_G_sharp_major.wav",
                     "plantL_hold_G_sharp.wav",
                     "plantL_hold_A_sharp.wav",
                     "plantL_hold_C.wav",
@@ -476,6 +479,7 @@
                     "plantL_hold_G.wav"
                 ],
                 "G_major": [
+                    "plantL_hold_G_major.wav",
                     "plantL_hold_G.wav",
                     "plantL_hold_A.wav",
                     "plantL_hold_B.wav",
@@ -485,6 +489,7 @@
                     "plantL_hold_F_sharp.wav"
                 ],
                 "B_major": [
+                    "plantL_hold_B_major.wav",
                     "plantL_hold_B.wav",
                     "plantL_hold_C_sharp.wav",
                     "plantL_hold_D_sharp.wav",
@@ -494,6 +499,7 @@
                     "plantL_hold_A_sharp.wav"
                 ],
                 "A_major": [
+                    "plantL_hold_A_major.wav",
                     "plantL_hold_A.wav",
                     "plantL_hold_B.wav",
                     "plantL_hold_C_sharp.wav",
@@ -503,6 +509,7 @@
                     "plantL_hold_G_sharp.wav"
                 ],
                 "C_major": [
+                    "plantL_hold_C_major.wav",
                     "plantL_hold_C.wav",
                     "plantL_hold_D.wav",
                     "plantL_hold_E.wav",
@@ -512,6 +519,7 @@
                     "plantL_hold_B.wav"
                 ],
                 "A_sharp_major": [
+                    "plantL_hold_A_sharp_major.wav",
                     "plantL_hold_A_sharp.wav",
                     "plantL_hold_C.wav",
                     "plantL_hold_D.wav",
@@ -521,6 +529,7 @@
                     "plantL_hold_A.wav"
                 ],
                 "F_harmonic_minor": [
+                    "plantL_hold_F_harmonic_minor.wav",
                     "plantL_hold_F.wav",
                     "plantL_hold_G.wav",
                     "plantL_hold_G_sharp.wav",
@@ -532,6 +541,7 @@
             },
             "impact": {
                 "C_sharp_major": [
+                    "plantL_impact_C_sharp_major.wav",
                     "plantL_impact_C_sharp.wav",
                     "plantL_impact_D_sharp.wav",
                     "plantL_impact_F.wav",
@@ -541,6 +551,7 @@
                     "plantL_impact_C.wav"
                 ],
                 "D_sharp_major": [
+                    "plantL_impact_D_sharp_major.wav",
                     "plantL_impact_D_sharp.wav",
                     "plantL_impact_F.wav",
                     "plantL_impact_G.wav",
@@ -550,6 +561,7 @@
                     "plantL_impact_D.wav"
                 ],
                 "G_sharp_major": [
+                    "plantL_impact_G_sharp_major.wav",
                     "plantL_impact_G_sharp.wav",
                     "plantL_impact_A_sharp.wav",
                     "plantL_impact_C.wav",
@@ -559,6 +571,7 @@
                     "plantL_impact_G.wav"
                 ],
                 "G_major": [
+                    "plantL_impact_G_major.wav",
                     "plantL_impact_G.wav",
                     "plantL_impact_A.wav",
                     "plantL_impact_B.wav",
@@ -568,6 +581,7 @@
                     "plantL_impact_F_sharp.wav"
                 ],
                 "B_major": [
+                    "plantL_impact_B_major.wav",
                     "plantL_impact_B.wav",
                     "plantL_impact_C_sharp.wav",
                     "plantL_impact_D_sharp.wav",
@@ -577,6 +591,7 @@
                     "plantL_impact_A_sharp.wav"
                 ],
                 "A_major": [
+                    "plantL_impact_A_major.wav",
                     "plantL_impact_A.wav",
                     "plantL_impact_B.wav",
                     "plantL_impact_C_sharp.wav",
@@ -586,6 +601,7 @@
                     "plantL_impact_G_sharp.wav"
                 ],
                 "C_major": [
+                    "plantL_impact_C_major.wav",
                     "plantL_impact_C.wav",
                     "plantL_impact_D.wav",
                     "plantL_impact_E.wav",
@@ -595,6 +611,7 @@
                     "plantL_impact_B.wav"
                 ],
                 "A_sharp_major": [
+                    "plantL_impact_A_sharp_major.wav",
                     "plantL_impact_A_sharp.wav",
                     "plantL_impact_C.wav",
                     "plantL_impact_D.wav",
@@ -604,6 +621,7 @@
                     "plantL_impact_A.wav"
                 ],
                 "F_harmonic_minor": [
+                    "plantL_impact_F_harmonic_minor.wav",
                     "plantL_impact_F.wav",
                     "plantL_impact_G.wav",
                     "plantL_impact_G_sharp.wav",
@@ -615,91 +633,9 @@
             }
         },
         "plantR": {
-            "hold": {
-                "C_sharp_major": [
-                    "plantR_hold_C_sharp.wav",
-                    "plantR_hold_D_sharp.wav",
-                    "plantR_hold_F.wav",
-                    "plantR_hold_F_sharp.wav",
-                    "plantR_hold_G_sharp.wav",
-                    "plantR_hold_A_sharp.wav",
-                    "plantR_hold_C.wav"
-                ],
-                "D_sharp_major": [
-                    "plantR_hold_D_sharp.wav",
-                    "plantR_hold_F.wav",
-                    "plantR_hold_G.wav",
-                    "plantR_hold_G_sharp.wav",
-                    "plantR_hold_A_sharp.wav",
-                    "plantR_hold_C.wav",
-                    "plantR_hold_D.wav"
-                ],
-                "G_sharp_major": [
-                    "plantR_hold_G_sharp.wav",
-                    "plantR_hold_A_sharp.wav",
-                    "plantR_hold_C.wav",
-                    "plantR_hold_C_sharp.wav",
-                    "plantR_hold_D_sharp.wav",
-                    "plantR_hold_F.wav",
-                    "plantR_hold_G.wav"
-                ],
-                "G_major": [
-                    "plantR_hold_G.wav",
-                    "plantR_hold_A.wav",
-                    "plantR_hold_B.wav",
-                    "plantR_hold_C.wav",
-                    "plantR_hold_D.wav",
-                    "plantR_hold_E.wav",
-                    "plantR_hold_F_sharp.wav"
-                ],
-                "B_major": [
-                    "plantR_hold_B.wav",
-                    "plantR_hold_C_sharp.wav",
-                    "plantR_hold_D_sharp.wav",
-                    "plantR_hold_E.wav",
-                    "plantR_hold_F_sharp.wav",
-                    "plantR_hold_G_sharp.wav",
-                    "plantR_hold_A_sharp.wav"
-                ],
-                "A_major": [
-                    "plantR_hold_A.wav",
-                    "plantR_hold_B.wav",
-                    "plantR_hold_C_sharp.wav",
-                    "plantR_hold_D.wav",
-                    "plantR_hold_E.wav",
-                    "plantR_hold_F_sharp.wav",
-                    "plantR_hold_G_sharp.wav"
-                ],
-                "C_major": [
-                    "plantR_hold_C.wav",
-                    "plantR_hold_D.wav",
-                    "plantR_hold_E.wav",
-                    "plantR_hold_F.wav",
-                    "plantR_hold_G.wav",
-                    "plantR_hold_A.wav",
-                    "plantR_hold_B.wav"
-                ],
-                "A_sharp_major": [
-                    "plantR_hold_A_sharp.wav",
-                    "plantR_hold_C.wav",
-                    "plantR_hold_D.wav",
-                    "plantR_hold_D_sharp.wav",
-                    "plantR_hold_F.wav",
-                    "plantR_hold_G.wav",
-                    "plantR_hold_A.wav"
-                ],
-                "F_harmonic_minor": [
-                    "plantR_hold_F.wav",
-                    "plantR_hold_G.wav",
-                    "plantR_hold_G_sharp.wav",
-                    "plantR_hold_A_sharp.wav",
-                    "plantR_hold_C.wav",
-                    "plantR_hold_D.wav",
-                    "plantR_hold_E.wav"
-                ]
-            },
             "impact": {
                 "C_sharp_major": [
+                    "plantR_impact_C_sharp_major.wav",
                     "plantR_impact_C_sharp.wav",
                     "plantR_impact_D_sharp.wav",
                     "plantR_impact_F.wav",
@@ -709,6 +645,7 @@
                     "plantR_impact_C.wav"
                 ],
                 "D_sharp_major": [
+                    "plantR_impact_D_sharp_major.wav",
                     "plantR_impact_D_sharp.wav",
                     "plantR_impact_F.wav",
                     "plantR_impact_G.wav",
@@ -718,6 +655,7 @@
                     "plantR_impact_D.wav"
                 ],
                 "G_sharp_major": [
+                    "plantR_impact_G_sharp_major.wav",
                     "plantR_impact_G_sharp.wav",
                     "plantR_impact_A_sharp.wav",
                     "plantR_impact_C.wav",
@@ -727,6 +665,7 @@
                     "plantR_impact_G.wav"
                 ],
                 "G_major": [
+                    "plantR_impact_G_major.wav",
                     "plantR_impact_G.wav",
                     "plantR_impact_A.wav",
                     "plantR_impact_B.wav",
@@ -736,6 +675,7 @@
                     "plantR_impact_F_sharp.wav"
                 ],
                 "B_major": [
+                    "plantR_impact_B_major.wav",
                     "plantR_impact_B.wav",
                     "plantR_impact_C_sharp.wav",
                     "plantR_impact_D_sharp.wav",
@@ -745,6 +685,7 @@
                     "plantR_impact_A_sharp.wav"
                 ],
                 "A_major": [
+                    "plantR_impact_A_major.wav",
                     "plantR_impact_A.wav",
                     "plantR_impact_B.wav",
                     "plantR_impact_C_sharp.wav",
@@ -754,6 +695,7 @@
                     "plantR_impact_G_sharp.wav"
                 ],
                 "C_major": [
+                    "plantR_impact_C_major.wav",
                     "plantR_impact_C.wav",
                     "plantR_impact_D.wav",
                     "plantR_impact_E.wav",
@@ -763,6 +705,7 @@
                     "plantR_impact_B.wav"
                 ],
                 "A_sharp_major": [
+                    "plantR_impact_A_sharp_major.wav",
                     "plantR_impact_A_sharp.wav",
                     "plantR_impact_C.wav",
                     "plantR_impact_D.wav",
@@ -772,6 +715,7 @@
                     "plantR_impact_A.wav"
                 ],
                 "F_harmonic_minor": [
+                    "plantR_impact_F_harmonic_minor.wav",
                     "plantR_impact_F.wav",
                     "plantR_impact_G.wav",
                     "plantR_impact_G_sharp.wav",
@@ -780,51 +724,152 @@
                     "plantR_impact_D.wav",
                     "plantR_impact_E.wav"
                 ]
+            },
+            "hold": {
+                "C_sharp_major": [
+                    "plantR_hold_C_sharp_major.wav",
+                    "plantR_hold_C_sharp.wav",
+                    "plantR_hold_D_sharp.wav",
+                    "plantR_hold_F.wav",
+                    "plantR_hold_F_sharp.wav",
+                    "plantR_hold_G_sharp.wav",
+                    "plantR_hold_A_sharp.wav",
+                    "plantR_hold_C.wav"
+                ],
+                "D_sharp_major": [
+                    "plantR_hold_D_sharp_major.wav",
+                    "plantR_hold_D_sharp.wav",
+                    "plantR_hold_F.wav",
+                    "plantR_hold_G.wav",
+                    "plantR_hold_G_sharp.wav",
+                    "plantR_hold_A_sharp.wav",
+                    "plantR_hold_C.wav",
+                    "plantR_hold_D.wav"
+                ],
+                "G_sharp_major": [
+                    "plantR_hold_G_sharp_major.wav",
+                    "plantR_hold_G_sharp.wav",
+                    "plantR_hold_A_sharp.wav",
+                    "plantR_hold_C.wav",
+                    "plantR_hold_C_sharp.wav",
+                    "plantR_hold_D_sharp.wav",
+                    "plantR_hold_F.wav",
+                    "plantR_hold_G.wav"
+                ],
+                "G_major": [
+                    "plantR_hold_G_major.wav",
+                    "plantR_hold_G.wav",
+                    "plantR_hold_A.wav",
+                    "plantR_hold_B.wav",
+                    "plantR_hold_C.wav",
+                    "plantR_hold_D.wav",
+                    "plantR_hold_E.wav",
+                    "plantR_hold_F_sharp.wav"
+                ],
+                "B_major": [
+                    "plantR_hold_B_major.wav",
+                    "plantR_hold_B.wav",
+                    "plantR_hold_C_sharp.wav",
+                    "plantR_hold_D_sharp.wav",
+                    "plantR_hold_E.wav",
+                    "plantR_hold_F_sharp.wav",
+                    "plantR_hold_G_sharp.wav",
+                    "plantR_hold_A_sharp.wav"
+                ],
+                "A_major": [
+                    "plantR_hold_A_major.wav",
+                    "plantR_hold_A.wav",
+                    "plantR_hold_B.wav",
+                    "plantR_hold_C_sharp.wav",
+                    "plantR_hold_D.wav",
+                    "plantR_hold_E.wav",
+                    "plantR_hold_F_sharp.wav",
+                    "plantR_hold_G_sharp.wav"
+                ],
+                "C_major": [
+                    "plantR_hold_C_major.wav",
+                    "plantR_hold_C.wav",
+                    "plantR_hold_D.wav",
+                    "plantR_hold_E.wav",
+                    "plantR_hold_F.wav",
+                    "plantR_hold_G.wav",
+                    "plantR_hold_A.wav",
+                    "plantR_hold_B.wav"
+                ],
+                "A_sharp_major": [
+                    "plantR_hold_A_sharp_major.wav",
+                    "plantR_hold_A_sharp.wav",
+                    "plantR_hold_C.wav",
+                    "plantR_hold_D.wav",
+                    "plantR_hold_D_sharp.wav",
+                    "plantR_hold_F.wav",
+                    "plantR_hold_G.wav",
+                    "plantR_hold_A.wav"
+                ],
+                "F_harmonic_minor": [
+                    "plantR_hold_F_harmonic_minor.wav",
+                    "plantR_hold_F.wav",
+                    "plantR_hold_G.wav",
+                    "plantR_hold_G_sharp.wav",
+                    "plantR_hold_A_sharp.wav",
+                    "plantR_hold_C.wav",
+                    "plantR_hold_D.wav",
+                    "plantR_hold_E.wav"
+                ]
             }
         },
         "plantFL": {
             "hold": {
                 "C_sharp_major": [
+                    "plantFL_hold_C_sharp_major.wav",
                     "plantFL_hold_C_sharp.wav",
                     "plantFL_hold_F.wav",
                     "plantFL_hold_G_sharp.wav"
                 ],
                 "D_sharp_major": [
+                    "plantFL_hold_D_sharp_major.wav",
                     "plantFL_hold_D_sharp.wav",
                     "plantFL_hold_G.wav",
                     "plantFL_hold_A_sharp.wav"
                 ],
                 "G_sharp_major": [
+                    "plantFL_hold_G_sharp_major.wav",
                     "plantFL_hold_G_sharp.wav",
                     "plantFL_hold_C.wav",
                     "plantFL_hold_D_sharp.wav"
                 ],
                 "G_major": [
+                    "plantFL_hold_G_major.wav",
                     "plantFL_hold_G.wav",
                     "plantFL_hold_B.wav",
                     "plantFL_hold_D.wav"
                 ],
                 "B_major": [
+                    "plantFL_hold_B_major.wav",
                     "plantFL_hold_B.wav",
                     "plantFL_hold_D_sharp.wav",
                     "plantFL_hold_F_sharp.wav"
                 ],
                 "A_major": [
+                    "plantFL_hold_A_major.wav",
                     "plantFL_hold_A.wav",
                     "plantFL_hold_C_sharp.wav",
                     "plantFL_hold_E.wav"
                 ],
                 "C_major": [
+                    "plantFL_hold_C_major.wav",
                     "plantFL_hold_C.wav",
                     "plantFL_hold_E.wav",
                     "plantFL_hold_G.wav"
                 ],
                 "A_sharp_major": [
+                    "plantFL_hold_A_sharp_major.wav",
                     "plantFL_hold_A_sharp.wav",
                     "plantFL_hold_D.wav",
                     "plantFL_hold_F.wav"
                 ],
                 "F_harmonic_minor": [
+                    "plantFL_hold_F_harmonic_minor.wav",
                     "plantFL_hold_F.wav",
                     "plantFL_hold_G_sharp.wav",
                     "plantFL_hold_C.wav"
@@ -832,46 +877,55 @@
             },
             "impact": {
                 "C_sharp_major": [
+                    "plantFL_impact_C_sharp_major.wav",
                     "plantFL_impact_C_sharp.wav",
                     "plantFL_impact_F.wav",
                     "plantFL_impact_G_sharp.wav"
                 ],
                 "D_sharp_major": [
+                    "plantFL_impact_D_sharp_major.wav",
                     "plantFL_impact_D_sharp.wav",
                     "plantFL_impact_G.wav",
                     "plantFL_impact_A_sharp.wav"
                 ],
                 "G_sharp_major": [
+                    "plantFL_impact_G_sharp_major.wav",
                     "plantFL_impact_G_sharp.wav",
                     "plantFL_impact_C.wav",
                     "plantFL_impact_D_sharp.wav"
                 ],
                 "G_major": [
+                    "plantFL_impact_G_major.wav",
                     "plantFL_impact_G.wav",
                     "plantFL_impact_B.wav",
                     "plantFL_impact_D.wav"
                 ],
                 "B_major": [
+                    "plantFL_impact_B_major.wav",
                     "plantFL_impact_B.wav",
                     "plantFL_impact_D_sharp.wav",
                     "plantFL_impact_F_sharp.wav"
                 ],
                 "A_major": [
+                    "plantFL_impact_A_major.wav",
                     "plantFL_impact_A.wav",
                     "plantFL_impact_C_sharp.wav",
                     "plantFL_impact_E.wav"
                 ],
                 "C_major": [
+                    "plantFL_impact_C_major.wav",
                     "plantFL_impact_C.wav",
                     "plantFL_impact_E.wav",
                     "plantFL_impact_G.wav"
                 ],
                 "A_sharp_major": [
+                    "plantFL_impact_A_sharp_major.wav",
                     "plantFL_impact_A_sharp.wav",
                     "plantFL_impact_D.wav",
                     "plantFL_impact_F.wav"
                 ],
                 "F_harmonic_minor": [
+                    "plantFL_impact_F_harmonic_minor.wav",
                     "plantFL_impact_F.wav",
                     "plantFL_impact_G_sharp.wav",
                     "plantFL_impact_C.wav"
@@ -881,46 +935,55 @@
         "plantFR": {
             "hold": {
                 "C_sharp_major": [
+                    "plantFR_hold_C_sharp_major.wav",
                     "plantFR_hold_C_sharp.wav",
                     "plantFR_hold_F.wav",
                     "plantFR_hold_G_sharp.wav"
                 ],
                 "D_sharp_major": [
+                    "plantFR_hold_D_sharp_major.wav",
                     "plantFR_hold_D_sharp.wav",
                     "plantFR_hold_G.wav",
                     "plantFR_hold_A_sharp.wav"
                 ],
                 "G_sharp_major": [
+                    "plantFR_hold_G_sharp_major.wav",
                     "plantFR_hold_G_sharp.wav",
                     "plantFR_hold_C.wav",
                     "plantFR_hold_D_sharp.wav"
                 ],
                 "G_major": [
+                    "plantFR_hold_G_major.wav",
                     "plantFR_hold_G.wav",
                     "plantFR_hold_B.wav",
                     "plantFR_hold_D.wav"
                 ],
                 "B_major": [
+                    "plantFR_hold_B_major.wav",
                     "plantFR_hold_B.wav",
                     "plantFR_hold_D_sharp.wav",
                     "plantFR_hold_F_sharp.wav"
                 ],
                 "A_major": [
+                    "plantFR_hold_A_major.wav",
                     "plantFR_hold_A.wav",
                     "plantFR_hold_C_sharp.wav",
                     "plantFR_hold_E.wav"
                 ],
                 "C_major": [
+                    "plantFR_hold_C_major.wav",
                     "plantFR_hold_C.wav",
                     "plantFR_hold_E.wav",
                     "plantFR_hold_G.wav"
                 ],
                 "A_sharp_major": [
+                    "plantFR_hold_A_sharp_major.wav",
                     "plantFR_hold_A_sharp.wav",
                     "plantFR_hold_D.wav",
                     "plantFR_hold_F.wav"
                 ],
                 "F_harmonic_minor": [
+                    "plantFR_hold_F_harmonic_minor.wav",
                     "plantFR_hold_F.wav",
                     "plantFR_hold_G_sharp.wav",
                     "plantFR_hold_C.wav"
@@ -928,46 +991,55 @@
             },
             "impact": {
                 "C_sharp_major": [
+                    "plantFR_impact_C_sharp_major.wav",
                     "plantFR_impact_C_sharp.wav",
                     "plantFR_impact_F.wav",
                     "plantFR_impact_G_sharp.wav"
                 ],
                 "D_sharp_major": [
+                    "plantFR_impact_D_sharp_major.wav",
                     "plantFR_impact_D_sharp.wav",
                     "plantFR_impact_G.wav",
                     "plantFR_impact_A_sharp.wav"
                 ],
                 "G_sharp_major": [
+                    "plantFR_impact_G_sharp_major.wav",
                     "plantFR_impact_G_sharp.wav",
                     "plantFR_impact_C.wav",
                     "plantFR_impact_D_sharp.wav"
                 ],
                 "G_major": [
+                    "plantFR_impact_G_major.wav",
                     "plantFR_impact_G.wav",
                     "plantFR_impact_B.wav",
                     "plantFR_impact_D.wav"
                 ],
                 "B_major": [
+                    "plantFR_impact_B_major.wav",
                     "plantFR_impact_B.wav",
                     "plantFR_impact_D_sharp.wav",
                     "plantFR_impact_F_sharp.wav"
                 ],
                 "A_major": [
+                    "plantFR_impact_A_major.wav",
                     "plantFR_impact_A.wav",
                     "plantFR_impact_C_sharp.wav",
                     "plantFR_impact_E.wav"
                 ],
                 "C_major": [
+                    "plantFR_impact_C_major.wav",
                     "plantFR_impact_C.wav",
                     "plantFR_impact_E.wav",
                     "plantFR_impact_G.wav"
                 ],
                 "A_sharp_major": [
+                    "plantFR_impact_A_sharp_major.wav",
                     "plantFR_impact_A_sharp.wav",
                     "plantFR_impact_D.wav",
                     "plantFR_impact_F.wav"
                 ],
                 "F_harmonic_minor": [
+                    "plantFR_impact_F_harmonic_minor.wav",
                     "plantFR_impact_F.wav",
                     "plantFR_impact_G_sharp.wav",
                     "plantFR_impact_C.wav"
@@ -977,6 +1049,7 @@
         "flowerL": {
             "hold": {
                 "C_sharp_major": [
+                    "flowerL_hold_C_sharp_major.wav",
                     "flowerL_hold_C_sharp.wav",
                     "flowerL_hold_D_sharp.wav",
                     "flowerL_hold_F.wav",
@@ -986,6 +1059,7 @@
                     "flowerL_hold_C.wav"
                 ],
                 "D_sharp_major": [
+                    "flowerL_hold_D_sharp_major.wav",
                     "flowerL_hold_D_sharp.wav",
                     "flowerL_hold_F.wav",
                     "flowerL_hold_G.wav",
@@ -995,6 +1069,7 @@
                     "flowerL_hold_D.wav"
                 ],
                 "G_sharp_major": [
+                    "flowerL_hold_G_sharp_major.wav",
                     "flowerL_hold_G_sharp.wav",
                     "flowerL_hold_A_sharp.wav",
                     "flowerL_hold_C.wav",
@@ -1004,6 +1079,7 @@
                     "flowerL_hold_G.wav"
                 ],
                 "G_major": [
+                    "flowerL_hold_G_major.wav",
                     "flowerL_hold_G.wav",
                     "flowerL_hold_A.wav",
                     "flowerL_hold_B.wav",
@@ -1013,6 +1089,7 @@
                     "flowerL_hold_F_sharp.wav"
                 ],
                 "B_major": [
+                    "flowerL_hold_B_major.wav",
                     "flowerL_hold_B.wav",
                     "flowerL_hold_C_sharp.wav",
                     "flowerL_hold_D_sharp.wav",
@@ -1022,6 +1099,7 @@
                     "flowerL_hold_A_sharp.wav"
                 ],
                 "A_major": [
+                    "flowerL_hold_A_major.wav",
                     "flowerL_hold_A.wav",
                     "flowerL_hold_B.wav",
                     "flowerL_hold_C_sharp.wav",
@@ -1031,6 +1109,7 @@
                     "flowerL_hold_G_sharp.wav"
                 ],
                 "C_major": [
+                    "flowerL_hold_C_major.wav",
                     "flowerL_hold_C.wav",
                     "flowerL_hold_D.wav",
                     "flowerL_hold_E.wav",
@@ -1040,6 +1119,7 @@
                     "flowerL_hold_B.wav"
                 ],
                 "A_sharp_major": [
+                    "flowerL_hold_A_sharp_major.wav",
                     "flowerL_hold_A_sharp.wav",
                     "flowerL_hold_C.wav",
                     "flowerL_hold_D.wav",
@@ -1049,6 +1129,7 @@
                     "flowerL_hold_A.wav"
                 ],
                 "F_harmonic_minor": [
+                    "flowerL_hold_F_harmonic_minor.wav",
                     "flowerL_hold_F.wav",
                     "flowerL_hold_G.wav",
                     "flowerL_hold_G_sharp.wav",
@@ -1060,6 +1141,7 @@
             },
             "impact": {
                 "C_sharp_major": [
+                    "flowerL_impact_C_sharp_major.wav",
                     "flowerL_impact_C_sharp.wav",
                     "flowerL_impact_D_sharp.wav",
                     "flowerL_impact_F.wav",
@@ -1069,6 +1151,7 @@
                     "flowerL_impact_C.wav"
                 ],
                 "D_sharp_major": [
+                    "flowerL_impact_D_sharp_major.wav",
                     "flowerL_impact_D_sharp.wav",
                     "flowerL_impact_F.wav",
                     "flowerL_impact_G.wav",
@@ -1078,6 +1161,7 @@
                     "flowerL_impact_D.wav"
                 ],
                 "G_sharp_major": [
+                    "flowerL_impact_G_sharp_major.wav",
                     "flowerL_impact_G_sharp.wav",
                     "flowerL_impact_A_sharp.wav",
                     "flowerL_impact_C.wav",
@@ -1087,6 +1171,7 @@
                     "flowerL_impact_G.wav"
                 ],
                 "G_major": [
+                    "flowerL_impact_G_major.wav",
                     "flowerL_impact_G.wav",
                     "flowerL_impact_A.wav",
                     "flowerL_impact_B.wav",
@@ -1096,6 +1181,7 @@
                     "flowerL_impact_F_sharp.wav"
                 ],
                 "B_major": [
+                    "flowerL_impact_B_major.wav",
                     "flowerL_impact_B.wav",
                     "flowerL_impact_C_sharp.wav",
                     "flowerL_impact_D_sharp.wav",
@@ -1105,6 +1191,7 @@
                     "flowerL_impact_A_sharp.wav"
                 ],
                 "A_major": [
+                    "flowerL_impact_A_major.wav",
                     "flowerL_impact_A.wav",
                     "flowerL_impact_B.wav",
                     "flowerL_impact_C_sharp.wav",
@@ -1114,6 +1201,7 @@
                     "flowerL_impact_G_sharp.wav"
                 ],
                 "C_major": [
+                    "flowerL_impact_C_major.wav",
                     "flowerL_impact_C.wav",
                     "flowerL_impact_D.wav",
                     "flowerL_impact_E.wav",
@@ -1123,6 +1211,7 @@
                     "flowerL_impact_B.wav"
                 ],
                 "A_sharp_major": [
+                    "flowerL_impact_A_sharp_major.wav",
                     "flowerL_impact_A_sharp.wav",
                     "flowerL_impact_C.wav",
                     "flowerL_impact_D.wav",
@@ -1132,6 +1221,7 @@
                     "flowerL_impact_A.wav"
                 ],
                 "F_harmonic_minor": [
+                    "flowerL_impact_F_harmonic_minor.wav",
                     "flowerL_impact_F.wav",
                     "flowerL_impact_G.wav",
                     "flowerL_impact_G_sharp.wav",
@@ -1145,6 +1235,7 @@
         "flowerR": {
             "hold": {
                 "C_sharp_major": [
+                    "flowerR_hold_C_sharp_major.wav",
                     "flowerR_hold_C_sharp.wav",
                     "flowerR_hold_D_sharp.wav",
                     "flowerR_hold_F.wav",
@@ -1154,6 +1245,7 @@
                     "flowerR_hold_C.wav"
                 ],
                 "D_sharp_major": [
+                    "flowerR_hold_D_sharp_major.wav",
                     "flowerR_hold_D_sharp.wav",
                     "flowerR_hold_F.wav",
                     "flowerR_hold_G.wav",
@@ -1163,6 +1255,7 @@
                     "flowerR_hold_D.wav"
                 ],
                 "G_sharp_major": [
+                    "flowerR_hold_G_sharp_major.wav",
                     "flowerR_hold_G_sharp.wav",
                     "flowerR_hold_A_sharp.wav",
                     "flowerR_hold_C.wav",
@@ -1172,6 +1265,7 @@
                     "flowerR_hold_G.wav"
                 ],
                 "G_major": [
+                    "flowerR_hold_G_major.wav",
                     "flowerR_hold_G.wav",
                     "flowerR_hold_A.wav",
                     "flowerR_hold_B.wav",
@@ -1181,6 +1275,7 @@
                     "flowerR_hold_F_sharp.wav"
                 ],
                 "B_major": [
+                    "flowerR_hold_B_major.wav",
                     "flowerR_hold_B.wav",
                     "flowerR_hold_C_sharp.wav",
                     "flowerR_hold_D_sharp.wav",
@@ -1190,6 +1285,7 @@
                     "flowerR_hold_A_sharp.wav"
                 ],
                 "A_major": [
+                    "flowerR_hold_A_major.wav",
                     "flowerR_hold_A.wav",
                     "flowerR_hold_B.wav",
                     "flowerR_hold_C_sharp.wav",
@@ -1199,6 +1295,7 @@
                     "flowerR_hold_G_sharp.wav"
                 ],
                 "C_major": [
+                    "flowerR_hold_C_major.wav",
                     "flowerR_hold_C.wav",
                     "flowerR_hold_D.wav",
                     "flowerR_hold_E.wav",
@@ -1208,6 +1305,7 @@
                     "flowerR_hold_B.wav"
                 ],
                 "A_sharp_major": [
+                    "flowerR_hold_A_sharp_major.wav",
                     "flowerR_hold_A_sharp.wav",
                     "flowerR_hold_C.wav",
                     "flowerR_hold_D.wav",
@@ -1217,6 +1315,7 @@
                     "flowerR_hold_A.wav"
                 ],
                 "F_harmonic_minor": [
+                    "flowerR_hold_F_harmonic_minor.wav",
                     "flowerR_hold_F.wav",
                     "flowerR_hold_G.wav",
                     "flowerR_hold_G_sharp.wav",
@@ -1228,6 +1327,7 @@
             },
             "impact": {
                 "C_sharp_major": [
+                    "flowerR_impact_C_sharp_major.wav",
                     "flowerR_impact_C_sharp.wav",
                     "flowerR_impact_D_sharp.wav",
                     "flowerR_impact_F.wav",
@@ -1237,6 +1337,7 @@
                     "flowerR_impact_C.wav"
                 ],
                 "D_sharp_major": [
+                    "flowerR_impact_D_sharp_major.wav",
                     "flowerR_impact_D_sharp.wav",
                     "flowerR_impact_F.wav",
                     "flowerR_impact_G.wav",
@@ -1246,6 +1347,7 @@
                     "flowerR_impact_D.wav"
                 ],
                 "G_sharp_major": [
+                    "flowerR_impact_G_sharp_major.wav",
                     "flowerR_impact_G_sharp.wav",
                     "flowerR_impact_A_sharp.wav",
                     "flowerR_impact_C.wav",
@@ -1255,6 +1357,7 @@
                     "flowerR_impact_G.wav"
                 ],
                 "G_major": [
+                    "flowerR_impact_G_major.wav",
                     "flowerR_impact_G.wav",
                     "flowerR_impact_A.wav",
                     "flowerR_impact_B.wav",
@@ -1264,6 +1367,7 @@
                     "flowerR_impact_F_sharp.wav"
                 ],
                 "B_major": [
+                    "flowerR_impact_B_major.wav",
                     "flowerR_impact_B.wav",
                     "flowerR_impact_C_sharp.wav",
                     "flowerR_impact_D_sharp.wav",
@@ -1273,6 +1377,7 @@
                     "flowerR_impact_A_sharp.wav"
                 ],
                 "A_major": [
+                    "flowerR_impact_A_major.wav",
                     "flowerR_impact_A.wav",
                     "flowerR_impact_B.wav",
                     "flowerR_impact_C_sharp.wav",
@@ -1282,6 +1387,7 @@
                     "flowerR_impact_G_sharp.wav"
                 ],
                 "C_major": [
+                    "flowerR_impact_C_major.wav",
                     "flowerR_impact_C.wav",
                     "flowerR_impact_D.wav",
                     "flowerR_impact_E.wav",
@@ -1291,6 +1397,7 @@
                     "flowerR_impact_B.wav"
                 ],
                 "A_sharp_major": [
+                    "flowerR_impact_A_sharp_major.wav",
                     "flowerR_impact_A_sharp.wav",
                     "flowerR_impact_C.wav",
                     "flowerR_impact_D.wav",
@@ -1300,6 +1407,7 @@
                     "flowerR_impact_A.wav"
                 ],
                 "F_harmonic_minor": [
+                    "flowerR_impact_F_harmonic_minor.wav",
                     "flowerR_impact_F.wav",
                     "flowerR_impact_G.wav",
                     "flowerR_impact_G_sharp.wav",

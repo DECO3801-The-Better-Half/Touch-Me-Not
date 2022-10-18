@@ -4,6 +4,12 @@ TEMP_DIR = "generate_sounds_temp"
 OUTPUT_DIR = "audio"
 INSTRUCTIONS_FILE = "instructions.txt"
 
+IGNORED_WARNINGS = [
+	"are identical (not copied).",
+	"rm:",
+	"decrease volume?"
+]
+
 NUM_PITCH_DOWNS = 7 # when generating all semi-tones this is the number of pitching down it must to out of 11 other semi-tones
 
 class ChordPurpose(Enum):

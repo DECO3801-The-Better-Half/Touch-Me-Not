@@ -78,17 +78,18 @@ instrument water C_sharp_major chord L1R1
 "
 
 Then define sounds with their layers listed below
-	sound instrument_name sound_name
-	- filename note volume_scale_factor
+	sound instrument_name sound_name sound_volume_scale_factor
+	- filename note layer_volume_scale_factor
 	- ...
 		instrument_name: name of the object this sound is assigned to
 		sound_name: name of the sound (impact or hold)
+		sound_volume_scale_factor: scale factor for the volume of this sound (applied after layers are merged)
 		filename: name of the layer's filename
 		note: note of the layer in format, "X_sharp", for the semitone above note X
 		volume_scale_factor: scale factor for the volume of this wav file
 e.g.
 "
-sound flowerR hold
+sound flowerR hold 1.2
 - sound_components/Flower/sparky_drone_G#.wav G_sharp 0.5
 - sound_components/Flower/vocals_G.wav G 1.5
 - sound_components/Flower/bees.wav none 0.1

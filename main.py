@@ -116,27 +116,6 @@ def main():
 
 	all_instruments = left_instruments + right_instruments
 
-	# Adjust volumes
-	left_instruments[1].set_volume("hold", 0.5)
-	left_instruments[1].set_volume("impact", 0.5)
-	right_instruments[4].set_volume("hold", 0.5)
-	right_instruments[4].set_volume("impact", 0.5)
-
-	left_instruments[0].set_volume("hold", 0.7)
-	left_instruments[0].set_volume("impact", 0.7)
-	right_instruments[0].set_volume("hold", 0.7)
-	right_instruments[0].set_volume("impact", 0.7)
-
-	left_instruments[3].set_volume("hold", 0.7)
-	left_instruments[3].set_volume("impact", 2)
-	left_instruments[4].set_volume("hold", 0.7)
-	left_instruments[4].set_volume("impact", 2)
-
-	right_instruments[2].set_volume("hold", 0.7)
-	right_instruments[2].set_volume("impact", 2)
-	right_instruments[3].set_volume("hold", 0.7)
-	right_instruments[3].set_volume("impact", 2)
-
 	clock = pygame.time.Clock()
 
 	ser1 = None

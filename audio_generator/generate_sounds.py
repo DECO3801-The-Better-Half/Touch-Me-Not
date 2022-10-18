@@ -1,31 +1,27 @@
-# sox -m music.mp3 voice.wav mixed.flac
-
 import sys
 import subprocess
 import random
 import json 
-# import time
+import time
 import os
 from constants import *
 
-ignored_warnings = [
-	"are identical (not copied).",
-	"rm:",
-	"decrease volume?"
-]
 reduce_volume_warnings = []
-
+command_count = 0
 def run_command(command: str, use_shell = False) -> tuple[str, str]:
 	"""
 	Runs a command and returns the output and error
 	"""
+	global command_count
+	command_count += 1
+
 	process = subprocess.Popen(command.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=use_shell)
 	stdout, stderr = process.communicate()
 	# decode bytes to string
 	stdout = stdout.decode("utf-8")
 	stderr = stderr.decode("utf-8")
 	if stderr:
-		for ignored_warning in ignored_warnings:
+		for ignored_warning in IGNORED_WARNINGS:
 			if ignored_warning in stderr:
 				break
 		else:
@@ -165,7 +161,7 @@ class Sound:
 	"""
 	Represents a sound
 	"""
-	def __init__(self, name: str, instrument_name: str, layers: list):
+	def __init__(self, name: str, instrument_name: str, layers: list, volume_sf: float = 1.0):
 		"""
 		Parameters:
 			name: the name of the sound
@@ -176,6 +172,7 @@ class Sound:
 		self.sound_type = name
 		self.layers = layers
 		self.instrument_name = instrument_name
+		self.volume_sf = volume_sf
 
 	def num_tonal_layers(self):
 		"""
@@ -197,11 +194,25 @@ class Sound:
 			sound_filenames.append(f"{instrument.name}_{self.sound_type}_{key.name}.wav")
 		# if arpeggio or scale add key arpeggio notes
 		elif instrument.mode == Mode.arpeggio or instrument.mode == Mode.scale:
+			# adds chord anyway
+			sound_filenames.append(f"{instrument.name}_{self.sound_type}_{key.name}.wav")
 			for note_number in SCALE_INDEX_IN_MODE[instrument.mode]:
 				note = SCALES[key][note_number]
 				sound_filenames.append(f"{instrument.name}_{self.sound_type}_{note.name}.wav")
 
 		return sound_filenames
+
+	def change_wav_volume(self, filename: str):
+		"""
+		Changes the volume of the wav file
+		"""
+		# create temporary file
+		run_command(f"cp {filename} {filename}_temp.wav")
+		run_command(f"rm {filename}")
+		# use temporary file to change volume
+		run_command(f"sox -v {self.volume_sf} {filename}_temp.wav {filename}")
+		# delete temporary file
+		run_command(f"rm {filename}_temp.wav")
 
 
 	def merge_layer(self, new_sound_address, new_layer_address):
@@ -270,6 +281,8 @@ class Sound:
 						run_command(f"cp {layer.get_address_for_note(new_note)} {new_sound_address}")
 					else:
 						self.merge_layer(new_sound_address, layer.get_address_for_note(new_note))
+				# change the volume_sf of the sound
+				self.change_wav_volume(new_sound_address)
 				# print(f"CREATING: {instrument.name} {self.name} note: {new_note.name}")
 
 		# generate all the chords
@@ -322,6 +335,8 @@ class Sound:
 				else:
 					self.merge_layer(new_sound_address, layer.get_address_for_note(closest_note))
 				merged_layers.append(layer)
+			# change the volume_sf of the sound
+			self.change_wav_volume(new_sound_address)
 	
 	def __str__(self):
 		return f"Sound(name: {self.name},\nlayers:\n{self.layers})\n"
@@ -430,6 +445,7 @@ def main():
 	Parses jobfile, generates layers for all pitches, generates sounds for all needed keys, 
 	saves them to output folder along with instructions file.
 	"""
+	start_time = time.time()
 	# validate arguments
 	if len(sys.argv) < 2:
 		print("Please provide a file name for the job")
@@ -466,17 +482,23 @@ def main():
 			if words[-1].endswith("\n"):
 				words[-1] = words[-1][:-1]
 
-			if len(words) != 3:
+			if len(words) != 4:
 				print(f"ERROR: line {line_number} of jobfile is not a valid sound line")
 				return
 			sound_instrument = words[1]
+			sound_volume_sf = 1
+			try:
+				sound_volume_sf = float(words[3])
+			except ValueError:
+				print(f"ERROR: line {line_number} of jobfile has invalid volume_sf")
+				return
 			
 			if sound_instrument not in [instrument.name for instrument in instruments]:
 				print(f"ERROR: instrument {sound_instrument} is not defined in jobfile on line {line_number}")
 				return
 			sound_name = words[2]
 			layers = []
-			new_sound = Sound(sound_name, sound_instrument, layers)
+			new_sound = Sound(sound_name, sound_instrument, layers, sound_volume_sf)
 			for instrument in instruments:
 				if instrument.name == sound_instrument:
 					if new_sound in instrument.sounds:
@@ -578,6 +600,7 @@ def main():
 	stdout, stderr = run_command(f"ls {OUTPUT_DIR}")
 	num_files = len(stdout.split("\n"))
 	print(f"{num_files} files in output directory")
+	print(f"{command_count} commands run\n{time.time() - start_time} seconds")
 	print("========================================")
 
 if __name__ == "__main__":
