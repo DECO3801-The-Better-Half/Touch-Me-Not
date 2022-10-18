@@ -10,45 +10,54 @@ from constants import *
 
 ignored_warnings = [
 	"are identical (not copied).",
-	"rm:"
+	"rm:",
+	"decrease volume?"
 ]
 reduce_volume_warnings = []
+
 def run_command(command: str, use_shell = False) -> tuple[str, str]:
-	# print(command)
+	"""
+	Runs a command and returns the output and error
+	"""
 	process = subprocess.Popen(command.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=use_shell)
 	stdout, stderr = process.communicate()
 	# decode bytes to string
 	stdout = stdout.decode("utf-8")
 	stderr = stderr.decode("utf-8")
 	if stderr:
-		if "decrease volume?" in stderr:
-			try:
-				first_arg_file = command.split(" ")[1].split("/")[1]
-			except IndexError: # terrible but i dont care
-				first_arg_file = command.split(" ")[3].split("/")[1]
-			if first_arg_file not in reduce_volume_warnings:
-				# print(f"WARNING: Clipped file: \"{first_arg_file}\". Consider reducing its volume scale factor.")
-				reduce_volume_warnings.append(first_arg_file)
-				# temp_name = first_arg_file.replace(".wav", "_temp.wav")
-				# reduce_volume_warnings.append(f"{temp_name}")
+		for ignored_warning in ignored_warnings:
+			if ignored_warning in stderr:
+				break
 		else:
-			for ignored_warning in ignored_warnings:
-				if ignored_warning in stderr:
-					break
-			else:
-				print(f"---ERROR from subprocess---\n{command}\n---------------------------\n\n{stderr}\n\n---End of ERROR from subprocess---\nExiting...")
-				exit()
+			print(f"---ERROR from subprocess---\n{command}\n---------------------------\n\n{stderr}\n\n---End of ERROR from subprocess---\nExiting...")
+			exit()
 	return stdout, stderr
 
 class PanValue:
+	"""
+	Represents a pan value for a sound
+	"""
 	def __init__(self, pan_description: str):
-		# pan_description is a string of the form "LxRy" where x and y are floats
+		"""
+		Parameters:
+			pan_description: a string of the form "LxRy" where x and y are floats
+		"""
 		self.pan_description = pan_description
 		self.left = float(pan_description.split("R")[0][1:])
 		self.right = float(pan_description.split("R")[1])
 
 class Layer:
+	"""
+	Represents a layer of a sound
+	"""
+
 	def __init__(self, file_address: str, note, volume_sf: float):
+		"""
+		Parameters:
+			file_address: the address of the file
+			note: the note of the file
+			volume_sf: the volume scale factor of the file
+		"""
 		self.file_address = file_address
 		self.name = file_address.split("/")[-1].split(".")[0]
 		self.temp_file_address = f"{TEMP_DIR}/{self.name}.wav"
@@ -57,20 +66,12 @@ class Layer:
 		self.note_number = note.value
 		self.volume_sf = volume_sf
 
-	def __str__(self):
-		return f"Layer(name: {self.name}, note: {self.note}, volume_sf: {self.volume_sf})\n"
-	def __repr__(self):
-		return self.__str__()
-	def __hash__(self):
-		return hash((self.name, self.note, self.volume_sf))
-	def __eq__(self, other):
-		if isinstance(other, Layer):
-			return self.name == other.name and self.note == other.note and self.volume_sf == other.volume_sf
-		return False
-	def __ne__(self, other):
-		return not self.__eq__(other)
-
 	def get_address_for_note(self, note: Note):
+		"""
+		Returns the address of the file for the given note
+		Parameters:
+			note: the note to get the address for
+		"""
 		# print(note)
 		if self.note == Note.none:
 			return self.temp_file_address
@@ -78,9 +79,15 @@ class Layer:
 		return f"{self.temp_file_address_no_extension}_{note.name}.wav"
 
 	def copy_to_temp_dir(self):
+		"""
+		Copies the file to the temp directory
+		"""
 		run_command(f"cp {self.file_address} {self.temp_file_address}")
 
 	def change_wav_volume(self):
+		"""
+		Changes the volume of the wav file
+		"""
 		# create temporary file
 		run_command(f"cp {self.temp_file_address} {self.temp_file_address_no_extension}_temp.wav")
 		run_command(f"rm {self.temp_file_address}")
@@ -90,6 +97,11 @@ class Layer:
 		run_command(f"rm {self.temp_file_address_no_extension}_temp.wav")
 
 	def change_wav_pan(self, pan_value: PanValue):
+		"""
+		Changes the pan of the wav file
+		Parameters:
+			pan_value: the pan value to change to
+		"""
 		# extract left and right channels
 		run_command(f"sox {self.temp_file_address} {self.temp_file_address_no_extension}_left_temp.wav remix 1")
 		run_command(f"sox {self.temp_file_address} {self.temp_file_address_no_extension}_right_temp.wav remix 2")
@@ -108,6 +120,9 @@ class Layer:
 		run_command(f"rm {self.temp_file_address_no_extension}_right.wav")
 
 	def generate_all_notes(self):
+		"""
+		Generates all the notes for the layer
+		"""
 		if self.note == Note.none:
 			return
 		for note_number in range(0, 12):
@@ -116,61 +131,86 @@ class Layer:
 			pitch_value = ((new_note.value - self.note.value + NUM_PITCH_DOWNS) % 12 - NUM_PITCH_DOWNS) * 100
 			run_command(f"sox {self.temp_file_address} {new_file_address} pitch {pitch_value}")
 
+	def __str__(self):
+		return f"Layer(name: {self.name}, note: {self.note}, volume_sf: {self.volume_sf})\n"
+	def __repr__(self):
+		return self.__str__()
+	def __hash__(self):
+		return hash((self.name, self.note, self.volume_sf))
+	def __eq__(self, other):
+		if isinstance(other, Layer):
+			return self.name == other.name and self.note == other.note and self.volume_sf == other.volume_sf
+		return False
+	def __ne__(self, other):
+		return not self.__eq__(other)
+
 class ChordClass:
+	"""
+	Represents a chord class
+	"""
 	def __init__(self, chord, purpose, key = None):
+		"""
+		Parameters:
+			chord: the chord
+			purpose: the purpose of the chord
+			key: the key of the chord
+		"""
 		self.chord = chord # Chord
 		self.seventh_chord = Chord[f"{chord.name}_seventh"]
 		self.purpose = purpose # ChordPurpose
 		self.key = key # If purpose is pivot, this is the key of the pivot chord, if purpose is normal, this is the key of the chord
-
-	# static function used by
 	
 
 class Sound:
+	"""
+	Represents a sound
+	"""
 	def __init__(self, name: str, instrument_name: str, layers: list):
+		"""
+		Parameters:
+			name: the name of the sound
+			instrument_name: the name of the instrument
+			layers: the layers of the sound
+		"""
 		self.name = name + "_" + instrument_name
 		self.sound_type = name
 		self.layers = layers
 		self.instrument_name = instrument_name
 
-	def __str__(self):
-		return f"Sound(name: {self.name},\nlayers:\n{self.layers})\n"
-	def __repr__(self):
-		return self.__str__()
-	def __hash__(self) -> int:
-		return hash((self.name, self.instrument_name))
-	def __eq__(self, o: object) -> bool:
-		if not isinstance(o, Sound):
-			return False
-		return self.name == o.name and self.instrument_name == o.instrument_name
-	def __ne__(self, o: object) -> bool:
-		return not self.__eq__(o)
-
 	def num_tonal_layers(self):
+		"""
+		Returns the number of tonal layers
+		"""
 		return len([layer for layer in self.layers if layer.note != Note.none])
 
 	def get_sound_filenames(self, instrument: 'Instrument', key):
+		"""
+		Returns the sound filenames for the sound
+		Parameters:
+			instrument: the instrument
+			key: the key of the sound
+		"""
 		sound_filenames = []
 		# if chord add key first chord
 		if instrument.mode == Mode.chord:
 			# add key chord
-			# if this.num_tonal_layers() < 4:
-			# sound_filenames.append(f"{instrument.name}_{key.name}.wav")
 			sound_filenames.append(f"{instrument.name}_{self.sound_type}_{key.name}.wav")
-			# else:
-			# 	sound_filenames.append(f"{instrument.name}_{key.name}_seventh.wav")
 		# if arpeggio or scale add key arpeggio notes
 		elif instrument.mode == Mode.arpeggio or instrument.mode == Mode.scale:
 			for note_number in SCALE_INDEX_IN_MODE[instrument.mode]:
 				note = SCALES[key][note_number]
-				# sound_type = this.name.split("_")[0]
-				# print(sound_type)
 				sound_filenames.append(f"{instrument.name}_{self.sound_type}_{note.name}.wav")
 
 		return sound_filenames
 
 
 	def merge_layer(self, new_sound_address, new_layer_address):
+		"""
+		Merges the layer into the sound
+		Parameters:
+			new_sound_address: the address of the new sound
+			new_layer_address: the address of the new layer
+		"""
 		temp_new_sound_address = new_sound_address.replace(".wav", "_temp.wav")
 		temp_new_layer_address = new_layer_address.replace(".wav", "_temp.wav")
 		# copy the files to a temp file to work on and merge
@@ -203,14 +243,12 @@ class Sound:
 		run_command(f"rm {temp_new_sound_address}")
 		run_command(f"rm {temp_new_layer_address}")
 
-	# 	for chord in self.chords:
-	# 		if chord.key == key:
-	# 			if seventh_chord:
-	# 				return f"{sound.name}_{chord.seventh_chord.name}_{note.name}.wav"
-	# 			else:
-	# 				return f"{sound.name}_{chord.chord.name}_{note.name}.wav"
-
 	def generate(self, instrument: 'Instrument'):
+		"""
+		Generates the sound
+		Parameters:
+			instrument: the instrument of the sound
+		"""
 		# sort layers by highest volume_sf to lowest
 		self.layers.sort(key=lambda layer: layer.volume_sf, reverse=True)
 
@@ -236,8 +274,7 @@ class Sound:
 
 		# generate all the chords
 		for chord in instrument.chords:
-			# ignore other normal chords if purpose is normal and mode is scale or arpeggio
-			# TODO
+			# this can be removed to generate fewer files, though it was requested that it was not
 			# if chord.purpose == ChordPurpose.normal and instrument.mode != Mode.chord:
 			# 	continue
 			new_sound_address = f"{TEMP_DIR}/{instrument.name}_{self.name}_{chord.chord.name}.wav"
@@ -261,8 +298,6 @@ class Sound:
 				chord_notes = chord_notes[:num_chord_notes]
 			# shuffle the notes
 			chord_notes = random.sample(chord_notes, num_chord_notes)
-			# print the chord and chord notes
-			# print(f"CREATING: {instrument.name} {self.name} chord: {chord.chord.name}, notes: {[note.name for note in chord_notes]}")
 			# join all the relevant layers
 			merged_layers = []
 			for i, layer in enumerate(self.layers):
@@ -282,26 +317,39 @@ class Sound:
 				if layer.note != Note.none:
 					chord_notes.remove(closest_note)
 				# merge in the layer
-				# print what is about to happen
-				# print(f"MERGING layer {layer.name} with {closest_note.name} of chord {chord.chord.name}")
 				if i == 0:
 					run_command(f"cp {layer.get_address_for_note(closest_note)} {new_sound_address}")
 				else:
 					self.merge_layer(new_sound_address, layer.get_address_for_note(closest_note))
 				merged_layers.append(layer)
-			# print the layers that were merged
-			# print(f"with layers: {[layer.name for layer in merged_layers]}")
-			
+	
+	def __str__(self):
+		return f"Sound(name: {self.name},\nlayers:\n{self.layers})\n"
+	def __repr__(self):
+		return self.__str__()
+	def __hash__(self) -> int:
+		return hash((self.name, self.instrument_name))
+	def __eq__(self, o: object) -> bool:
+		if not isinstance(o, Sound):
+			return False
+		return self.name == o.name and self.instrument_name == o.instrument_name
+	def __ne__(self, o: object) -> bool:
+		return not self.__eq__(o)
 
-		# change volume of each layer
-		# generate all of the semi-tones of each layer
-		# mix all of the semi-tones of each layer (sox -m)
-		#     if chord, mix for each chord
-		#     if scale or arpeggio mix for each note
-		# save to output folder and update instrument instructions
 
 class Instrument:
+	"""
+	Instrument class
+	"""
 	def __init__(self, name: str, key, mode, pan_value: PanValue, sounds: list[Sound]):
+		"""
+		Parameters:
+			name: name of the instrument
+			key: key of the instrument
+			mode: mode of the instrument
+			pan_value: pan value of the instrument
+			sounds: list of Sound objected of the instrument
+		"""
 		self.name = name
 		self.key = key
 		self.mode = mode
@@ -311,45 +359,23 @@ class Instrument:
 		self.range = RANGE_IN_MODE[mode]
 		self.notes_in_range = SCALE_INDEX_IN_MODE[mode]
 
-	def __str__(self):
-		return f"Instrument(name: {self.name}, key: {self.key}\nsounds:\n{self.sounds}\n)\n"
-	def __repr__(self):
-		return self.__str__()
-	def __hash__(self) -> int:
-		return hash(self.name)
-	def __eq__(self, o: object) -> bool:
-		if isinstance(o, Instrument):
-			return self.name == o.name
-		return False
-	def __ne__(self, o: object) -> bool:
-		return not self.__eq__(o)
-
 	def get_pivot_filename(self, new_key, sound):
+		"""
+		Returns the filename of the pivot sound
+		Parameters:
+			new_key: the new key of the instrument
+			sound: the sound to get the pivot filename for
+		"""
 		for chord in self.chords:
 			if chord.purpose == ChordPurpose.pivot and chord.key == new_key:
 				return f"{self.name}_{sound.sound_type}_{chord.chord.name}.wav"
 
-	# instrument.get_normal_filename(key, sound, note)
-	# def get_normal_filename(self, key, sound, note):
-	# 	# count how many layers have a tune
-	# 	num_tonal_layers = 0
-	# 	for layer in sound.layers:
-	# 		if layer.note != Note.none:
-	# 			num_tonal_layers += 1
-	# 	seventh_chord = False
-	# 	if num_tonal_layers >= 4:
-	# 		seventh_chord = True
-
-	# 	for chord in self.chords:
-	# 		if chord.key == key:
-	# 			if seventh_chord:
-	# 				return f"{sound.name}_{chord.seventh_chord.name}_{note.name}.wav"
-	# 			else:
-	# 				return f"{sound.name}_{chord.chord.name}_{note.name}.wav"
-			
-
-	# get all the chords needed for this instrument, does not include seventh chords
 	def set_chords(self, all_keys: list):
+		"""
+		Sets the chords of the instrument. Does not include seventh chords.
+		Parameters:
+			all_keys: list of all the keys
+		"""
 		chords = []
 		# first chord for key
 		for key in all_keys:
@@ -379,10 +405,31 @@ class Instrument:
 		self.chords = chords
 
 	def generate_sounds(self):
+		"""
+		Generates the sounds of the instrument
+		"""
 		for sound in self.sounds:
 			sound.generate(self)
 
+	def __str__(self):
+		return f"Instrument(name: {self.name}, key: {self.key}\nsounds:\n{self.sounds}\n)\n"
+	def __repr__(self):
+		return self.__str__()
+	def __hash__(self) -> int:
+		return hash(self.name)
+	def __eq__(self, o: object) -> bool:
+		if isinstance(o, Instrument):
+			return self.name == o.name
+		return False
+	def __ne__(self, o: object) -> bool:
+		return not self.__eq__(o)
+
 def main():
+	"""
+	Main function.
+	Parses jobfile, generates layers for all pitches, generates sounds for all needed keys, 
+	saves them to output folder along with instructions file.
+	"""
 	# validate arguments
 	if len(sys.argv) < 2:
 		print("Please provide a file name for the job")
@@ -458,13 +505,7 @@ def main():
 			if new_layer in most_recent_sound.layers:
 				print(f"ERROR: layer {new_layer.name} is redefined in jobfile on line {line_number}")
 				return
-			
-			# print(f"Added layer {new_layer.name} to sound {most_recent_sound.name} of instrument {most_recent_sound.instrument_name}")
 			most_recent_sound.layers.append(new_layer)
-
-	# print("JOBFILE OUTPUT")
-	# for instrument in instruments:
-	# 	print(instrument)
 
 	all_keys = [instrument.key for instrument in instruments]
 	for instrument in instruments:
@@ -479,8 +520,6 @@ def main():
 		instrument.generate_sounds()
 	
 	# gather all instrument instructions and write the tree to a file
-
-# ote(note_i).name: instrument.get_normal_filename(key, sound, Note(note_i)) for note_i in SCALES[key]}
 	instructions = {
 		"key": {instrument.name: instrument.key.name for instrument in instruments},
 		"range": {instrument.name: instrument.range for instrument in instruments},
@@ -488,20 +527,12 @@ def main():
 		# make the order of sounds in the capacitance layer be determined by the average note of the notes in the sound being in the centre of the capacitance layer
 		"normal": {instrument.name: {sound.name.split("_")[0]: {key.name: sound.get_sound_filenames(instrument, key) for key in all_keys} for sound in instrument.sounds} for instrument in instruments},
 	}
-
-	# copy files at end of instructions
-
-
 	with open('instructions.json', 'w', encoding='utf-8') as f:
 		json.dump(instructions, f, ensure_ascii=False, indent=4)
-
 	output_filenames = []
 
 	run_command(f"rm -r {OUTPUT_DIR}")
 	run_command(f"mkdir {OUTPUT_DIR}")
-	# wait a bit
-	# time.sleep(1)
-	# run_command(f"chmod 777 {TEMP_DIR}/*")
 	stdout, stderr = run_command(f"ls {TEMP_DIR}")
 	instrument_names = [instrument.name for instrument in instruments]
 	for line in stdout.split("\n"):
@@ -512,8 +543,6 @@ def main():
 			new_filename = "_".join(new_filename)
 			run_command(f"cp {TEMP_DIR}/{line} {OUTPUT_DIR}/{new_filename}")
 			output_filenames.append(new_filename)
-		# run_command(f"rsync {TEMP_DIR}/{instrument.name}*.wav {OUTPUT_DIR}")
-
 	run_command(f"rm -r {TEMP_DIR}")
 
 	cwd = os.getcwd()
@@ -534,14 +563,6 @@ def main():
 						print(f"ERROR: File (normal) not found in output directory: {normal_filename}")
 						exit()
 
-	# for filename in output_filenames:
-	# 	# check exists in output
-	# 	if not os.path.isfile(f"{cwd}/{OUTPUT_DIR}/{filename}"):
-	# 		print(f"ERROR: File not found in output directory: {filename}")
-	# 		exit()
-				
-
-
 	# display results
 	print("========================================")
 	print("GENERATED SOUNDS")
@@ -551,11 +572,9 @@ def main():
 		print(f"{instrument.name}")
 		for sound in instrument.sounds:
 			print(f"    {sound.name}")
-
 	print("----------------------------------------")
 	print("FINISHED SUCCESSFULLY")
 	print(f"Instructions: instructions.json")
-	# state number of files in output directory
 	stdout, stderr = run_command(f"ls {OUTPUT_DIR}")
 	num_files = len(stdout.split("\n"))
 	print(f"{num_files} files in output directory")

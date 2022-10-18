@@ -22,14 +22,14 @@ TICKS_PER_SECOND = 30
 
 BASE_THRESHOLD = 800
 
-MODULATION_COOLDOWN_PERIOD = 5 # seconds
+MODULATION_COOLDOWN_PERIOD = 10 # seconds
 
 # PORT_ONE = '/dev/cu.usbserial-10' #'/dev/cu.usbserial-1420'
 # PORT_TWO = '/dev/cu.usbmodem1101' # '/dev/cu.usbmodem14101'
 
 CAPACITANCE_OVERFLOW = -2
 
-INSTRUCTION_FILE = "instructions.json"
+INSTRUCTION_FILE = "../instructions.json"
 
 def get_audio() -> dict[str, dict[str, dict[str, dict[str, Union[Sound, list[Sound]]]]]]:
 	"""Return a mapping of instruments to Sound objects
