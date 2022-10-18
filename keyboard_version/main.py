@@ -5,86 +5,82 @@ Run this file to read serial input from arduinos and turn it into audio.
 The port numbers PORT_ONE and PORT_TWO will likely have to be changed to
 the ports that each arduino is attached to.
 """
-
-# only for keyboard implimentation
-import keyboard
-
-from typing import Union
 import pygame
 import json
 import time
+import sys
 
 from instrument import Instrument
-# from arduino_serial import ArduinoSerial
+from arduino_serial import ArduinoSerial
 from sound import Sound
-
-TICKS_PER_SECOND = 30
-
-BASE_THRESHOLD = 800
-
-MODULATION_COOLDOWN_PERIOD = 10 # seconds
-
-# PORT_ONE = '/dev/cu.usbserial-10' #'/dev/cu.usbserial-1420'
-# PORT_TWO = '/dev/cu.usbmodem1101' # '/dev/cu.usbmodem14101'
-
-CAPACITANCE_OVERFLOW = -2
-
-INSTRUCTION_FILE = "../instructions.json"
-
-def get_audio() -> dict[str, dict[str, dict[str, dict[str, Union[Sound, list[Sound]]]]]]:
-	"""Return a mapping of instruments to Sound objects
-	Returns:
-		mapping: sound purpose -> instrument name -> sound type -> music key -> Sound/list[Sound]
-		e.g. "normal" -> "lightL" -> "hold" -> "G_sharp_major" -> [Sound, Sound, ...]
-		instrument is a string in the file name format (e.g. plantFL)
-		type is the type of sound (hold or impact)
-		sounds is a list of Sound objects
-	"""
-	# convert json to dict
-	instructions = json.load(open(INSTRUCTION_FILE))
-	# replace file names at the end node of the instructions with Sound objects
-	for instruments in [instructions["normal"], instructions["pivot"]]:
-		for instrument, sound_types in instruments.items():
-			for type, music_keys in sound_types.items():
-				for music_key, filename_s in music_keys.items():
-					if isinstance(filename_s, list):
-						music_keys[music_key] = [Sound(filename) for filename in filename_s]
-					elif filename_s:
-						music_keys[music_key] = Sound(filename_s)
-	return instructions
-
-def modulate(old_key: str, new_key: str, all_instruments: list[Instrument], modulating_instrument: Instrument) -> None:
-	"""Modulate all instruments to the given key
-	Parameters:
-		new_key: the key to modulate to
-		all_instruments: a list of all instruments
-	"""
-	print(f"MODULATING TO {new_key}")
-	# play pivot chord
-	pivot_sound = modulating_instrument.sound_objects["pivot"][modulating_instrument.name]["impact"][old_key]
-	print(f"+ {modulating_instrument.name} playing PIVOT CHORD {pivot_sound}")
-	pivot_sound.play()
-	# change all other instruments to the new key
-	for instrument in all_instruments:
-		# if the instrument is currently playing, stop it and play it again in the new key
-		if instrument._currently_playing:
-			instrument.stop()
-			instrument.play(new_key, False)
+from modulate import Modulator
+from constants import *
+from instructions import Instructions
 
 def main():
 	"""Run the main loop"""
+
+	# Constant determined by command line arguments
+	use_keyboard = False
+	use_modulation = False
+	port_one = DEFAULT_PORT_ONE
+	port_two = DEFAULT_PORT_TWO
+
+	# Collect existing users' port settings
+	users = {}
+	try:
+		users = json.load(open(USERS_FILE))
+	except FileNotFoundError:
+		json.dumps(users, open(USERS_FILE, "w"))
+
+	# Handle command line arguments - see README.md for details
+	if len(sys.argv) > 1:
+		for arg in sys.argv[1:]:
+			if arg.startswith("-"):
+				if "h" in arg:
+					print("Usage: ")
+					exit(0)
+				if "k" in arg:
+					use_keyboard = True
+					print("Using keyboard")
+				if "m" in arg:
+					use_modulation = True
+					print("Using modulation")
+			else:
+				if arg.lower() in users:
+					# Update current port settings
+					port_one = users[arg]["port_one"]
+					port_two = users[arg]["port_two"]
+				else:
+					create_new_user = input(f"User {arg} not found. Create new user? (y/n): ")
+					if create_new_user.lower() == "y":
+						# Create new user
+						port_one = input("Enter port for first arduino: e.g. \"/dev/cu.usbserial-10\": ")
+						port_two = input("Enter port for second arduino: e.g. \"/dev/cu.usbmodem1101\": ")
+						users[arg.lower()] = {"port_one": port_one, "port_two": port_two}
+						# Update current port settings
+						port_one = users[arg]["port_one"]
+						port_two = users[arg]["port_two"]
+						# Update users' port setting file
+						users_file = open("data.json", "w")
+						users_file.close()
+					else:
+						print("Exiting...")
+						exit(0)
+
+	# Initialise pygame and Sound objects
 	print("Initialising...")
 	pygame.init()
 
-	# can be removed if using arduino implimentation
-	(width, height) = (300, 200)
-	screen = pygame.display.set_mode((width, height))
-	pygame.display.flip()
+	if use_keyboard:
+		(width, height) = (300, 200)
+		screen = pygame.display.set_mode((width, height))
+		pygame.display.flip()
+
 
 	current_key = "G_sharp_major"
 	last_modulation_time = time.time()
-	sound_objects = get_audio()
-
+	sound_objects = Instructions.get_audio()
 
 	# Initialise our instruments in the right order so ArduinoSerial can read them
 	left_instruments = [
@@ -128,52 +124,61 @@ def main():
 
 	clock = pygame.time.Clock()
 
-	# ser1 = ArduinoSerial(left_instruments, PORT_ONE)
-	# ser2 = ArduinoSerial(right_instruments, PORT_TWO)
+	ser1 = None
+	ser2 = None
+	if not use_keyboard:
+		# Initialise arduinos
+		ser1 = ArduinoSerial(left_instruments, port_one)
+		ser2 = ArduinoSerial(right_instruments, port_two)
 
 	print("-----READY-----")
+	# Main loop
 	while True:
-		# serial_data_one = ser1.get_serial()
-		# serial_data_two = ser2.get_serial()
-
-		# for data in (serial_data_one, serial_data_two):
-		# 	if data:
-		# 		for cur_instrument, value in data.items():
-		# 			if value >= cur_instrument.threshold or value == CAPACITANCE_OVERFLOW:
-		# 				# check for modulations
-		# 				if time.time() - last_modulation_time > MODULATION_COOLDOWN_PERIOD:
-		# 					old_key = current_key
-		# 					current_key = sound_objects["key"][cur_instrument.name]
-		# 					if old_key != current_key:
-		# 						modulate(old_key, current_key, all_instruments, cur_instrument)
-		# 						last_modulation_time = time.time()
-		# 				# play the sound for the key pressed
-		# 				cur_instrument.play(current_key)
-		# 			else:
-		# 				cur_instrument.stop()
-
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
-				pygame.quit()
-				exit()
-			elif event.type == pygame.KEYDOWN:
-				number_pressed = event.key - 48
-				if number_pressed in range(0, 10):
-					# check for modulations
-					if time.time() - last_modulation_time > MODULATION_COOLDOWN_PERIOD:
-						old_key = current_key
-						current_key = sound_objects["key"][all_instruments[number_pressed].name]
-						if old_key != current_key:
-							modulate(old_key, current_key, all_instruments, all_instruments[number_pressed])
-							last_modulation_time = time.time()
-					# play the sound for the key pressed
-					all_instruments[number_pressed].play(current_key)
-			elif event.type == pygame.KEYUP:
-				number_pressed = event.key - 48
-				if number_pressed in range(0, 10):
-					all_instruments[number_pressed].stop()
-
-
+		if not use_keyboard:
+			# Read from arduino
+			serial_data_one = ser1.get_serial()
+			serial_data_two = ser2.get_serial()
+			for data in (serial_data_one, serial_data_two):
+				if data:
+					for cur_instrument, value in data.items():
+						if value >= cur_instrument.threshold or value == CAPACITANCE_OVERFLOW:
+							# Instrument is being touched
+							# Check for modulations
+							if use_modulation and time.time() - last_modulation_time > MODULATION_COOLDOWN_PERIOD:
+								old_key = current_key
+								current_key = sound_objects["key"][cur_instrument.name]
+								if old_key != current_key:
+									# Modulate
+									Modulator.modulate(old_key, current_key, all_instruments, cur_instrument)
+									last_modulation_time = time.time()
+							# Play the sound for the key pressed
+							cur_instrument.play(current_key)
+						else:
+							# Instrument is not being touched
+							cur_instrument.stop()
+		else:
+			# Read from keyboard
+			for event in pygame.event.get():
+				if event.type == pygame.QUIT:
+					pygame.quit()
+					exit()
+				elif event.type == pygame.KEYDOWN:
+					number_pressed = event.key - 48
+					if number_pressed in range(0, 10):
+						# Instrument is being touched
+						# Check for modulations
+						if use_modulation and time.time() - last_modulation_time > MODULATION_COOLDOWN_PERIOD:
+							old_key = current_key
+							current_key = sound_objects["key"][all_instruments[number_pressed].name]
+							if old_key != current_key:
+								Modulator.modulate(old_key, current_key, all_instruments, all_instruments[number_pressed])
+								last_modulation_time = time.time()
+						# Play the sound for the key pressed
+						all_instruments[number_pressed].play(current_key)
+				elif event.type == pygame.KEYUP:
+					number_pressed = event.key - 48
+					if number_pressed in range(0, 10):
+						all_instruments[number_pressed].stop()
 		clock.tick(TICKS_PER_SECOND * 3)  # Frame rate in pygame
 
 
