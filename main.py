@@ -5,7 +5,6 @@ Run this file to read serial input from arduinos and turn it into audio.
 The port numbers PORT_ONE and PORT_TWO will likely have to be changed to
 the ports that each arduino is attached to.
 """
-from xml.dom.pulldom import ErrorHandler
 import pygame
 import json
 import time
@@ -13,7 +12,6 @@ import sys
 
 from instrument import Instrument
 from arduino_serial import ArduinoSerial
-from sound import Sound
 from modulate import Modulator
 from constants import *
 from instructions import Instructions
@@ -21,7 +19,7 @@ from instructions import Instructions
 def main():
 	"""Run the main loop"""
 
-	# Constant determined by command line arguments
+	# Settings determined by command line arguments
 	use_keyboard = False
 	use_modulation = False
 	port_one = DEFAULT_PORT_ONE
@@ -38,6 +36,7 @@ def main():
 	# Handle command line arguments - see README.md for details
 	if len(sys.argv) > 1:
 		skip_iteration = False
+		username_already_found = False
 		for i, arg in enumerate(sys.argv[1:]):
 			if skip_iteration:
 				skip_iteration = False
@@ -59,6 +58,10 @@ def main():
 						print(USAGE)
 						exit(1)
 			else:
+				if username_already_found:
+					print(USAGE)
+					exit(1)
+				username_already_found = True
 				if arg.lower() in users:
 					# Update current port settings
 					port_one = users[arg]["port_one"]
@@ -93,23 +96,23 @@ def main():
 
 	current_key = "G_sharp_major"
 	last_modulation_time = time.time()
-	sound_objects = Instructions.get_audio()
+	instructions = Instructions()
 
 	# Initialise our instruments in the right order so ArduinoSerial can read them
 	left_instruments = [
-		Instrument("Left lamp", "lightL", BASE_THRESHOLD, sound_objects),
-		Instrument("Left flower", "flowerL", BASE_THRESHOLD, sound_objects),
-		Instrument("Dragonfly", "dragonfly", BASE_THRESHOLD, sound_objects),
-		Instrument("Left plant 2", "plantFL", BASE_THRESHOLD, sound_objects),
-		Instrument("Left plant 1", "plantL", BASE_THRESHOLD, sound_objects),
+		Instrument("Left lamp", "lightL", BASE_THRESHOLD, instructions),
+		Instrument("Left flower", "flowerL", BASE_THRESHOLD, instructions),
+		Instrument("Dragonfly", "dragonfly", BASE_THRESHOLD, instructions),
+		Instrument("Left plant 2", "plantFL", BASE_THRESHOLD, instructions),
+		Instrument("Left plant 1", "plantL", BASE_THRESHOLD, instructions),
 	]
 
 	right_instruments = [
-		Instrument("Right lamp", "lightR", BASE_THRESHOLD, sound_objects),
-		Instrument("Water", "water", BASE_THRESHOLD + 200, sound_objects),
-		Instrument("Right plant 2", "plantFR", BASE_THRESHOLD, sound_objects),
-		Instrument("Right plant 1", "plantR", BASE_THRESHOLD, sound_objects),
-		Instrument("Right flower", "flowerR", BASE_THRESHOLD, sound_objects),
+		Instrument("Right lamp", "lightR", BASE_THRESHOLD, instructions),
+		Instrument("Water", "water", BASE_THRESHOLD + 200, instructions),
+		Instrument("Right plant 2", "plantFR", BASE_THRESHOLD, instructions),
+		Instrument("Right plant 1", "plantR", BASE_THRESHOLD, instructions),
+		Instrument("Right flower", "flowerR", BASE_THRESHOLD, instructions),
 	]
 
 	all_instruments = left_instruments + right_instruments
@@ -159,7 +162,7 @@ def main():
 							# Check for modulations
 							if use_modulation and time.time() - last_modulation_time > modulation_cooldown_period:
 								old_key = current_key
-								current_key = sound_objects["key"][cur_instrument.name]
+								current_key = instructions.get_music_key(cur_instrument)
 								if old_key != current_key:
 									# Modulate
 									Modulator.modulate(old_key, current_key, all_instruments, cur_instrument)
@@ -182,7 +185,7 @@ def main():
 						# Check for modulations
 						if use_modulation and time.time() - last_modulation_time > modulation_cooldown_period:
 							old_key = current_key
-							current_key = sound_objects["key"][all_instruments[number_pressed].name]
+							current_key = instructions.get_music_key(all_instruments[number_pressed])
 							if old_key != current_key:
 								Modulator.modulate(old_key, current_key, all_instruments, all_instruments[number_pressed])
 								last_modulation_time = time.time()
