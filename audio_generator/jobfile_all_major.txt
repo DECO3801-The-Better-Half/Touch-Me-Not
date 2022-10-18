@@ -9,11 +9,11 @@ instrument flowerL C_major scale L1.2R0.8
 instrument flowerR A_sharp_major scale L0.8R1.2
 instrument dragonfly F_harmonic_minor chord L1.5R0.15
 
-sound water hold 1.2
+sound water hold 1.5
 - sound_components/Water/sparkly_drone_G#.wav G_sharp 1
-- sound_components/Water/deeper_drone_D#.wav D_sharp 1.2
-- sound_components/Water/deep_drone_D#.wav D_sharp 1.2
-- sound_components/Water/deep_drone_2_D#.wav D_sharp 1.2
+- sound_components/Water/deeper_drone_D#.wav D_sharp 1.5
+- sound_components/Water/deep_drone_D#.wav D_sharp 2
+- sound_components/Water/deep_drone_2_D#.wav D_sharp 2
 - sound_components/Water/_water_scene.wav none 0.5
 
 sound water impact 1.5
