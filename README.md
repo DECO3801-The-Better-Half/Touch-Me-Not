@@ -38,6 +38,16 @@ sound_generator.py
 5. Install dependancies
 
 ![Wiring Diagram](./images/wiring_diagram.png)
+The above wiring diagram contains the left Arduino on the left side and the right Arduino on the right side. For each it is colour-coded as follows:
+Green: Plant 1
+Turquoise: Plant 2
+Yellow: Lamp photoresistors
+Orange: Dragonfly
+Pink: Flower
+Blue: Water
+Note that the temperature sensors in the diagram are intended to be photo resistors.
+
+
 
 ## Usage
 ### Synaesthesia Experience
