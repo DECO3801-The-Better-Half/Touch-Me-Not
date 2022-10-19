@@ -6,7 +6,7 @@ touch, sound, and vision.
 This project aims to provide users with an immersive synesthesia experience in which they can touch different materials 
 and in turn experience audio and light.
 
-To run this code, see 'Installation'.
+To run this code, see [Installation](#Installation).
 
 ## Modules
 ### Synaesthesia Experience
@@ -23,7 +23,7 @@ To run this code, see 'Installation'.
 
 ### Testing
 The files in `/testing` allow this project to be executed through keyboard input instead of with Arduinos. See 
-'Installation' for instructions on how to use this functionality.
+[Installation](#Installation) for instructions on how to use this functionality.
 
 The testing files contain some functionality that we were not able to fully implement and user test.
 
@@ -36,11 +36,24 @@ The testing files contain some functionality that we were not able to fully impl
 ### Arduino
 Two Arduino Uno Rev3 boards.
 
+Two [LDR photosensors](https://www.jaycar.com.au/arduino-compatible-photosensitive-ldr-sensor-module/p/XC4446)
+
 The following libraries installed to the Arduino IDE:
 - Adafruit NeoPixel 1.10.6
 - CapSense 0.5.1
 
-Two LED strips, the [datasheet for which can be found here](https://www.jaycar.com.au/medias/sys_master/images/images/9700136517662/XC4390-dataSheetMain.pdf).
+Two LED strips, the [datasheet for which can be found here](https://www.jaycar.com.au/medias/sys_master/images/images/9700136517662/XC4390-dataSheetMain.pdf). 
+These strips need a 5V power source.
+
+To replicate our setup, also required is:
+- many of jumper leads
+- many alligator clips
+- two breadboards
+- 4 plants
+- 2 flowers
+- a bowl of water
+- a metal dragonfly
+- tent to store everything in
 
 ### Generate Audio
 This is run on mac or linux terminals. Required libraries:
