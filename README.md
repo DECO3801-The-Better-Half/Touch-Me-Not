@@ -64,7 +64,7 @@ This is run on mac or linux terminals. Required libraries:
 ### Setup
 1. Install the required dependencies
 2. Connect the Arduinos capacitance and light sensors to the objects and plug LED strips into Arduinos.
-   1. See wiring diagram below
+   1. See [wiring diagram below](#wiring-diagram)
        ![IMG_6857](https://user-images.githubusercontent.com/88118932/190286986-9709f1e9-f6db-4a0d-9529-1fef5aa7de49.jpg)
 3. Export the Arduino code onto the two Arduinos:
    1. `/LED_controller/left_LED_controller/left_LED_controller.ino` for the left Arduino
@@ -82,8 +82,6 @@ it is colour-coded as follows:
 - Pink: Flower
 - Blue: Water
 Note that the temperature sensors in the diagram are intended to be photo resistors.
-
-#### Synaesthesia Experience
 
 ### Testing
 The code can be tested without Arduinos using keyboard input. To do this:
