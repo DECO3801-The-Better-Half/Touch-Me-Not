@@ -8,8 +8,10 @@ class Modulator:
 		"""
 		Static function to modulate all instruments to the given key
 		Parameters:
+			old_key: the key to modulate from
 			new_key: the key to modulate to
 			all_instruments: a list of all instruments
+			modulating_instrument: the instrument that is modulating
 		"""
 		print(f"Modulating to {new_key}")
 		# change all other instruments to the new key
