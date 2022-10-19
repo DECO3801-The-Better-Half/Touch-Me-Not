@@ -11,8 +11,10 @@ class Instrument:
     """Representation of an instrument
 
     Attributes:
-        name: the string name of this instrument
+        readable_name: the readable name of this instrument
+        name: the name of this instrument according to the audio files
         threshold: the threshold required for this instrument to play
+        instructions: instructions to play this instrument
     """
 
     def __init__(
