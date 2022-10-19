@@ -5,7 +5,7 @@ Class form of each instrument and teh instructions of each instrument
 """
 from __future__ import annotations
 import json
-from constants import *
+from constants import INSTRUCTION_FILE
 from sound import Sound
 
 
@@ -105,11 +105,11 @@ class Instructions:
         """Creates a mapping of instruments to Sound objects and other
         information mapping:
         sound purpose -> instrument name ->
-        sound type -> music key -> Sound/list[Sound]
+        sound music_type -> music key -> Sound/list[Sound]
 
         sound purpose: normal or pivot
         insturment name: name of instrument
-        sound type: hold, impact, or release
+        sound music_type: hold, impact, or release
         music key: key of the music (e.g. F_harmonic_major)
         Sound: the Sound object
 
@@ -120,8 +120,8 @@ class Instructions:
         instructions = json.load(open(INSTRUCTION_FILE))
         # Replace file names at the end node of the instructions with Sound
         # object
-        for instrument, sound_types in instructions["normal"].items():
-            for type, music_keys in sound_types.items():
+        for _, sound_types in instructions["normal"].items():
+            for _, music_keys in sound_types.items():
                 for music_key, filename_s in music_keys.items():
                     # at end node
                     if isinstance(filename_s, list):
@@ -132,19 +132,20 @@ class Instructions:
     def get_sound(
             self,
             instrument: Instrument,
-            type: str,
+            music_type: str,
             music_key: str
     ) -> Sound:
         """
         Get the sound object for the given instrument, type, and music key
         Parameters:
             instrument: the instrument to get the sound for
-            type: the type of sound (hold, impact, or release)
+            music_type: the type of sound (hold, impact, or release)
             music_key: the key of the music (e.g. F_harmonic_major)
         Returns:
             the Sound object
         """
-        return self.instructions["normal"][instrument.name][type][music_key][0]
+        return self.instructions["normal"][instrument.name][music_type] \
+            [music_key][0]
 
     def get_music_key(self, instrument: Instrument) -> str:
         """
