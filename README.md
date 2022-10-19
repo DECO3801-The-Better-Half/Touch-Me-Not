@@ -37,6 +37,8 @@ sound_generator.py
 4. If mac or linux OS, run "chmod +x start.sh"
 5. Install dependancies
 
+![Wiring Diagram](./images/wiring_diagram.png)
+
 ## Usage
 ### Synaesthesia Experience
 Unix-based`
