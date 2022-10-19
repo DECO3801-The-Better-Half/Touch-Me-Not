@@ -4,7 +4,7 @@ Wrapper class for pygame sounds
 """
 
 import pygame
-from constants import *
+from constants import AUDIO_DIRECTORY
 
 
 class Sound(pygame.mixer.Sound):
@@ -14,7 +14,7 @@ class Sound(pygame.mixer.Sound):
         """Create new sound with the given name
 
         Parameters:
-            name: the name to be shown in the log
+            filename: the name to be shown in the log
         """
         super().__init__(f"{AUDIO_DIRECTORY}/{filename}")
         self.name = filename.removesuffix(".wav")
