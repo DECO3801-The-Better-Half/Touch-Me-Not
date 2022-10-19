@@ -11,6 +11,11 @@ command_count = 0
 def run_command(command: str, use_shell = False) -> tuple[str, str]:
 	"""
 	Runs a command and returns the output and error
+	Parameters:
+		command: the command to run
+		use_shell: whether to use the shell
+	Returns:
+		the output and error
 	"""
 	global command_count
 	command_count += 1
@@ -167,6 +172,7 @@ class Sound:
 			name: the name of the sound
 			instrument_name: the name of the instrument
 			layers: the layers of the sound
+			volume_sf: the volume scale factor
 		"""
 		self.name = name + "_" + instrument_name
 		self.sound_type = name
@@ -205,6 +211,8 @@ class Sound:
 	def change_wav_volume(self, filename: str):
 		"""
 		Changes the volume of the wav file
+		Paremeters:
+			filename: the filename of the wav file
 		"""
 		# create temporary file
 		run_command(f"cp {filename} {filename}_temp.wav")
