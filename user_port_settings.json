@@ -1,1 +1,1 @@
-{"martin": {"port_one": "/dev/cu.usbserial-10", "port_two": "/dev/cu.usbmodem1101"}, "lauren": {"port_one": "/dev/cu.usbserial-1420", "port_two": "/dev/cu.usbmodem14101"}, "martin2": {"port_one": "/dev/tty.usbmodem101", "port_two": "/dev/tty.usbserial-110"}}
+{"martin": {"port_one": "", "port_two": ""}}

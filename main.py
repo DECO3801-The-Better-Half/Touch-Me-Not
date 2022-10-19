@@ -8,11 +8,10 @@ import json
 import time
 import sys
 
-from instrument import Instrument
+from instrument import Instrument, Instructions
 from arduino_serial import ArduinoSerial
 from modulate import Modulator
 from constants import *
-from instructions import Instructions
 
 def main():
 	"""
@@ -32,8 +31,9 @@ def main():
 	try:
 		users = json.load(open(USERS_FILE))
 	except FileNotFoundError:
-		json.dumps(users, open(USERS_FILE, "w"))
-
+		users_file = open(USERS_FILE, "w")
+		json.dump(users, users_file)
+		users_file.close()
 	# Parse and handle command line arguments - see README.md for details
 	if len(sys.argv) > 1:
 		skip_iteration = False

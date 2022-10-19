@@ -41,6 +41,7 @@ sound_generator.py
 ### Synaesthesia Experience
 Unix-based`
 Usage: ```./start.sh [username] [-m cooldown] [-k]```
+
 	username: name of new or existing user
 		(used to select port names)
 	-m cooldown: use modulation mode with modulation cooldown period in seconds

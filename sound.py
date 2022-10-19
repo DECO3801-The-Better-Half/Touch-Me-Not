@@ -17,7 +17,7 @@ class Sound(pygame.mixer.Sound):
             filename: the name to be shown in the log
         """
         super().__init__(f"{AUDIO_DIRECTORY}/{filename}")
-        self.name = filename.removesuffix(".wav")
+        self.name = filename
 
     def __str__(self):
         return self.name
