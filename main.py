@@ -31,9 +31,9 @@ def get_audio() -> Dict[Tuple[str, str], List[Sound]]:
     """Return a mapping of instruments to Sounds
 
     Returns:
-        mapping: (instrument, type) -> sounds
+        mapping: (instrument, music_type) -> sounds
         instrument is a string in the file name format (e.g. plantFL)
-        type is the type of sound (hold or impact)
+        music_type is the type of sound (hold or impact)
         sounds is a list of Sound objects
     """
     this_dir = os.getcwd()
@@ -44,12 +44,12 @@ def get_audio() -> Dict[Tuple[str, str], List[Sound]]:
     sound_objects = {}
     for sound in sound_files_paths:
         abs_path = os.path.basename(sound)  # Get sound file name without path
-        instrument, type, key = abs_path.split("_", 2)
+        instrument, music_type, key = abs_path.split("_", 2)
         # e.g. water, hold, f_harmonic_minor
 
-        sounds = sound_objects.get((instrument, type), [])
-        sounds.append(Sound(sound, f"{instrument}_{type}_{key}", key))
-        sound_objects[(instrument, type)] = sounds
+        sounds = sound_objects.get((instrument, music_type), [])
+        sounds.append(Sound(sound, f"{instrument}_{music_type}_{key}", key))
+        sound_objects[(instrument, music_type)] = sounds
 
     return sound_objects
 
@@ -60,7 +60,7 @@ def main():
 
     sound_objects = get_audio()
 
-    # Initialise our instruments in the right order so ArduinoSerial can read them
+    # Initialise our instruments in the right order so ArduinoSerial can read
     left_instruments = [
         Instrument("Left lamp", "lightL", threshold=BASE_THRESHOLD),
         Instrument("Left flower", "flowerL", threshold=BASE_THRESHOLD),
@@ -71,7 +71,7 @@ def main():
 
     right_instruments = [
         Instrument("Right lamp", "lightR", threshold=BASE_THRESHOLD),
-        Instrument("Water", "water", threshold=BASE_THRESHOLD + 200),
+        Instrument("Water", "water", threshold=BASE_THRESHOLD + 1000),
         Instrument("Right plant 2", "plantFR", threshold=BASE_THRESHOLD),
         Instrument("Right plant 1", "plantR", threshold=BASE_THRESHOLD),
         Instrument("Right flower", "flowerR", threshold=BASE_THRESHOLD),
@@ -124,7 +124,8 @@ def main():
         for data in (serial_data_one, serial_data_two):
             if data:
                 for cur_instrument, value in data.items():
-                    if value >= cur_instrument.threshold or value == CAPACITANCE_OVERFLOW:
+                    if value >= cur_instrument.threshold \
+                            or value == CAPACITANCE_OVERFLOW:
                         cur_instrument.play(KEY)
                     else:
                         cur_instrument.stop()
