@@ -145,3 +145,5 @@ This issue is related to the port main.py is trying to read the arduino input fr
 For mac computers, the ports will look similar to the following:
 - `/dev/tty.usbmodem14201`
 - `/dev/cu.usbmodem1101`
+
+These can be found using the command `ls /dev/*`
