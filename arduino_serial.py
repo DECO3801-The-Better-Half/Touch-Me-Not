@@ -4,8 +4,8 @@ Class to parse the input from the arduino serial.
 """
 
 import serial
-from instrument import Instrument
 from typing import List, Dict, Optional
+from instrument import Instrument
 
 BOARD_RATE = 9600
 
