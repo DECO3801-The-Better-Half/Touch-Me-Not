@@ -56,7 +56,7 @@ To replicate our setup, also required is:
 - tent to store everything in
 
 ### Generate Audio
-This is run on mac or linux terminals. Required libraries:
+This is run on Mac or linux terminals. Required libraries:
 - zsh: see https://www.zsh.org/
 - sox: see https://sox.sourceforge.net/
 
@@ -65,7 +65,6 @@ This is run on mac or linux terminals. Required libraries:
 1. Install the required dependencies
 2. Connect the Arduinos capacitance and light sensors to the objects and plug LED strips into Arduinos.
    1. See [wiring diagram below](#wiring-diagram)
-       ![IMG_6857](https://user-images.githubusercontent.com/88118932/190286986-9709f1e9-f6db-4a0d-9529-1fef5aa7de49.jpg)
 3. Export the Arduino code onto the two Arduinos:
    1. `/LED_controller/left_LED_controller/left_LED_controller.ino` for the left Arduino
    2. `/LED_controller/right_LED_controller/right_LED_controller.ino` for the right Arduino
@@ -82,6 +81,11 @@ it is colour-coded as follows:
 - Pink: Flower
 - Blue: Water
 Note that the temperature sensors in the diagram are intended to be photo resistors.
+
+An example of the wiring setup on the breadboard is given below. In this example, each resistor has leads connecting 
+to arduino digital pins on either side, with an alligator clip leading to the instrument.
+
+![IMG_6857](https://user-images.githubusercontent.com/88118932/190286986-9709f1e9-f6db-4a0d-9529-1fef5aa7de49.jpg)
 
 ### Testing
 The code can be tested without Arduinos using keyboard input. To do this:
@@ -102,7 +106,7 @@ python3 main.py [username] [-m cooldown] [-k]
 ```
 
 ### Generate Audio: Generate
-Change working directory to `audio_generator/`. Only works on unix-based OS with sox installed.
+Change working directory to `audio_generator/`. Only works on Unix-based OS with sox installed.
 Usage: 
 ```
 python3 generate_sounds.py jobfile
@@ -153,7 +157,7 @@ Lines beginning with anything other than "instrument", "sound", or "-" will be i
 This issue is related to the port main.py is trying to read the arduino input from. 
 [This link should show you how to find the suitable port for your computer.](https://www.mathworks.com/help/supportpkg/arduinoio/ug/find-arduino-port-on-windows-mac-and-linux.html)
 
-For mac computers, the ports will look similar to the following:
+For Mac computers, the ports will look similar to the following:
 - `/dev/tty.usbmodem14201`
 - `/dev/cu.usbmodem1101`
 
