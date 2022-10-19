@@ -4,23 +4,23 @@ Wrapper class for pygame sounds
 """
 
 import pygame
+from constants import AUDIO_DIRECTORY
 
 
 class Sound(pygame.mixer.Sound):
     """Wrapper for pygame sounds"""
 
-    def __init__(self, file, name: str, key: str):
+    def __init__(self, filename: str):
         """Create new sound with the given name
 
         Parameters:
-            name: the name to be shown in the log
+            filename: the name to be shown in the log
         """
-        super().__init__(file)
-        self.name = name
-        self.key = key
+        super().__init__(f"{AUDIO_DIRECTORY}/{filename}")
+        self.name = filename
 
     def __str__(self):
         return self.name
 
     def __repr__(self):
-        return f"Sound({self.name}, {self.key})"
+        return f"Sound({self.name})"
