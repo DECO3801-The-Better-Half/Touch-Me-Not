@@ -1,193 +1,136 @@
-"""
-main.py
+"""main.py
+
 Run this file to read serial input from arduinos and turn it into audio.
 
+The port numbers PORT_ONE and PORT_TWO will likely have to be changed to
+the ports that each arduino is attached to.
 """
-import pygame
-import json
-import time
-import sys
 
-from instrument import Instrument, Instructions
+import os
+import glob
+from typing import Tuple, Dict, List
+import pygame
+
+from instrument import Instrument
 from arduino_serial import ArduinoSerial
-from modulate import Modulator
-from constants import *
+from sound import Sound
+
+TICKS_PER_SECOND = 30
+
+BASE_THRESHOLD = 800
+
+PORT_ONE = '/dev/cu.usbserial-10'  # '/dev/cu.usbserial-1420'
+PORT_TWO = '/dev/cu.usbmodem1101'  # '/dev/cu.usbmodem14101'
+
+CAPACITANCE_OVERFLOW = -2
+
+KEY = "G_sharp_major.wav"
+
+
+def get_audio() -> Dict[Tuple[str, str], List[Sound]]:
+    """Return a mapping of instruments to Sounds
+
+    Returns:
+        mapping: (instrument, type) -> sounds
+        instrument is a string in the file name format (e.g. plantFL)
+        type is the type of sound (hold or impact)
+        sounds is a list of Sound objects
+    """
+    this_dir = os.getcwd()
+    sound_dir_path = this_dir + "/audio/*"
+    sound_files_paths = glob.glob(sound_dir_path)
+
+    # Retrieve the different sounds from sound_files_paths
+    sound_objects = {}
+    for sound in sound_files_paths:
+        abs_path = os.path.basename(sound)  # Get sound file name without path
+        instrument, type, key = abs_path.split("_", 2)
+        # e.g. water, hold, f_harmonic_minor
+
+        sounds = sound_objects.get((instrument, type), [])
+        sounds.append(Sound(sound, f"{instrument}_{type}_{key}", key))
+        sound_objects[(instrument, type)] = sounds
+
+    return sound_objects
+
 
 def main():
-	"""
-	Main function for the synaesthesia experience sound player. See README.md 
-	for details.
-	"""
+    """Run the main loop"""
+    pygame.init()
 
-	# Settings determined by command line arguments
-	use_keyboard = False
-	use_modulation = False
-	port_one = DEFAULT_PORT_ONE
-	port_two = DEFAULT_PORT_TWO
-	modulation_cooldown_period = None
+    sound_objects = get_audio()
 
-	# Collect existing users' port settings
-	users = {}
-	try:
-		users = json.load(open(USERS_FILE))
-	except FileNotFoundError:
-		users_file = open(USERS_FILE, "w")
-		json.dump(users, users_file)
-		users_file.close()
-	# Parse and handle command line arguments - see README.md for details
-	if len(sys.argv) > 1:
-		skip_iteration = False
-		username_already_found = False
-		for i, arg in enumerate(sys.argv[1:]):
-			if skip_iteration:
-				skip_iteration = False
-				continue
-			if arg.startswith("-"):
-				# check for flags
-				if "h" in arg:
-					# reequested help
-					print(USAGE)
-					exit(0)
-				if "k" in arg:
-					# requested keyboard usage
-					use_keyboard = True
-					print("Using keyboard: numbers 0-9 represent object touches")
-				if "m" in arg:
-					# requested modulation
-					use_modulation = True
-					try:
-						modulation_cooldown_period = int(sys.argv[i + 2])
-						skip_iteration = True
-					except:
-						print(USAGE)
-						exit(1)
-					print(f"Using modulation: {modulation_cooldown_period}s cooldown period")
-			else:
-				# Check for username
-				if username_already_found:
-					# Already found a username
-					print(USAGE)
-					exit(1)
-				username_already_found = True
-				if arg.lower() in users:
-					# Update current port settings
-					port_one = users[arg]["port_one"]
-					port_two = users[arg]["port_two"]
-				else:
-					# Add new user to users file
-					create_new_user = input(f"User {arg} not found. Create new user? (y/n): ").lower() == "y"
-					if create_new_user:
-						# Create new user
-						port_one = input("Enter port for first arduino: e.g. \"/dev/cu.usbserial-10\": ")
-						port_two = input("Enter port for second arduino: e.g. \"/dev/cu.usbmodem1101\": ")
-						users[arg.lower()] = {"port_one": port_one, "port_two": port_two}
-						# Update current port settings
-						port_one = users[arg]["port_one"]
-						port_two = users[arg]["port_two"]
-						# Update users' port setting file
-						users_file = open(USERS_FILE, "w")
-						json.dump(users, users_file)
-						users_file.close()
-					else:
-						print("Exiting...")
-						exit(0)
+    # Initialise our instruments in the right order so ArduinoSerial can read them
+    left_instruments = [
+        Instrument("Left lamp", "lightL", threshold=BASE_THRESHOLD),
+        Instrument("Left flower", "flowerL", threshold=BASE_THRESHOLD),
+        Instrument("Dragonfly", "dragonfly", threshold=BASE_THRESHOLD),
+        Instrument("Left plant 2", "plantFL", threshold=BASE_THRESHOLD),
+        Instrument("Left plant 1", "plantL", threshold=BASE_THRESHOLD),
+    ]
 
-	# Initialise pygame and Sound objects
-	print("Initialising...")
-	pygame.init()
-	pygame.mixer.set_num_channels(NUM_AUDIO_CHANNELS)
-	if use_keyboard:
-		# Create window for keyboard input
-		(width, height) = (300, 200)
-		pygame.display.set_mode((width, height))
-		pygame.display.flip()
+    right_instruments = [
+        Instrument("Right lamp", "lightR", threshold=BASE_THRESHOLD),
+        Instrument("Water", "water", threshold=BASE_THRESHOLD + 200),
+        Instrument("Right plant 2", "plantFR", threshold=BASE_THRESHOLD),
+        Instrument("Right plant 1", "plantR", threshold=BASE_THRESHOLD),
+        Instrument("Right flower", "flowerR", threshold=BASE_THRESHOLD),
+    ]
 
-	current_key = "G_sharp_major"
-	last_modulation_time = time.time()
-	instructions = Instructions()
+    all_instruments = left_instruments + right_instruments
 
-	# Initialise our instruments in the right order so ArduinoSerial can read them
-	left_instruments = [
-		Instrument("Left lamp", "lightL", BASE_THRESHOLD, instructions),
-		Instrument("Left flower", "flowerL", BASE_THRESHOLD, instructions),
-		Instrument("Dragonfly", "dragonfly", BASE_THRESHOLD, instructions),
-		Instrument("Left plant 2", "plantFL", BASE_THRESHOLD, instructions),
-		Instrument("Left plant 1", "plantL", BASE_THRESHOLD, instructions),
-	]
+    # Give these sounds to each instrument.
+    for (name, touch_type), sounds in sound_objects.items():
+        # Find instrument that has that file_name
+        for instrument in all_instruments:
+            if instrument.file_name == name:
+                if touch_type == "impact":
+                    for sound in sounds:
+                        instrument.add_impact(sound)
+                elif touch_type == "hold":
+                    for sound in sounds:
+                        instrument.add_hold(sound)
 
-	right_instruments = [
-		Instrument("Right lamp", "lightR", BASE_THRESHOLD, instructions),
-		Instrument("Water", "water", BASE_THRESHOLD + 200, instructions),
-		Instrument("Right plant 2", "plantFR", BASE_THRESHOLD, instructions),
-		Instrument("Right plant 1", "plantR", BASE_THRESHOLD, instructions),
-		Instrument("Right flower", "flowerR", BASE_THRESHOLD, instructions),
-	]
+    # Adjust volumes
+    left_instruments[1].set_volume("hold", 0.5)
+    left_instruments[1].set_volume("impact", 0.5)
+    right_instruments[4].set_volume("hold", 0.5)
+    right_instruments[4].set_volume("impact", 0.5)
 
-	all_instruments = left_instruments + right_instruments
+    left_instruments[0].set_volume("hold", 0.7)
+    left_instruments[0].set_volume("impact", 0.7)
+    right_instruments[0].set_volume("hold", 0.7)
+    right_instruments[0].set_volume("impact", 0.7)
 
-	clock = pygame.time.Clock()
+    left_instruments[3].set_volume("hold", 0.7)
+    left_instruments[3].set_volume("impact", 2)
+    left_instruments[4].set_volume("hold", 0.7)
+    left_instruments[4].set_volume("impact", 2)
 
-	ser1 = None
-	ser2 = None
-	if not use_keyboard:
-		# Initialise arduinos
-		ser1 = ArduinoSerial(left_instruments, port_one)
-		ser2 = ArduinoSerial(right_instruments, port_two)
+    right_instruments[2].set_volume("hold", 0.7)
+    right_instruments[2].set_volume("impact", 2)
+    right_instruments[3].set_volume("hold", 0.7)
+    right_instruments[3].set_volume("impact", 2)
 
-	print("Ready to play sounds")
+    clock = pygame.time.Clock()
 
-	# Loops infintely to check if a object is touched and play the 
-	# relevant sound
-	while True:
-		if not use_keyboard:
-			# Read from arduino
-			serial_data_one = ser1.get_serial()
-			serial_data_two = ser2.get_serial()
-			# Check the serial data for each instrument
-			for data in (serial_data_one, serial_data_two):
-				if data:
-					for cur_instrument, value in data.items():
-						if value >= cur_instrument.threshold or value == CAPACITANCE_OVERFLOW:
-							# Instrument is being touched
-							# Check for modulations
-							if use_modulation and time.time() - last_modulation_time > modulation_cooldown_period:
-								old_key = current_key
-								current_key = instructions.get_music_key(cur_instrument)
-								if old_key != current_key:
-									# Modulate
-									Modulator.modulate(old_key, current_key, all_instruments, cur_instrument)
-									last_modulation_time = time.time()
-							# Play the sound for the key pressed
-							cur_instrument.play(current_key)
-						else:
-							# Instrument is not being touched
-							cur_instrument.stop()
-		else:
-			# Read from keyboard
-			for event in pygame.event.get():
-				if event.type == pygame.QUIT:
-					pygame.quit()
-					exit()
-				elif event.type == pygame.KEYDOWN:
-					number_pressed = event.key - 48
-					if number_pressed in range(0, 10):
-						# Instrument is being touched
-						# Check for modulations
-						if use_modulation and time.time() - last_modulation_time > modulation_cooldown_period:
-							old_key = current_key
-							current_key = instructions.get_music_key(all_instruments[number_pressed])
-							if old_key != current_key:
-								Modulator.modulate(old_key, current_key, all_instruments, all_instruments[number_pressed])
-								last_modulation_time = time.time()
-						# Play the sound for the key pressed
-						all_instruments[number_pressed].play(current_key)
-				elif event.type == pygame.KEYUP:
-					number_pressed = event.key - 48
-					if number_pressed in range(0, 10):
-						# Instrument is not being touched
-						all_instruments[number_pressed].stop()
-		clock.tick(TICKS_PER_SECOND * 3)  # Frame rate in pygame
+    ser1 = ArduinoSerial(left_instruments, PORT_ONE)
+    ser2 = ArduinoSerial(right_instruments, PORT_TWO)
+
+    while True:
+        serial_data_one = ser1.get_serial()
+        serial_data_two = ser2.get_serial()
+
+        for data in (serial_data_one, serial_data_two):
+            if data:
+                for cur_instrument, value in data.items():
+                    if value >= cur_instrument.threshold or value == CAPACITANCE_OVERFLOW:
+                        cur_instrument.play(KEY)
+                    else:
+                        cur_instrument.stop()
+
+        clock.tick(TICKS_PER_SECOND * 3)  # Frame rate in pygame
 
 
 if __name__ == '__main__':
-	main()
+    main()

@@ -1,8 +1,11 @@
-# stores all constants for all components of the player system
+"""constants.py
+
+stores all constants for all components of the player system
+"""
 
 INSTRUCTION_FILE = "instructions.json"
 USERS_FILE = "user_port_settings.json"
-AUDIO_DIRECTORY = "audio"
+AUDIO_DIRECTORY = "../audio"
 TICKS_PER_SECOND = 30
 BASE_THRESHOLD = 800
 DEFAULT_PORT_ONE = '/dev/cu.usbserial-10'
