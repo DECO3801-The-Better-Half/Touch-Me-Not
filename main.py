@@ -16,7 +16,8 @@ from instructions import Instructions
 
 def main():
 	"""
-	Main function for the synaesthesia experience sound player. See README.md for details.
+	Main function for the synaesthesia experience sound player. See README.md 
+	for details.
 	"""
 
 	# Settings determined by command line arguments
@@ -42,13 +43,17 @@ def main():
 				skip_iteration = False
 				continue
 			if arg.startswith("-"):
+				# check for flags
 				if "h" in arg:
+					# reequested help
 					print(USAGE)
 					exit(0)
 				if "k" in arg:
+					# requested keyboard usage
 					use_keyboard = True
 					print("Using keyboard: numbers 0-9 represent object touches")
 				if "m" in arg:
+					# requested modulation
 					use_modulation = True
 					try:
 						modulation_cooldown_period = int(sys.argv[i + 2])
@@ -58,7 +63,9 @@ def main():
 						exit(1)
 					print(f"Using modulation: {modulation_cooldown_period}s cooldown period")
 			else:
+				# Check for username
 				if username_already_found:
+					# Already found a username
 					print(USAGE)
 					exit(1)
 				username_already_found = True
@@ -67,6 +74,7 @@ def main():
 					port_one = users[arg]["port_one"]
 					port_two = users[arg]["port_two"]
 				else:
+					# Add new user to users file
 					create_new_user = input(f"User {arg} not found. Create new user? (y/n): ").lower() == "y"
 					if create_new_user:
 						# Create new user
@@ -89,6 +97,7 @@ def main():
 	pygame.init()
 	pygame.mixer.set_num_channels(NUM_AUDIO_CHANNELS)
 	if use_keyboard:
+		# Create window for keyboard input
 		(width, height) = (300, 200)
 		pygame.display.set_mode((width, height))
 		pygame.display.flip()
@@ -127,12 +136,14 @@ def main():
 
 	print("Ready to play sounds")
 
-	# Main loop
+	# Loops infintely to check if a object is touched and play the 
+	# relevant sound
 	while True:
 		if not use_keyboard:
 			# Read from arduino
 			serial_data_one = ser1.get_serial()
 			serial_data_two = ser2.get_serial()
+			# Check the serial data for each instrument
 			for data in (serial_data_one, serial_data_two):
 				if data:
 					for cur_instrument, value in data.items():
@@ -173,6 +184,7 @@ def main():
 				elif event.type == pygame.KEYUP:
 					number_pressed = event.key - 48
 					if number_pressed in range(0, 10):
+						# Instrument is not being touched
 						all_instruments[number_pressed].stop()
 		clock.tick(TICKS_PER_SECOND * 3)  # Frame rate in pygame
 
